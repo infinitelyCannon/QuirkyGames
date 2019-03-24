@@ -4,38 +4,50 @@ using UnityEngine;
 
 [System.Serializable]
 public class CameraController{
-    public float YSensitivity = 1f;
-    public float xSpeed = 1f;
+    public float ySpeed;
+    public float xSpeed;
     public float distance;
     public bool invertedX = true;
+    public bool invertedY = false;
     public bool lockCursor = true;
+    public float MinimumY;
+    public float MaximumY;
 
-    private Vector3 mCharacterPosition;
-    private Vector3 mCameraPosition;
-    private Vector2 mUnitPosition;
-    private float yOffset;
+    //private Vector3 mCharacterPosition;
+    //private Vector3 mCameraPosition;
+    //private Vector2 mUnitPosition;
+    //private float yOffset;
+    private float yPos;
     private Transform mCamera;
     private bool mCursorLocked = true;
 
     public void Init(Transform character, Transform camera)
     {
         Vector3 unit3D = camera.position.normalized;
-        mCameraPosition = camera.position;
-        mCharacterPosition = character.position;
-        mUnitPosition = new Vector2(unit3D.x, unit3D.z);
+        //mCameraPosition = camera.position;
+        //mCharacterPosition = character.position;
+        //mUnitPosition = new Vector2(unit3D.x, unit3D.z);
         //distance = 10f;//camera.position.magnitude;
-        yOffset = camera.position.y;
+        //yOffset = camera.GetChild(0).position.y;
+        yPos = camera.GetChild(0).localPosition.y;
         mCamera = camera;
     }
 
     public void UpdatePosition()
     {
         float horizontal = Input.GetAxisRaw("Mouse X") * xSpeed;
-        float vertical = Input.GetAxisRaw("Mouse Y") * YSensitivity;
+        float vertical = Input.GetAxisRaw("Mouse Y") * ySpeed;
+        Vector3 tilt = mCamera.GetChild(0).localPosition;
 
         horizontal *= invertedX ? -1f : 1f;
+        vertical *= invertedY ? -1f : 1f;
+        yPos += vertical * Time.deltaTime;
+        yPos = Mathf.Clamp(yPos, MinimumY, MaximumY);
+
+        tilt.y = yPos;
 
         mCamera.Rotate(Vector3.up, horizontal * Time.deltaTime);
+        mCamera.GetChild(0).localPosition = tilt;
         /*
         Vector2 tangent;
 

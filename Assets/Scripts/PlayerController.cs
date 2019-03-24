@@ -9,13 +9,14 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float jumpSpeed = 10f;
     [SerializeField] private float stickToGroundForce = 9.8f;
     [SerializeField] private float gravityMultiplyer = 2f;
+    [SerializeField] private float jetpackGravityScale;
     [SerializeField] private CameraController cameraController;
 
     private Camera mCamera;
     private bool jump;
     private Vector2 mInput;
     private Vector3 moveDir = Vector3.zero;
-    private Vector3 mForward;
+    //private Vector3 mForward;
     private CharacterController characterController;
     private CollisionFlags collisionFlags;
     private bool previouslyGrounded;
@@ -28,7 +29,7 @@ public class PlayerController : MonoBehaviour {
         mCamera = Camera.main;
         jumping = false;
         cameraController.Init(transform, mCamera.transform.parent);
-        mForward = mCamera.transform.forward;
+        //mForward = mCamera.transform.forward;
 	}
 	
 	// Update is called once per frame
@@ -40,7 +41,6 @@ public class PlayerController : MonoBehaviour {
 
         cameraController.UpdatePosition();
         cameraController.UpdateCursorLock();
-        mForward = mCamera.transform.forward;
 
         if (!jump && !jumping)
             jump = Input.GetButtonDown("Jump");
@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour {
         float speed;
         GetInput(out speed);
 
-        Vector3 desiredMove = mForward * mInput.y + transform.right * mInput.x;
+        Vector3 desiredMove = mCamera.transform.parent.forward * mInput.y + mCamera.transform.parent.right * mInput.x;
 
         RaycastHit hitInfo;
         Physics.SphereCast(transform.position, characterController.radius, Vector3.down, out hitInfo, characterController.height / 2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
@@ -84,7 +84,10 @@ public class PlayerController : MonoBehaviour {
         }
         else
         {
-            moveDir += Physics.gravity * gravityMultiplyer * Time.fixedDeltaTime;
+            if (jumping && characterController.velocity.y < 0 && Input.GetButton("Jump"))
+                moveDir += Physics.gravity * jetpackGravityScale * Time.fixedDeltaTime;
+            else
+                moveDir += Physics.gravity * gravityMultiplyer * Time.fixedDeltaTime;
         }
 
         collisionFlags = characterController.Move(moveDir * Time.fixedDeltaTime);
