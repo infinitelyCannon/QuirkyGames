@@ -77,7 +77,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4896144262998220}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 11.2, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4508154678624828
 Transform:
   m_ObjectHideFlags: 1
@@ -266,7 +266,8 @@ MonoBehaviour:
     MinimumY: 0
     MaximumY: 90
     checkForCollision: 1
-  meshRotationSpeed: 140
+    aimDelay: 0.8
+  meshRotationSpeed: 160
 --- !u!143 &143661482804218552
 CharacterController:
   m_ObjectHideFlags: 1
