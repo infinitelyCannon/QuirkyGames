@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4508154678624828}
   - component: {fileID: 33779117899250050}
   - component: {fileID: 23142502282684914}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MeshObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 20006964146418662}
   - component: {fileID: 81685249438029384}
   - component: {fileID: 6000828047987477856}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 23860877965821378}
   - component: {fileID: 114273933578622626}
   - component: {fileID: 143661482804218552}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -259,13 +259,14 @@ MonoBehaviour:
     ySpeed: 40
     xSpeed: 40
     distance: 7
+    minDistance: 0.4
     invertedX: 1
     invertedY: 1
     lockCursor: 1
     MinimumY: 0
     MaximumY: 90
-    checkForCollision: 0
-    collisionCheckSize: 0
+    checkForCollision: 1
+  meshRotationSpeed: 140
 --- !u!143 &143661482804218552
 CharacterController:
   m_ObjectHideFlags: 1
