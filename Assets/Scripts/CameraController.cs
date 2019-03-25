@@ -6,12 +6,16 @@ using UnityEngine;
 public class CameraController{
     public float ySpeed;
     public float xSpeed;
+
+    [Tooltip("The max distance the camera will be, if nothing is blocking its view.")]
     public float distance;
     public bool invertedX = true;
     public bool invertedY = false;
     public bool lockCursor = true;
     public float MinimumY;
     public float MaximumY;
+    public bool checkForCollision;
+    public float collisionCheckSize;
 
     //private Vector3 mCharacterPosition;
     //private Vector3 mCameraPosition;
@@ -20,27 +24,49 @@ public class CameraController{
     private float yPos;
     private Transform mCamera;
     private bool mCursorLocked = true;
+    private PlayerController mPlayer;
+    private float azimuth = 180f;
+    private float colatitude = 90f;
+    private float pastAzimuth = 180f;
 
-    public void Init(Transform character, Transform camera)
+    public void Init(PlayerController player, Transform camera)
     {
         Vector3 unit3D = camera.position.normalized;
+        mPlayer = player;
         //mCameraPosition = camera.position;
         //mCharacterPosition = character.position;
         //mUnitPosition = new Vector2(unit3D.x, unit3D.z);
         //distance = 10f;//camera.position.magnitude;
         //yOffset = camera.GetChild(0).position.y;
-        yPos = camera.GetChild(0).localPosition.y;
+        //yPos = camera.GetChild(0).localPosition.y;
         mCamera = camera;
     }
 
     public void UpdatePosition()
     {
-        float horizontal = Input.GetAxisRaw("Mouse X") * xSpeed;
-        float vertical = Input.GetAxisRaw("Mouse Y") * ySpeed;
-        Vector3 tilt = mCamera.GetChild(0).localPosition;
+        float horizontal = Input.GetAxisRaw("Mouse X") * xSpeed * Time.deltaTime;
+        float vertical = Input.GetAxisRaw("Mouse Y") * ySpeed * Time.deltaTime;
 
         horizontal *= invertedX ? -1f : 1f;
         vertical *= invertedY ? -1f : 1f;
+
+        azimuth = (azimuth + horizontal) % 360f;
+        colatitude += vertical;
+        if (MinimumY < -180f || MaximumY > 180f)
+            colatitude = Mathf.Clamp(colatitude, -180f, 180f);
+        else
+            colatitude = Mathf.Clamp(colatitude, MinimumY, MaximumY);
+
+        mPlayer.AddSpinInput(azimuth - pastAzimuth);
+        pastAzimuth = azimuth;
+
+        mCamera.localPosition = new Vector3(
+            distance * Mathf.Sin(Mathf.Deg2Rad * azimuth) * Mathf.Sin(Mathf.Deg2Rad * colatitude),
+            distance * Mathf.Cos(Mathf.Deg2Rad * colatitude),
+            distance * Mathf.Cos(Mathf.Deg2Rad * azimuth) * Mathf.Sin(Mathf.Deg2Rad * colatitude)
+            );
+        /*
+        
         yPos += vertical * Time.deltaTime;
         yPos = Mathf.Clamp(yPos, MinimumY, MaximumY);
 
@@ -48,16 +74,6 @@ public class CameraController{
 
         mCamera.Rotate(Vector3.up, horizontal * Time.deltaTime);
         mCamera.GetChild(0).localPosition = tilt;
-        /*
-        Vector2 tangent;
-
-        mUnitPosition = new Vector2(Mathf.Cos(horizontal), Mathf.Sin(horizontal));
-        tangent = FindTangent(mUnitPosition);
-        if(horizontal != 0f)
-        {
-            mCamera.position += new Vector3(tangent.x, 0f, tangent.y);
-            //Debug.Log(tangent);
-        }
         */
     }
 

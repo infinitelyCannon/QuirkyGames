@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
+    [SerializeField] private bool showCameraSphere = true;
     [SerializeField] private float walkSpeed = 5f;
     [SerializeField] private float runSpeed = 10f;
     [SerializeField] private float jumpSpeed = 10f;
@@ -11,7 +13,9 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float gravityMultiplyer = 2f;
     [SerializeField] private float jetpackGravityScale;
     [SerializeField] private CameraController cameraController;
+    [SerializeField] private float meshRotationSpeed;
 
+    public Text debugText;
     private Camera mCamera;
     private bool jump;
     private Vector2 mInput;
@@ -22,13 +26,14 @@ public class PlayerController : MonoBehaviour {
     private bool previouslyGrounded;
     private bool jumping;
     private bool isWalking;
+    private float forwardAngle = 0f;
 
     // Use this for initialization
     void Start () {
         characterController = GetComponent<CharacterController>();
         mCamera = Camera.main;
         jumping = false;
-        cameraController.Init(transform, mCamera.transform.parent);
+        cameraController.Init(this, mCamera.transform);
         //mForward = mCamera.transform.forward;
 	}
 	
@@ -62,7 +67,7 @@ public class PlayerController : MonoBehaviour {
         float speed;
         GetInput(out speed);
 
-        Vector3 desiredMove = mCamera.transform.parent.forward * mInput.y + mCamera.transform.parent.right * mInput.x;
+        Vector3 desiredMove = mCamera.transform.forward.normalized * mInput.y + mCamera.transform.right.normalized * mInput.x;
 
         RaycastHit hitInfo;
         Physics.SphereCast(transform.position, characterController.radius, Vector3.down, out hitInfo, characterController.height / 2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
@@ -97,6 +102,25 @@ public class PlayerController : MonoBehaviour {
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
+        Transform mesh = transform.GetChild(0);
+
+        if (horizontal != 0f || vertical != 0f)
+        {
+            debugText.text = (Mathf.Atan2(vertical, horizontal) * Mathf.Rad2Deg).ToString();
+            //mesh.localRotation = Quaternion.RotateTowards(mesh.localRotation, Quaternion.Euler(0f, (Mathf.Atan2(vertical, horizontal) * Mathf.Rad2Deg) + 90f, 0f), meshRotationSpeed * Time.deltaTime);
+            /*
+            if (vertical == 0f && horizontal == 1f)
+                mesh.localRotation = Quaternion.RotateTowards(mesh.localRotation, Quaternion.Euler(0f, 90f, 0f), meshRotationSpeed * Time.deltaTime);
+            else if (vertical == 1f && horizontal == 0f)
+                mesh.localRotation = Quaternion.RotateTowards(mesh.localRotation, Quaternion.Euler(0f, 0f, 0f), meshRotationSpeed * Time.deltaTime);
+            else if (vertical == 0f && horizontal == -1f)
+                mesh.localRotation = Quaternion.RotateTowards(mesh.localRotation, Quaternion.Euler(0f, -90f, 0f), meshRotationSpeed * Time.deltaTime);
+            else if (vertical == -1f && horizontal == 0f)
+                mesh.localRotation = Quaternion.RotateTowards(mesh.localRotation, Quaternion.Euler(0f, 180f, 0f), meshRotationSpeed * Time.deltaTime);
+            else
+                mesh.localRotation = Quaternion.RotateTowards(mesh.localRotation, Quaternion.Euler(0f, Mathf.Atan(vertical / horizontal) * Mathf.Rad2Deg, 0f), meshRotationSpeed * Time.deltaTime);
+            */
+        }
 
         isWalking = !Input.GetKey(KeyCode.LeftShift);
 
@@ -106,6 +130,20 @@ public class PlayerController : MonoBehaviour {
 
         if (mInput.sqrMagnitude > 1f)
             mInput.Normalize();
+    }
+
+    public void AddSpinInput(float value)
+    {
+        forwardAngle += value;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (showCameraSphere)
+        {
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawWireSphere(transform.position, cameraController.distance);
+        }
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
