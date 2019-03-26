@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
@@ -13,6 +15,8 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float jetpackGravityScale;
     [SerializeField] private CameraController cameraController;
     [SerializeField] private float meshRotationSpeed;
+
+    public GameObject winPanel;
 
     private Camera mCamera;
     private bool jump;
@@ -38,6 +42,9 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Application.Quit();
+
         cameraController.UpdatePosition();
         cameraController.UpdateCursorLock();
 
@@ -156,6 +163,12 @@ public class PlayerController : MonoBehaviour {
             mInput.Normalize();
     }
 
+    IEnumerator LoadAfterDelay(float secs)
+    {
+        yield return new WaitForSeconds(secs);
+        SceneManager.LoadScene(1);
+    }
+
     private float UnitAngleInDeg(Vector3 position)
     {
         Vector3 unitVector = Vector3.Normalize(position);
@@ -190,6 +203,18 @@ public class PlayerController : MonoBehaviour {
         {
             Gizmos.color = Color.cyan;
             Gizmos.DrawWireSphere(transform.position, cameraController.distance);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Finish"))
+        {
+            if(winPanel != null)
+            {
+                winPanel.transform.localScale = Vector3.one;
+                StartCoroutine(LoadAfterDelay(5f));
+            }
         }
     }
 
