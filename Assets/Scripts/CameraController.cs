@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 [System.Serializable]
 public class CameraController{
@@ -46,42 +47,24 @@ public class CameraController{
 
     public void UpdatePosition()
     {
-        switch (cameraState)
-        {
-            case CameraState.Third:
-                float horizontal = Input.GetAxisRaw("Camera X") * xSpeed * Time.deltaTime;
-                float vertical = Input.GetAxisRaw("Camera Y") * ySpeed * Time.deltaTime;
+        float horizontal = Input.GetAxisRaw("Camera X") * xSpeed * Time.deltaTime;
+        float vertical = Input.GetAxisRaw("Camera Y") * ySpeed * Time.deltaTime;
 
-                horizontal *= invertedX ? -1f : 1f;
-                vertical *= invertedY ? -1f : 1f;
+        horizontal *= invertedX ? -1f : 1f;
+        vertical *= invertedY ? -1f : 1f;
 
-                azimuth = (azimuth + horizontal) % 360f;
-                colatitude += vertical;
-                if (MinimumY < -180f || MaximumY > 180f)
-                    colatitude = Mathf.Clamp(colatitude, -180f, 180f);
-                else
-                    colatitude = Mathf.Clamp(colatitude, MinimumY, MaximumY);
+        azimuth = (azimuth + horizontal) % 360f;
+        colatitude += vertical;
+        if (MinimumY < -180f || MaximumY > 180f)
+            colatitude = Mathf.Clamp(colatitude, -180f, 180f);
+        else
+            colatitude = Mathf.Clamp(colatitude, MinimumY, MaximumY);
 
-                mCamera.localPosition = new Vector3(
-                    distance * Mathf.Sin(Mathf.Deg2Rad * azimuth) * Mathf.Sin(Mathf.Deg2Rad * colatitude),
-                    distance * Mathf.Cos(Mathf.Deg2Rad * colatitude),
-                    distance * Mathf.Cos(Mathf.Deg2Rad * azimuth) * Mathf.Sin(Mathf.Deg2Rad * colatitude)
-                    );
-                if(Input.GetButton("Aim") || Input.GetAxisRaw("Aim") == 1f)
-                {
-                    transitionTime += Time.deltaTime;
-                    if(transitionTime >= aimDelay)
-                    {
-                        cameraState = CameraState.Transition;
-                        transitionTime = 0f;
-                        stateTarget = new Vector3(0, 0, 1f);
-                        //mCamera.GetComponent<Look>
-                    }
-                }
-                break;
-            default:
-                break;
-        }
+        mCamera.localPosition = new Vector3(
+            distance * Mathf.Sin(Mathf.Deg2Rad * azimuth) * Mathf.Sin(Mathf.Deg2Rad * colatitude),
+            distance * Mathf.Cos(Mathf.Deg2Rad * colatitude),
+            distance * Mathf.Cos(Mathf.Deg2Rad * azimuth) * Mathf.Sin(Mathf.Deg2Rad * colatitude)
+            );
     }
 
     public void SetCursorLock(bool value)
