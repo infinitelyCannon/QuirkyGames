@@ -44,6 +44,8 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown(KeyCode.Escape))
             Application.Quit();
+        if (transform.position.y <= -17f)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
         cameraController.UpdatePosition();
         cameraController.UpdateCursorLock();
