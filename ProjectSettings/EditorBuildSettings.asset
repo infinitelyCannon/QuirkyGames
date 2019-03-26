@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/ShipWB.unity
-    guid: 1b8bf3428ac9960499a309687020d25f
+    path: Assets/Scenes/PrototypeSnapShot.unity
+    guid: 30af1020b21663546864355526ed09b0
   - enabled: 1
     path: Assets/Scenes/DakaSampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
