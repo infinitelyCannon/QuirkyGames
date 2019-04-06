@@ -36,8 +36,8 @@ public class PlayerController : MonoBehaviour {
         characterController = GetComponent<CharacterController>();
         mCamera = Camera.main;
         jumping = false;
-        cameraController.Init(transform, mCamera.transform.parent);
-        
+        cameraController.Init(this, mCamera.transform);
+
         //mForward = mCamera.transform.forward;
 
         //Get Health Information Kyle Added This
