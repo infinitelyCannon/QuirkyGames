@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 114285840201819586}
   - component: {fileID: 143290368151597742}
   m_Layer: 0
-  m_Name: Player 1
+  m_Name: Player With Health
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -382,11 +382,14 @@ MonoBehaviour:
     ySpeed: 25
     xSpeed: 25
     distance: 10
+    minDistance: 0
     invertedX: 1
     invertedY: 0
     lockCursor: 1
     MinimumY: 0
-    MaximumY: 9
+    MaximumY: 90
+    checkForCollision: 0
+    aimDelay: 0
   jetPack: 0
   Hud: {fileID: 1758186336988982}
   Health: 100
