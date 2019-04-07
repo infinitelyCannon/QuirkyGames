@@ -9,13 +9,17 @@ public class EnemyScript : MonoBehaviour {
     public float retreatDistance;
 
     public bool inRadius;
+    public bool mindControl;
 
     private float timeBtwShots;
     public float startTimeBtwShots;
 
     public GameObject projectile;
-    public Transform player;
-    public Transform enemyMind;
+    // Projectile that is fired if under MindControl
+    public GameObject enemyProjectile;
+    private Transform player;
+    //Get Enemy Transform for MindControl
+    private Transform enemyMind;
 
 	// Use this for initialization
 	void Start ()
@@ -23,13 +27,51 @@ public class EnemyScript : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         enemyMind = GameObject.FindGameObjectWithTag("Enemy").transform;
         timeBtwShots = startTimeBtwShots;
+        mindControl = false; 
+        
 	}
+    private void Update()
+    {
+        //Switches to MindControlFunctionality
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            mindControl = true;
+        }
+    }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && mindControl == false)
         {
+            
             PlayerinZone();
+        }
+        //MindControl Stuff
+        else if (other.CompareTag("Enemy") && mindControl == true)
+        {
+            if (Vector3.Distance(transform.position, enemyMind.position) > stopDistance)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, enemyMind.position, speed * Time.deltaTime);
+            }
+            else if (Vector3.Distance(transform.position, enemyMind.position) < stopDistance && Vector3.Distance(transform.position, enemyMind.position) > retreatDistance)
+            {
+                transform.position = this.transform.position;
+            }
+            else if (Vector3.Distance(transform.position, enemyMind.position) < retreatDistance)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, enemyMind.position, -speed * Time.deltaTime);
+            }
+
+            if (timeBtwShots <= 0)
+            {
+                Instantiate(enemyProjectile, transform.position, Quaternion.identity);
+                timeBtwShots = startTimeBtwShots;
+            }
+            else
+            {
+                timeBtwShots -= Time.deltaTime;
+            }
+
         }
     }
 
@@ -65,6 +107,29 @@ public class EnemyScript : MonoBehaviour {
         }
     }
 
+    void MindControl(Collider other)
+    {
+        //Enemy Movement
+        if (other.CompareTag("Enemy"))
+        {
+
+
+            if (Vector3.Distance(transform.position, enemyMind.position) > stopDistance)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, enemyMind.position, speed * Time.deltaTime);
+            }
+            else if (Vector3.Distance(transform.position, enemyMind.position) < stopDistance && Vector3.Distance(transform.position, enemyMind.position) > retreatDistance)
+            {
+                transform.position = this.transform.position;
+            }
+            else if (Vector3.Distance(transform.position, enemyMind.position) < retreatDistance)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, enemyMind.position, -speed * Time.deltaTime);
+            }
+
+        }
+
+    }
 
 
 }
