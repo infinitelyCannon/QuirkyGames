@@ -1,50 +1,137 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-public class PlayerController : MonoBehaviour {
-
+public class PlayerController : MonoBehaviour
+{
     [SerializeField] private float walkSpeed = 5f;
     [SerializeField] private float runSpeed = 10f;
     [SerializeField] private float jumpSpeed = 10f;
     [SerializeField] private float stickToGroundForce = 9.8f;
-    [SerializeField] private float gravityMultiplyer = 2f;
-    [SerializeField] private float jetpackGravityScale;
+    [SerializeField] private float gravityMultiplier = 2f;
+    [SerializeField] private float jetPackGravityScale;
     [SerializeField] private float jetJump;
-    [SerializeField] private CameraController cameraController;
+    [SerializeField] private float meshRotationSpeed;
     [SerializeField] private bool jetPack;
-   
-    
-    private Camera mCamera;
+
+    private Transform mainCamera;
+    private Vector3 cameraForward;
+    private Vector3 moveVector;
     private bool jump;
-    private Vector2 mInput;
-    private Vector3 moveDir = Vector3.zero;
-    //private Vector3 mForward;
-    private CharacterController characterController;
-    private CollisionFlags collisionFlags;
-    private bool previouslyGrounded;
     private bool jumping;
+    private CharacterController characterController;
+    //private CollisionFlags collisionFlags;
+    private bool previouslyGrounded;
     private bool isWalking;
+    private float turnAmount;
+    private Transform meshObject;
 
     // Health Stuff Kyle Added This
     public GameObject Hud;
     public int Health = 100;
     private HealthBarScript mHealthBar;
 
-    // Use this for initialization
-    void Start () {
-        characterController = GetComponent<CharacterController>();
-        mCamera = Camera.main;
-        jumping = false;
-        cameraController.Init(this, mCamera.transform);
+    private void Start()
+    {
+        if (Camera.main != null)
+            mainCamera = Camera.main.transform;
+        else
+            Debug.LogWarning("Warning: no main camera found. Third person character needs a Camera tagged \"MainCamera\", for camera-relative controls.");
 
-        //mForward = mCamera.transform.forward;
+        characterController = GetComponent<CharacterController>();
+        jumping = false;
+        meshObject = transform.GetChild(0);
 
         //Get Health Information Kyle Added This
         mHealthBar = Hud.transform.Find("HealthBar").GetComponent<HealthBarScript>();
         mHealthBar.MininumHealth = 0;
         mHealthBar.Maxhealth = Health;
-	}
+    }
+
+    private void Update()
+    {
+        if (!jump && !jumping)
+            jump = Input.GetButtonDown("Jump");
+
+        if(!previouslyGrounded && characterController.isGrounded)
+        {
+            moveVector.y = 0f;
+            jumping = false;
+        }
+
+        if (!characterController.isGrounded && !jumping && previouslyGrounded)
+            moveVector.y = 0f;
+
+        previouslyGrounded = characterController.isGrounded;
+    }
+
+    private void FixedUpdate()
+    {
+        // I'm using GetAxisRaw now for the pill-shaped player, but may need to use GetAxis for value smoothing after animations are applied.
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+        float speed;
+        RaycastHit hitInfo;
+
+        if(horizontal != 0f || vertical != 0f)
+        {
+            //Handle the rotation of the mesh object (re-write if animations handle this themselves)
+            meshObject.localRotation = Quaternion.RotateTowards(meshObject.localRotation, Quaternion.Euler(0f, turnAmount * Mathf.Rad2Deg, 0f), meshRotationSpeed * Time.fixedDeltaTime);
+        }
+
+        isWalking = !Input.GetButton("Run");
+        speed = isWalking ? walkSpeed : runSpeed;
+
+        if (mainCamera != null)
+        {
+            cameraForward = Vector3.Scale(mainCamera.forward, new Vector3(1f, 0f, 1f)).normalized;
+            moveVector = vertical * cameraForward + horizontal * mainCamera.right;
+        }
+        else
+            moveVector = vertical * Vector3.forward + horizontal * Vector3.right;
+
+        if (moveVector.magnitude > 1f)
+            moveVector.Normalize();
+
+        Physics.SphereCast(transform.position, characterController.radius, Vector3.down, out hitInfo, characterController.height / 2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
+        moveVector = Vector3.ProjectOnPlane(moveVector, hitInfo.normal);
+        turnAmount = Mathf.Atan2(moveVector.x, moveVector.z);
+
+        moveVector.x *= speed;
+        moveVector.z *= speed;
+
+        if (characterController.isGrounded)
+        {
+            moveVector.y = -stickToGroundForce;
+
+            if (jump)
+            {
+                if (jetPack)
+                {
+                    moveVector.y = jetJump;
+                    jump = false;
+                    jumping = true;
+                }
+                else
+                {
+                    moveVector.y = jumpSpeed;
+                    jump = false;
+                    jumping = true;
+                }
+            }
+        }
+        else
+        {
+            if (jumping && characterController.velocity.y < 0 && Input.GetButton("Jump"))
+                moveVector += Physics.gravity * jetPackGravityScale * Time.fixedDeltaTime;
+            else
+                moveVector += Physics.gravity * gravityMultiplier * Time.fixedDeltaTime;
+        }
+
+        characterController.Move(moveVector * Time.fixedDeltaTime);
+    }
 
     // Damage Code Added By Kyle
     public void TakeDamage(int amount)
@@ -55,105 +142,6 @@ public class PlayerController : MonoBehaviour {
             Health = 0;
         }
 
-            mHealthBar.SetHealth(Health);
-        
-    }
-	
-	// Update is called once per frame
-	void Update () {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            //Debug.Log(mCamera.transform.parent);
-        }
-
-        cameraController.UpdatePosition();
-        cameraController.UpdateCursorLock();
-
-        if (!jump && !jumping)
-            jump = Input.GetButtonDown("Jump");
-
-        if(!previouslyGrounded && characterController.isGrounded)
-        {
-            moveDir.y = 0f;
-            jumping = false;
-        }
-
-        if (!characterController.isGrounded && !jumping && previouslyGrounded)
-            moveDir.y = 0f;
-        
-
-        previouslyGrounded = characterController.isGrounded;
-	}
-
-    private void FixedUpdate()
-    {
-        float speed;
-        GetInput(out speed);
-
-        Vector3 desiredMove = mCamera.transform.parent.forward * mInput.y + mCamera.transform.parent.right * mInput.x;
-
-        RaycastHit hitInfo;
-        Physics.SphereCast(transform.position, characterController.radius, Vector3.down, out hitInfo, characterController.height / 2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
-        desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
-
-        moveDir.x = desiredMove.x * speed;
-        moveDir.z = desiredMove.z * speed;
-
-        if (characterController.isGrounded)
-        {
-            moveDir.y = -stickToGroundForce;
-
-            if (jump)
-            {
-                if (jetPack == true)
-                {
-                    moveDir.y = jetJump;
-                    jump = false;
-                    jumping = true;
-                }
-                else
-                {
-                    moveDir.y = jumpSpeed;
-                    jump = false;
-                    jumping = true;
-                }
-            }
-        }
-        
-        else
-        {
-            if (jumping && characterController.velocity.y < 0 && Input.GetButton("Jump"))
-                moveDir += Physics.gravity * jetpackGravityScale * Time.fixedDeltaTime;
-            else
-                moveDir += Physics.gravity * gravityMultiplyer * Time.fixedDeltaTime;
-        }
-
-        collisionFlags = characterController.Move(moveDir * Time.fixedDeltaTime);
-    }
-
-    private void GetInput(out float speed)
-    {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
-
-        isWalking = !Input.GetKey(KeyCode.LeftShift);
-
-        speed = isWalking ? walkSpeed : runSpeed;
-
-        mInput = new Vector2(horizontal, vertical);
-
-        if (mInput.sqrMagnitude > 1f)
-            mInput.Normalize();
-    }
-
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        Rigidbody body = hit.collider.attachedRigidbody;
-        if (collisionFlags == CollisionFlags.Below)
-            return;
-        if (body == null || body.isKinematic)
-            return;
-
-        body.AddForceAtPosition(characterController.velocity * 0.1f, hit.point, ForceMode.Impulse);
+        mHealthBar.SetHealth(Health);
     }
 }
