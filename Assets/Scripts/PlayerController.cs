@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     private bool isWalking;
     private float turnAmount;
     private Transform meshObject;
+    private float jumpTime;
+    private float jumpTimeElapsed = 0f;
 
     // Health Stuff Kyle Added This
     public GameObject Hud;
@@ -74,6 +76,7 @@ public class PlayerController : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");
         float speed;
         RaycastHit hitInfo;
+        Vector3 desiredMove;
 
         if(horizontal != 0f || vertical != 0f)
         {
@@ -87,20 +90,20 @@ public class PlayerController : MonoBehaviour
         if (mainCamera != null)
         {
             cameraForward = Vector3.Scale(mainCamera.forward, new Vector3(1f, 0f, 1f)).normalized;
-            moveVector = vertical * cameraForward + horizontal * mainCamera.right;
+            desiredMove = vertical * cameraForward + horizontal * mainCamera.right;
         }
         else
-            moveVector = vertical * Vector3.forward + horizontal * Vector3.right;
+            desiredMove = vertical * Vector3.forward + horizontal * Vector3.right;
 
-        if (moveVector.magnitude > 1f)
-            moveVector.Normalize();
+        if (desiredMove.magnitude > 1f)
+            desiredMove.Normalize();
 
         Physics.SphereCast(transform.position, characterController.radius, Vector3.down, out hitInfo, characterController.height / 2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
-        moveVector = Vector3.ProjectOnPlane(moveVector, hitInfo.normal);
-        turnAmount = Mathf.Atan2(moveVector.x, moveVector.z);
+        desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal);
+        turnAmount = Mathf.Atan2(desiredMove.x, desiredMove.z);
 
-        moveVector.x *= speed;
-        moveVector.z *= speed;
+        moveVector.x = desiredMove.x * speed;
+        moveVector.z = desiredMove.z * speed;
 
         if (characterController.isGrounded)
         {
