@@ -1388,6 +1388,7 @@ GameObject:
   - component: {fileID: 23860877965821378}
   - component: {fileID: 114273933578622626}
   - component: {fileID: 143661482804218552}
+  - component: {fileID: 114725624649858238}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -3777,6 +3778,22 @@ MonoBehaviour:
   shootDelay: 0
   Hud: {fileID: 0}
   Health: 100
+  deathScreen: {fileID: 0}
+  deathBtn: {fileID: 0}
+--- !u!114 &114725624649858238
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1725409112247272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f61eeb110007314d9830f907f23907e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 1264440041178006, guid: faf16f6762d04604b9a360c02d4dad0b, type: 2}
+  Hud: {fileID: 0}
+  ammoCount: 100
 --- !u!137 &137006069356224180
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

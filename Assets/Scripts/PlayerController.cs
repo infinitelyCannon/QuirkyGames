@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
     private EventSystem eventSystem;
     private bool isDead = false;
     public GameObject deathBtn;
+    public Text debug;
 
     private void Start()
     {
@@ -178,6 +179,12 @@ public class PlayerController : MonoBehaviour
     private void Shoot(bool alt)
     {
         
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Win"))
+            debug.text = "Debug Text: You WIN! Please pause or die to restart.";
     }
 
     // Damage Code Added By Kyle

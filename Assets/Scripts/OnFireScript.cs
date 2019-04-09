@@ -24,7 +24,7 @@ public class OnFireScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetButtonDown("Shoot")) 
+		if (Input.GetButtonDown("Shoot") || Input.GetAxisRaw("Shoot") == 1f) 
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             FiredShot();
