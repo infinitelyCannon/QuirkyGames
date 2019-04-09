@@ -158,16 +158,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bfb8657a09cffa4f9cdabac067ed489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aimReference: {fileID: 0}
   moveSpeed: 10
   turnSpeed: 1.5
   turnSmoothing: 0
   maximumY: 75
   minimumY: 45
-  lockCursor: 0
+  lockCursor: 1
   targets:
   - target: {fileID: 0}
     offset: {x: 0, y: 0.74}
-    distance: 5
+    distance: 3
   - target: {fileID: 0}
     offset: {x: 0, y: 0}
     distance: 0.5

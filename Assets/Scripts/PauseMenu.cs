@@ -23,7 +23,8 @@ public class PauseMenu : MonoBehaviour
         }
         else
         {
-            DeactivateMenu();
+            if(Time.timeScale != 0f)
+                DeactivateMenu();
         }
     }
 
@@ -56,5 +57,10 @@ public class PauseMenu : MonoBehaviour
         HowToPlay.SetActive(false);
         pauseScreen.SetActive(true);
         
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
@@ -36,6 +37,12 @@ public class PlayerController : MonoBehaviour
     public int Health = 100;
     private HealthBarScript mHealthBar;
 
+    //Vertical Slice stuff
+    public GameObject deathScreen;
+    private EventSystem eventSystem;
+    private bool isDead = false;
+    public GameObject deathBtn;
+
     private void Start()
     {
         if (Camera.main != null)
@@ -53,6 +60,9 @@ public class PlayerController : MonoBehaviour
         mHealthBar.MininumHealth = 0;
         mHealthBar.Maxhealth = Health;
         mHealthBar.SetHealth(Health);
+
+        //Vertical slice stuff
+        eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
     }
 
     private void Update()
@@ -82,6 +92,15 @@ public class PlayerController : MonoBehaviour
                 Shoot(true);
             }
         }
+
+        //Vertical Slice stuff
+        if(Health <= 0 && !isDead)
+        {
+            isDead = true;
+            Time.timeScale = 0f;
+            deathScreen.SetActive(true);
+            eventSystem.SetSelectedGameObject(deathBtn);
+        }
     }
 
     private void FixedUpdate()
@@ -94,9 +113,9 @@ public class PlayerController : MonoBehaviour
         Vector3 desiredMove;
 
         if (Input.GetButton("Aim") || Input.GetAxisRaw("Aim") == 1f)
-            meshObject.GetComponent<MeshRenderer>().enabled = false;
+            meshObject.gameObject.SetActive(false);//.GetComponent<MeshRenderer>().enabled = false;
         else if (Input.GetButtonUp("Aim") || Input.GetAxisRaw("Aim") == 0f)
-            meshObject.GetComponent<MeshRenderer>().enabled = true;
+            meshObject.gameObject.SetActive(true);//.GetComponent<MeshRenderer>().enabled = true;
 
         if (horizontal != 0f || vertical != 0f)
         {
@@ -147,7 +166,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (jumping && characterController.velocity.y < 0 && Input.GetButton("Jump"))
+            if (jumping && characterController.velocity.y < 0 && Input.GetButton("Jump") && jetPack)
                 moveVector += Physics.gravity * jetPackGravityScale * Time.fixedDeltaTime;
             else
                 moveVector += Physics.gravity * gravityMultiplier * Time.fixedDeltaTime;
@@ -174,5 +193,17 @@ public class PlayerController : MonoBehaviour
         mHealthBar.SetHealth(Health);
         mHealthBar.timer = 0f;
         mHealthBar.isRegenerating = false;
+    }
+
+    //Vertical slice stuff
+    public void Restart()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }
