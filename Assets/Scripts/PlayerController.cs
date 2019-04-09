@@ -27,8 +27,6 @@ public class PlayerController : MonoBehaviour
     private bool isWalking;
     private float turnAmount;
     private Transform meshObject;
-    private float jumpTime;
-    private float jumpTimeElapsed = 0f;
 
     // Health Stuff Kyle Added This
     public GameObject Hud;

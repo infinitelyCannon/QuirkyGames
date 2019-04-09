@@ -132,7 +132,7 @@ public class CameraController : MonoBehaviour{
     private void Update()
     {
         HandleRotation();
-        if(lockCursor && Input.GetMouseButtonUp(0))
+        if(lockCursor && Input.GetMouseButtonUp(0) && Time.timeScale > 0f)
         {
             Cursor.lockState = lockCursor ? CursorLockMode.Locked : CursorLockMode.None;
             Cursor.visible = !lockCursor;
