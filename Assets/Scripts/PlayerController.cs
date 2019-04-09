@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jetJump;
     [SerializeField] private float meshRotationSpeed;
     [SerializeField] private bool jetPack;
+    [SerializeField] private float shootDelay;
 
     private Transform mainCamera;
     private Vector3 cameraForward;
@@ -27,6 +28,8 @@ public class PlayerController : MonoBehaviour
     private bool isWalking;
     private float turnAmount;
     private Transform meshObject;
+    private float shootWait;
+    private bool canShoot = true;
 
     // Health Stuff Kyle Added This
     public GameObject Hud;
@@ -43,11 +46,13 @@ public class PlayerController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         jumping = false;
         meshObject = transform.GetChild(0);
+        shootWait = shootDelay;
 
         //Get Health Information Kyle Added This
         mHealthBar = Hud.transform.Find("HealthBar").GetComponent<HealthBarScript>();
         mHealthBar.MininumHealth = 0;
         mHealthBar.Maxhealth = Health;
+        mHealthBar.SetHealth(Health);
     }
 
     private void Update()
@@ -65,6 +70,18 @@ public class PlayerController : MonoBehaviour
             moveVector.y = 0f;
 
         previouslyGrounded = characterController.isGrounded;
+
+        if (Input.GetButton("Aim") || Input.GetAxisRaw("Aim") == 1f)
+        {
+            if (Input.GetButtonDown("Shoot") || Input.GetAxisRaw("Shoot") == 1f)
+            {
+                Shoot(false);
+            }
+            else if (Input.GetButtonDown("ShootAlt"))
+            {
+                Shoot(true);
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -76,7 +93,12 @@ public class PlayerController : MonoBehaviour
         RaycastHit hitInfo;
         Vector3 desiredMove;
 
-        if(horizontal != 0f || vertical != 0f)
+        if (Input.GetButton("Aim") || Input.GetAxisRaw("Aim") == 1f)
+            meshObject.GetComponent<MeshRenderer>().enabled = false;
+        else if (Input.GetButtonUp("Aim") || Input.GetAxisRaw("Aim") == 0f)
+            meshObject.GetComponent<MeshRenderer>().enabled = true;
+
+        if (horizontal != 0f || vertical != 0f)
         {
             //Handle the rotation of the mesh object (re-write if animations handle this themselves)
             meshObject.localRotation = Quaternion.RotateTowards(meshObject.localRotation, Quaternion.Euler(0f, turnAmount * Mathf.Rad2Deg, 0f), meshRotationSpeed * Time.fixedDeltaTime);
@@ -134,9 +156,15 @@ public class PlayerController : MonoBehaviour
         characterController.Move(moveVector * Time.fixedDeltaTime);
     }
 
+    private void Shoot(bool alt)
+    {
+        
+    }
+
     // Damage Code Added By Kyle
     public void TakeDamage(int amount)
     {
+        Health = mHealthBar.CurrentValue;
         Health -= amount;
         if (Health < 0)
         {
@@ -144,5 +172,7 @@ public class PlayerController : MonoBehaviour
         }
 
         mHealthBar.SetHealth(Health);
+        //mHealthBar.timer = 0f;
+        //mHealthBar.isRegenerating = false;
     }
 }

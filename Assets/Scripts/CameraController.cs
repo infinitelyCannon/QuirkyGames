@@ -41,6 +41,7 @@ public class CameraController : MonoBehaviour{
         ManualUpdate
     }
 
+    [SerializeField] private GameObject aimReference;
     [Header("Camera Movement, Targets, and Rotaion")]
     [SerializeField] private float moveSpeed;
     [Range(0f, 10f)] [SerializeField] private float turnSpeed;
@@ -71,6 +72,7 @@ public class CameraController : MonoBehaviour{
     private Ray checkRay = new Ray();
     private RaycastHit[] rayHits;
     private RayHitComparer hitComparer;
+    
 
     //Private variables for camera movement and rotation
     private CameraTarget currentTarget = null;
@@ -138,8 +140,17 @@ public class CameraController : MonoBehaviour{
             Cursor.visible = !lockCursor;
         }
 
-        if (Input.GetKeyDown(KeyCode.Y))
-            CycleTargets();
+        if (Input.GetButtonDown("Aim") || Input.GetAxisRaw("Aim") == 1f)
+        {
+            SetTarget(1);
+            aimReference.SetActive(true);
+        }
+
+        if (Input.GetButtonUp("Aim") || Input.GetAxisRaw("Aim") == 0f)
+        {
+            SetTarget(0);
+            aimReference.SetActive(false);
+        }
     }
 
     private void FixedUpdate()
@@ -266,12 +277,24 @@ public class CameraController : MonoBehaviour{
         }
     }
 
-    public void CycleTargets()
+    public void SetTarget(int index)
     {
+        /*
         targetIndex = (targetIndex + 1) % targets.Length;
         currentTarget = targets[targetIndex];
         initialDistance = currentTarget.distance;
         pivotTransform.localPosition = new Vector3(currentTarget.offset.x, currentTarget.offset.y, 0f);
+        */
+        if(targets.Length >= (index + 1))
+        {
+            currentTarget = targets[index];
+            initialDistance = currentTarget.distance;
+            pivotTransform.localPosition = new Vector3(currentTarget.offset.x, currentTarget.offset.y, 0f);
+        }
+        else
+        {
+            Debug.LogWarning("Warning: Something called to switch to a target that doesn't exist.");
+        }
     }
 
     private bool AllTargetsDisabled()
