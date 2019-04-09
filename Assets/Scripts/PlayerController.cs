@@ -172,7 +172,7 @@ public class PlayerController : MonoBehaviour
         }
 
         mHealthBar.SetHealth(Health);
-        //mHealthBar.timer = 0f;
-        //mHealthBar.isRegenerating = false;
+        mHealthBar.timer = 0f;
+        mHealthBar.isRegenerating = false;
     }
 }
