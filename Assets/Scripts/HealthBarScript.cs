@@ -8,8 +8,8 @@ public class HealthBarScript : MonoBehaviour {
     public Image ImageHealthBar;
     public Image ImageDamageBar;
     public Text TextHealth;
-    public int MininumHealth;
-    public int Maxhealth;
+    public int MininumHealth = 0;
+    public int Maxhealth = 5;
 
     //Regenerate health variables
     public float RegenRate = 1f;
@@ -24,6 +24,20 @@ public class HealthBarScript : MonoBehaviour {
     private float mCurrentPercent;
     private int mCurrentValue;
 
+    //Ammo Variables
+    public Image ImageAmmoBar;
+    public Image ImageAmmoOutBar;
+    public int MinimumAmmo;
+    public int MaxAmmo;
+
+    public float ChargeRate = 1f;
+    public int ChargeAmount = 1;
+
+    private int mCurrentAmmo;
+    private float mAmmoPercent;
+
+
+
     public void SetHealth(int health)
     {
         if(Maxhealth - MininumHealth == 0)
@@ -37,12 +51,26 @@ public class HealthBarScript : MonoBehaviour {
             mCurrentPercent = (float)mCurrentValue / (float)(Maxhealth - MininumHealth);
         }
 
-        
-
         TextHealth.text = string.Format("{0} %", Mathf.RoundToInt(mCurrentPercent * 100));
         //changes the x value of rectangle to increase or decrease health
         ImageHealthBar.transform.localScale = new Vector3(mCurrentPercent, 1, 1);
         StartCoroutine(TakenDamage(mCurrentPercent));
+    }
+
+    public void SetAmmo(int ammo) 
+    {
+        if(MaxAmmo - MinimumAmmo == 0) 
+        {
+            mCurrentAmmo = 0;
+            mAmmoPercent = 0;
+        }
+        else
+        {
+            mCurrentAmmo = ammo;
+            mAmmoPercent = (float)mCurrentAmmo / (float)(MaxAmmo - MinimumAmmo);
+        }
+
+        ImageAmmoBar.transform.localScale = new Vector3(mAmmoPercent, 1, 1);
     }
 
     public float CurrentPercent
@@ -55,9 +83,17 @@ public class HealthBarScript : MonoBehaviour {
         get { return mCurrentValue; }
     }
 
+    public int CurrentAmmo {
+        get { return mCurrentAmmo; }
+    }
+    public float AmmoPercent {
+        get { return mAmmoPercent; }
+    } 
+
 	// Use this for initialization
 	void Start () {
         SetHealth(100);
+        SetAmmo(100);
         isRegenerating = false;
     }
     //after n seconds player's health will regenerate
