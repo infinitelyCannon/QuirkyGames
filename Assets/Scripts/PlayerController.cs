@@ -43,6 +43,13 @@ public class PlayerController : MonoBehaviour
     private bool isDead = false;
     public GameObject deathBtn;
     public Text debug;
+    public Transform bulletPoint;
+    private bool done = false;
+
+    private Vector3 sOne = new Vector3(-44.907f, -9.05f, -27.597f);
+    private Vector3 sTwo = new Vector3(-47.136f, -9.05f, -27.597f);
+    private Vector3 sThree = new Vector3(-44.19f, -9.632f, -27.267f);
+    public GameObject Enemy;
 
     private void Start()
     {
@@ -114,7 +121,11 @@ public class PlayerController : MonoBehaviour
         Vector3 desiredMove;
 
         if (Input.GetButton("Aim") || Input.GetAxisRaw("Aim") == 1f)
+        {
             meshObject.gameObject.SetActive(false);//.GetComponent<MeshRenderer>().enabled = false;
+            Debug.DrawRay(bulletPoint.position, mainCamera.forward * 3f, Color.clear, 0.08f);
+        }
+            
         else if (Input.GetButtonUp("Aim") || Input.GetAxisRaw("Aim") == 0f)
             meshObject.gameObject.SetActive(true);//.GetComponent<MeshRenderer>().enabled = true;
 
@@ -141,6 +152,9 @@ public class PlayerController : MonoBehaviour
         Physics.SphereCast(transform.position, characterController.radius, Vector3.down, out hitInfo, characterController.height / 2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
         desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal);
         turnAmount = Mathf.Atan2(desiredMove.x, desiredMove.z);
+
+        // Vertical Slice Stuff
+        //Debug.DrawRay(bulletPoint.position, meshObject.forward * 3f, Color.cyan, 0.1f);
 
         moveVector.x = desiredMove.x * speed;
         moveVector.z = desiredMove.z * speed;
@@ -181,10 +195,26 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    public Vector3 GetShotDirection(bool aiming)
+    {
+        if (aiming)
+            return mainCamera.forward;//Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 1));
+        else
+            return meshObject.forward;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Win"))
+        if (other.CompareTag("Done") && done)
             debug.text = "Debug Text: You WIN! Please pause or die to restart.";
+
+        if (other.CompareTag("Win"))
+        {
+            done = true;
+            Instantiate(Enemy, sOne, Quaternion.identity);
+            Instantiate(Enemy, sTwo, Quaternion.identity);
+            Instantiate(Enemy, sThree, Quaternion.identity);
+        }
     }
 
     // Damage Code Added By Kyle

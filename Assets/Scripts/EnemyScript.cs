@@ -21,14 +21,18 @@ public class EnemyScript : MonoBehaviour {
     //Get Enemy Transform for MindControl
     private Transform enemyMind;
 
+    //Vertical slice stuff
+    public Material normal;
+    public Material mind;
+
 	// Use this for initialization
 	void Start ()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         enemyMind = GameObject.FindGameObjectWithTag("Enemy").transform;
         timeBtwShots = startTimeBtwShots;
-        mindControl = false; 
-        
+        mindControl = false;
+        gameObject.GetComponent<MeshRenderer>().material = normal;
 	}
     private void Update()
     {
@@ -36,6 +40,20 @@ public class EnemyScript : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.M))
         {
             mindControl = true;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("MindBullet"))
+        {
+            mindControl = true;
+            gameObject.GetComponent<MeshRenderer>().material = mind;
+        }
+
+        else if (other.CompareTag("Bullet"))
+        {
+            Destroy(gameObject);
         }
     }
 

@@ -482,6 +482,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1280051337209640
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4980858942304438}
+  m_Layer: 9
+  m_Name: BulletSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1281340022678656
 GameObject:
   m_ObjectHideFlags: 1
@@ -3258,6 +3273,7 @@ Transform:
   m_Children:
   - {fileID: 4070370049811008}
   - {fileID: 4568105896622580}
+  - {fileID: 4980858942304438}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3457,6 +3473,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4711697669379266}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4980858942304438
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1280051337209640}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.391, y: 0.057, z: 0.401}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4896144262998220}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4981707131107732
 Transform:
@@ -3780,6 +3809,8 @@ MonoBehaviour:
   Health: 100
   deathScreen: {fileID: 0}
   deathBtn: {fileID: 0}
+  debug: {fileID: 0}
+  bulletPoint: {fileID: 4841647986017450}
 --- !u!114 &114725624649858238
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3792,8 +3823,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 1264440041178006, guid: faf16f6762d04604b9a360c02d4dad0b, type: 2}
+  mindProjectile: {fileID: 1759928688486240, guid: 84c13441ded61684b8277f7fec5138b0,
+    type: 2}
   Hud: {fileID: 0}
   ammoCount: 100
+  spawnPoint: {fileID: 4841647986017450}
 --- !u!137 &137006069356224180
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -4132,7 +4166,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 1.83
-  m_Radius: 0.8
+  m_Radius: 0.55
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08

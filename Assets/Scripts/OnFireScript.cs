@@ -5,6 +5,7 @@ using UnityEngine;
 public class OnFireScript : MonoBehaviour {
 
     public GameObject projectile;
+    public GameObject mindProjectile;
     public GameObject Hud;
     private HealthBarScript mAmmoBar;
     public int ammoCount = 100;
@@ -13,6 +14,10 @@ public class OnFireScript : MonoBehaviour {
     private Vector3 cameraForward;
     private Vector3 desiredDir;
 
+    //Addons from Dakarai
+    private PlayerController player;
+    public Transform spawnPoint;
+
 
     // Use this for initialization
     void Start () {
@@ -20,6 +25,9 @@ public class OnFireScript : MonoBehaviour {
         mAmmoBar.MinimumAmmo = 0;
         mAmmoBar.MaxAmmo = ammoCount;
         mAmmoBar.SetAmmo(ammoCount);
+
+        //Addons by Dakarai
+        player = gameObject.GetComponent<PlayerController>();
     }
 	
 	// Update is called once per frame
@@ -27,12 +35,24 @@ public class OnFireScript : MonoBehaviour {
 		if (Input.GetButtonDown("Shoot") || Input.GetAxisRaw("Shoot") == 1f) 
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            bool isAiming = (Input.GetButton("Aim") || Input.GetAxisRaw("Aim") == 1f);
+                
             FiredShot();
             if (ammoCount > 0) {
-                Instantiate(projectile, transform.position, transform.rotation);
-                /*cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1f, 0f, 1f)).normalized;
-                projectile.transform.forward = cameraForward;*/
+                Instantiate(projectile, spawnPoint.position, transform.rotation).transform.forward = player.GetShotDirection(isAiming);
+                //cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1f, 0f, 1f)).normalized;
+                //projectile.transform.forward = player.GetShotDirection();
             }   
+        }
+        else if (Input.GetButtonDown("ShootAlt"))
+        {
+            bool isAiming = (Input.GetButton("Aim") || Input.GetAxisRaw("Aim") == 1f);
+
+            if (ammoCount > 0)
+            {
+                Instantiate(mindProjectile, spawnPoint.position, transform.rotation).transform.forward = player.GetShotDirection(isAiming);
+            }
+            FiredShot();
         }
 	}
 
