@@ -198,9 +198,17 @@ public class PlayerController : MonoBehaviour
     public Vector3 GetShotDirection(bool aiming)
     {
         if (aiming)
-            return mainCamera.forward;//Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 1));
+            return mainCamera.forward;// + Vector3.up;//Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 1));
         else
             return meshObject.forward;
+    }
+
+    public Vector3 GetSpawnPosition(bool aiming)
+    {
+        if (aiming)
+            return mainCamera.position;// + Vector3.down;
+        else
+            return bulletPoint.position;
     }
 
     private void OnTriggerEnter(Collider other)

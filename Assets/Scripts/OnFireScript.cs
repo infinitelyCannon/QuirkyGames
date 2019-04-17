@@ -16,7 +16,7 @@ public class OnFireScript : MonoBehaviour {
 
     //Addons from Dakarai
     private PlayerController player;
-    public Transform spawnPoint;
+    private Vector3 spawnPoint;
 
 
     // Use this for initialization
@@ -39,7 +39,7 @@ public class OnFireScript : MonoBehaviour {
                 
             FiredShot();
             if (ammoCount > 0) {
-                Instantiate(projectile, spawnPoint.position, transform.rotation).transform.forward = player.GetShotDirection(isAiming);
+                Instantiate(projectile, player.GetSpawnPosition(isAiming), transform.rotation).transform.forward = player.GetShotDirection(isAiming);
                 //cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1f, 0f, 1f)).normalized;
                 //projectile.transform.forward = player.GetShotDirection();
             }   
@@ -50,7 +50,7 @@ public class OnFireScript : MonoBehaviour {
 
             if (ammoCount > 0)
             {
-                Instantiate(mindProjectile, spawnPoint.position, transform.rotation).transform.forward = player.GetShotDirection(isAiming);
+                Instantiate(mindProjectile, player.GetSpawnPosition(isAiming), transform.rotation).transform.forward = player.GetShotDirection(isAiming);
             }
             FiredShot();
         }

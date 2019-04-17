@@ -11,7 +11,8 @@ public class BulletScript : MonoBehaviour {
 	void Start () {
         rb = GetComponent<Rigidbody>();
         rb.velocity = transform.forward * speed;
-	}
+        transform.GetChild(0).Rotate(new Vector3(-5f, 0f, 0f));
+    }
 	
 	// Update is called once per frame
 	void Update () {
