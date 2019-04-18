@@ -9,6 +9,7 @@ TagManager:
   - MindBullet
   - Win
   - Done
+  - Collectable
   layers:
   - Default
   - TransparentFX

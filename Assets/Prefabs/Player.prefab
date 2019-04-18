@@ -3830,6 +3830,12 @@ MonoBehaviour:
     type: 2}
   Hud: {fileID: 0}
   ammoCount: 100
+  ammoAmnt: 10
+  spawnPoint: {fileID: 4841647986017450}
+  ammoTimer: 0
+  chargeTimer: 2
+  projectileClip: {fileID: 0}
+  mindControlClip: {fileID: 0}
 --- !u!137 &137006069356224180
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

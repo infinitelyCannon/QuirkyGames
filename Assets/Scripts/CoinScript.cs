@@ -17,8 +17,20 @@ public class CoinScript : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other) {
-        if(other.tag == "Player") {
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.SendMessage("AddToScore", 100);
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            other.gameObject.SendMessage("AddToScore", 100);
             Destroy(gameObject);
         }
     }

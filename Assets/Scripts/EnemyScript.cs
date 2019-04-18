@@ -53,6 +53,7 @@ public class EnemyScript : MonoBehaviour {
 
         else if (other.CompareTag("Bullet"))
         {
+            player.gameObject.SendMessage("AddToScore", 200);
             Destroy(gameObject);
         }
     }
