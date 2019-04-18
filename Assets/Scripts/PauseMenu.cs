@@ -15,16 +15,16 @@ public class PauseMenu : MonoBehaviour
         if (Input.GetButtonDown("Start"))
         {
             isPaused = !isPaused;
-        }
 
-        if (isPaused)
-        {
-            ActivateMenu();
-        }
-        else
-        {
-            if(Time.timeScale != 0f)
-                DeactivateMenu();
+            if (isPaused)
+            {
+                ActivateMenu();
+            }
+            else
+            {
+                if (Time.timeScale != 0f)
+                    DeactivateMenu();
+            }
         }
     }
 

@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float meshRotationSpeed;
     [SerializeField] private bool jetPack;
     [SerializeField] private float shootDelay;
+    [SerializeField] private float hoverHeight;
+    [SerializeField] private float hoverSpeed;
 
     private Transform mainCamera;
     private Vector3 cameraForward;
@@ -31,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private Transform meshObject;
     private float shootWait;
     private bool canShoot = true;
+    private float hoverTime = 0f;
 
     // Health Stuff Kyle Added This
     public GameObject Hud;
@@ -165,6 +168,8 @@ public class PlayerController : MonoBehaviour
 
             if (jump)
             {
+                meshObject.localPosition = new Vector3(0f, -1f, 0f);
+                hoverTime = 0f;
                 if (jetPack)
                 {
                     moveVector.y = jetJump;
@@ -177,6 +182,11 @@ public class PlayerController : MonoBehaviour
                     jump = false;
                     jumping = true;
                 }
+            }
+            else
+            {
+                hoverTime += Time.deltaTime;
+                meshObject.localPosition += new Vector3(0f, (Mathf.Sin(hoverTime * hoverSpeed) * hoverHeight) * Time.deltaTime, 0f);
             }
         }
         else
