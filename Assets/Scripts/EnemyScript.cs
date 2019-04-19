@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyScript : MonoBehaviour
-{
+public class EnemyScript : MonoBehaviour {
 
     public float speed;
     public float stopDistance;
@@ -26,22 +25,41 @@ public class EnemyScript : MonoBehaviour
     public Material normal;
     public Material mind;
 
-    // Use this for initialization
-    void Start()
+    //Mind Control one enemy
+    private static EnemyScript traitor = null;
+    private float timeControlled;
+    public float starttimeControlled;
+
+	// Use this for initialization
+	void Start ()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        enemyMind = GameObject.FindGameObjectWithTag("Enemy").transform;
+        
         timeBtwShots = startTimeBtwShots;
+        timeControlled = starttimeControlled;
         mindControl = false;
         gameObject.GetComponent<MeshRenderer>().material = normal;
-    }
-    private void Update()
+        
+        
+	}
+
+    void Update()
     {
-        //Switches to MindControlFunctionality
-        if (Input.GetKeyDown(KeyCode.M))
+        // Sets the mind control back to normal
+        if (traitor == this)
         {
-            mindControl = true;
+            
+            timeControlled -= Time.deltaTime;
+            if (timeControlled <= 0)
+            {
+                traitor = null;
+                mindControl = false;
+                timeControlled = starttimeControlled;
+                gameObject.GetComponent<MeshRenderer>().material = normal;
+            }
+            
         }
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -54,43 +72,51 @@ public class EnemyScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("MindBullet"))
+        
+        // MindControlling only one enemy at a time
+        if (other.CompareTag("MindBullet") && traitor == null)
         {
+            traitor = this;
             mindControl = true;
             gameObject.GetComponent<MeshRenderer>().material = mind;
+            transform.gameObject.tag = "Controlled";
+            
+
         }
 
-        /*
-        else if (other.CompareTag("Bullet"))
+        /*else if (other.CompareTag("Bullet"))
         {
-            player.gameObject.SendMessage("AddToScore", 200);
+            
             Destroy(gameObject);
-        }
-        */
+        } */
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player") && mindControl == false)
         {
-
-            PlayerinZone();
+             PlayerinZone();
         }
         //MindControl Stuff
         else if (other.CompareTag("Enemy") && mindControl == true)
         {
+            enemyMind = GameObject.FindGameObjectWithTag("Enemy").transform;
+
             if (Vector3.Distance(transform.position, enemyMind.position) > stopDistance)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, enemyMind.position, speed * Time.deltaTime);
-            }
-            else if (Vector3.Distance(transform.position, enemyMind.position) < stopDistance && Vector3.Distance(transform.position, enemyMind.position) > retreatDistance)
-            {
-                transform.position = this.transform.position;
-            }
-            else if (Vector3.Distance(transform.position, enemyMind.position) < retreatDistance)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, enemyMind.position, -speed * Time.deltaTime);
-            }
+             {
+                 transform.position = Vector3.MoveTowards(transform.position, enemyMind.position, speed * Time.deltaTime);
+             }
+             else if (Vector3.Distance(transform.position, enemyMind.position) < stopDistance && Vector3.Distance(transform.position, enemyMind.position) > retreatDistance)
+             {
+                 transform.position = this.transform.position;
+             }
+             else if (Vector3.Distance(transform.position, enemyMind.position) < retreatDistance)
+             {
+                 transform.position = Vector3.MoveTowards(transform.position, enemyMind.position, -speed * Time.deltaTime);
+             }
+             
+
+            
 
             if (timeBtwShots <= 0)
             {
@@ -102,14 +128,17 @@ public class EnemyScript : MonoBehaviour
                 timeBtwShots -= Time.deltaTime;
             }
 
+
+          
+
         }
     }
 
-    // Update is called once per frame
-    void PlayerinZone()
+    
+    void PlayerinZone ()
     {
         //Enemy Movement
-        if (Vector3.Distance(transform.position, player.position) > stopDistance)
+		if (Vector3.Distance(transform.position, player.position) > stopDistance)
         {
             transform.position = Vector3.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
         }
@@ -122,7 +151,7 @@ public class EnemyScript : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, player.position, -speed * Time.deltaTime);
         }
 
-
+       
 
 
 
@@ -137,30 +166,8 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
-    void MindControl(Collider other)
-    {
-        //Enemy Movement
-        if (other.CompareTag("Enemy"))
-        {
 
 
-            if (Vector3.Distance(transform.position, enemyMind.position) > stopDistance)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, enemyMind.position, speed * Time.deltaTime);
-            }
-            else if (Vector3.Distance(transform.position, enemyMind.position) < stopDistance && Vector3.Distance(transform.position, enemyMind.position) > retreatDistance)
-            {
-                transform.position = this.transform.position;
-            }
-            else if (Vector3.Distance(transform.position, enemyMind.position) < retreatDistance)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, enemyMind.position, -speed * Time.deltaTime);
-            }
-
-        }
-
-    }
-
-
+ 
 }
 
