@@ -138,6 +138,12 @@ ModelImporter:
     2000000: bottom
     2100000: lambert1
     2100002: lambert2
+    2100004: BliueParts
+    2100006: Engine1
+    2100008: Body
+    2100010: EmissiveParts
+    2100012: JointParts
+    2100014: MintParts
     2300000: pasted__pasted__pSphere2
     2300002: pCube1
     2300004: pCube2
@@ -165,8 +171,10 @@ ModelImporter:
     4300012: polySurface7
     4300014: pCube5
     4300016: RubberJoint
+    4300018: pCylinder5
     7400000: Take 001
     9500000: //RootNode
+    13700000: pCylinder5
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -194,7 +202,35 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 120
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
