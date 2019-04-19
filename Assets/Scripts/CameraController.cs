@@ -46,8 +46,8 @@ public class CameraController : MonoBehaviour{
     [SerializeField] private float moveSpeed;
     [Range(0f, 10f)] [SerializeField] private float turnSpeed;
     [SerializeField] private float turnSmoothing = 1f;
-    [SerializeField] private float maximumY = 75f;
-    [SerializeField] private float minimumY = 45f;
+    public float maximumY = 75f;
+    public float minimumY = 45f;
     [SerializeField] private bool lockCursor;
     [Tooltip("The list of stored targets. The camera will follow 1st target by default, others can be cycled through.")]
     [SerializeField] private CameraTarget[] targets;
@@ -57,7 +57,7 @@ public class CameraController : MonoBehaviour{
 
     //List of variables responsible for wall detection
     [Header("Physics variables to help avoid clipping")]
-    [SerializeField] private bool checkForCollision;
+    public bool checkForCollision;
     [Tooltip("Time it takes to move when avoiding objects. Lower numbers are faster")]
     public float moveTime = 0.05f;
     public float returnTime = 0.4f;
@@ -85,6 +85,7 @@ public class CameraController : MonoBehaviour{
     private Vector3 pivotEulers;
     private Quaternion pivotTargetRotation;
     private Quaternion transformTargetRotation;
+    private SphereCollider sphereCollider;
 
     private void Awake()
     {
@@ -115,6 +116,8 @@ public class CameraController : MonoBehaviour{
             pivotTransform.localPosition = new Vector3(currentTarget.offset.x, currentTarget.offset.y, 0f);
 
             hitComparer = new RayHitComparer();
+
+            sphereCollider = GetComponent<SphereCollider>();
         }
         else
         {
@@ -129,6 +132,12 @@ public class CameraController : MonoBehaviour{
         {
             targets = new CameraTarget[] { new CameraTarget(player.transform, Vector2.zero, -5) };
         }
+    }
+
+    public void ReConfigure(CameraVolume.CameraParameters parameters)
+    {
+        minimumY = parameters.minY;
+        maximumY = parameters.maxY;
     }
 
     private void Update()
@@ -243,6 +252,9 @@ public class CameraController : MonoBehaviour{
     private void FollowTarget(float deltaTime)
     {
         transform.position = Vector3.Lerp(transform.position, currentTarget.target.position, deltaTime * moveSpeed);
+
+        if(cameraTransform.GetComponent<SphereCollider>() != null)
+            cameraTransform.GetComponent<SphereCollider>().radius = sphereCastRadius;
     }
 
     private void HandleRotation()
