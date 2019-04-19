@@ -36,13 +36,25 @@ public class ScoreComparer : IComparer
 
 public class ScoreScript : MonoBehaviour {
 
+    public static ScoreScript instance = null;
+
     private List<PlayerData> scoreTable = new List<PlayerData>();
     private ScoreData storage = new ScoreData();
     private int score = 0;
     private string playerName = "";
 
-	// Use this for initialization
-	void Start () {
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else if (instance != null)
+            Destroy(gameObject);
+
+        DontDestroyOnLoad(gameObject);
+    }
+
+    // Use this for initialization
+    void Start () {
         Load();
 	}
 	

@@ -48,6 +48,8 @@ public class CameraController : MonoBehaviour{
     [SerializeField] private float turnSmoothing = 1f;
     public float maximumY = 75f;
     public float minimumY = 45f;
+    public float minimumX = Mathf.NegativeInfinity;
+    public float maximumX = Mathf.Infinity;
     [SerializeField] private bool lockCursor;
     [Tooltip("The list of stored targets. The camera will follow 1st target by default, others can be cycled through.")]
     [SerializeField] private CameraTarget[] targets;
@@ -138,6 +140,8 @@ public class CameraController : MonoBehaviour{
     {
         minimumY = parameters.minY;
         maximumY = parameters.maxY;
+        minimumX = parameters.minX;
+        maximumX = parameters.maxX;
     }
 
     private void Update()
@@ -270,6 +274,9 @@ public class CameraController : MonoBehaviour{
 
         lookAngle += horizontal * turnSpeed;
 
+        if (maximumX != Mathf.Infinity && minimumX != Mathf.NegativeInfinity)
+            lookAngle = Mathf.Clamp(lookAngle, minimumX, maximumX);
+
         transformTargetRotation = Quaternion.Euler(0f, lookAngle, 0f);
 
         tiltAngle -= vertical * turnSpeed;
@@ -291,12 +298,6 @@ public class CameraController : MonoBehaviour{
 
     public void SetTarget(int index)
     {
-        /*
-        targetIndex = (targetIndex + 1) % targets.Length;
-        currentTarget = targets[targetIndex];
-        initialDistance = currentTarget.distance;
-        pivotTransform.localPosition = new Vector3(currentTarget.offset.x, currentTarget.offset.y, 0f);
-        */
         if(targets.Length >= (index + 1))
         {
             currentTarget = targets[index];

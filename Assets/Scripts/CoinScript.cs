@@ -21,7 +21,8 @@ public class CoinScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.SendMessage("AddToScore", 100);
+            //collision.gameObject.SendMessage("AddToScore", 100);
+            ScoreScript.instance.AddToScore(100);
             Destroy(gameObject);
         }
     }
@@ -30,7 +31,8 @@ public class CoinScript : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.gameObject.SendMessage("AddToScore", 100);
+            //other.gameObject.SendMessage("AddToScore", 100);
+            ScoreScript.instance.AddToScore(100);
             Destroy(gameObject);
         }
     }

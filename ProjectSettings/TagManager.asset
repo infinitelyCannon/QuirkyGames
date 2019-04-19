@@ -10,6 +10,7 @@ TagManager:
   - Win
   - Done
   - Collectable
+  - Controlled
   layers:
   - Default
   - TransparentFX

@@ -56,6 +56,7 @@ public class EnemyScript : MonoBehaviour {
                 mindControl = false;
                 timeControlled = starttimeControlled;
                 gameObject.GetComponent<MeshRenderer>().material = normal;
+                transform.gameObject.tag = "Enemy";
             }
             
         }
@@ -100,7 +101,10 @@ public class EnemyScript : MonoBehaviour {
         //MindControl Stuff
         else if (other.CompareTag("Enemy") && mindControl == true)
         {
-            enemyMind = GameObject.FindGameObjectWithTag("Enemy").transform;
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            float i = Random.Range(0f, (float) enemies.Length);
+
+            enemyMind = enemies[(int) i].transform; //GameObject.FindGameObjectWithTag("Enemy").transform;
 
             if (Vector3.Distance(transform.position, enemyMind.position) > stopDistance)
              {
