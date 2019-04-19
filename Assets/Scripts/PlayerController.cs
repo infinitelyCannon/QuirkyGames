@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float meshRotationSpeed;
     [SerializeField] private bool jetPack;
     [SerializeField] private float shootDelay;
+    [SerializeField] private float hoverHeight;
+    [SerializeField] private float hoverSpeed;
 
     private Transform mainCamera;
     private Vector3 cameraForward;
@@ -31,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private Transform meshObject;
     private float shootWait;
     private bool canShoot = true;
+    private float hoverTime = 0f;
 
     // Health Stuff Kyle Added This
     public GameObject Hud;
@@ -165,6 +168,8 @@ public class PlayerController : MonoBehaviour
 
             if (jump)
             {
+                meshObject.localPosition = new Vector3(0f, -1f, 0f);
+                hoverTime = 0f;
                 if (jetPack)
                 {
                     moveVector.y = jetJump;
@@ -177,6 +182,11 @@ public class PlayerController : MonoBehaviour
                     jump = false;
                     jumping = true;
                 }
+            }
+            else
+            {
+                hoverTime += Time.deltaTime;
+                meshObject.localPosition += new Vector3(0f, (Mathf.Sin(hoverTime * hoverSpeed) * hoverHeight) * Time.deltaTime, 0f);
             }
         }
         else
@@ -198,9 +208,17 @@ public class PlayerController : MonoBehaviour
     public Vector3 GetShotDirection(bool aiming)
     {
         if (aiming)
-            return mainCamera.forward;//Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 1));
+            return mainCamera.forward;// + Vector3.up;//Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 1));
         else
             return meshObject.forward;
+    }
+
+    public Vector3 GetSpawnPosition(bool aiming)
+    {
+        if (aiming)
+            return mainCamera.position;// + Vector3.down;
+        else
+            return bulletPoint.position;
     }
 
     private void OnTriggerEnter(Collider other)

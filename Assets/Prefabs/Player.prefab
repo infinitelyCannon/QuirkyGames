@@ -3797,7 +3797,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 5
   runSpeed: 10
-  jumpSpeed: 10
+  jumpSpeed: 7
   stickToGroundForce: 9.8
   gravityMultiplier: 2
   jetPackGravityScale: 0.3
@@ -3805,12 +3805,15 @@ MonoBehaviour:
   meshRotationSpeed: 360
   jetPack: 0
   shootDelay: 0
+  hoverHeight: 0.3
+  hoverSpeed: 3
   Hud: {fileID: 0}
   Health: 100
   deathScreen: {fileID: 0}
   deathBtn: {fileID: 0}
   debug: {fileID: 0}
   bulletPoint: {fileID: 4841647986017450}
+  Enemy: {fileID: 0}
 --- !u!114 &114725624649858238
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3827,7 +3830,12 @@ MonoBehaviour:
     type: 2}
   Hud: {fileID: 0}
   ammoCount: 100
+  ammoAmnt: 10
   spawnPoint: {fileID: 4841647986017450}
+  ammoTimer: 0
+  chargeTimer: 2
+  projectileClip: {fileID: 0}
+  mindControlClip: {fileID: 0}
 --- !u!137 &137006069356224180
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
