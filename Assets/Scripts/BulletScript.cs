@@ -19,9 +19,23 @@ public class BulletScript : MonoBehaviour {
 		
 	}
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        /*
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("POW");
+            Destroy(gameObject);
+        }
+        */
+        Destroy(gameObject);
+    }
+
+    /*
     private void OnTriggerEnter(Collider other) {
         if(other.CompareTag("Enemy")) {
             Destroy(gameObject);
         }
     }
+    */
 }

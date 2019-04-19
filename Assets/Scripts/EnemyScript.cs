@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyScript : MonoBehaviour {
+public class EnemyScript : MonoBehaviour
+{
 
     public float speed;
     public float stopDistance;
@@ -25,21 +26,29 @@ public class EnemyScript : MonoBehaviour {
     public Material normal;
     public Material mind;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         enemyMind = GameObject.FindGameObjectWithTag("Enemy").transform;
         timeBtwShots = startTimeBtwShots;
         mindControl = false;
         gameObject.GetComponent<MeshRenderer>().material = normal;
-	}
+    }
     private void Update()
     {
         //Switches to MindControlFunctionality
         if (Input.GetKeyDown(KeyCode.M))
         {
             mindControl = true;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -51,18 +60,20 @@ public class EnemyScript : MonoBehaviour {
             gameObject.GetComponent<MeshRenderer>().material = mind;
         }
 
+        /*
         else if (other.CompareTag("Bullet"))
         {
             player.gameObject.SendMessage("AddToScore", 200);
             Destroy(gameObject);
         }
+        */
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player") && mindControl == false)
         {
-            
+
             PlayerinZone();
         }
         //MindControl Stuff
@@ -95,10 +106,10 @@ public class EnemyScript : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void PlayerinZone ()
+    void PlayerinZone()
     {
         //Enemy Movement
-		if (Vector3.Distance(transform.position, player.position) > stopDistance)
+        if (Vector3.Distance(transform.position, player.position) > stopDistance)
         {
             transform.position = Vector3.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
         }
@@ -111,7 +122,7 @@ public class EnemyScript : MonoBehaviour {
             transform.position = Vector3.MoveTowards(transform.position, player.position, -speed * Time.deltaTime);
         }
 
-       
+
 
 
 

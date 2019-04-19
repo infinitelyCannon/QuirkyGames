@@ -18805,6 +18805,11 @@ Prefab:
       propertyPath: sphereCastRadius
       value: 0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 114613498955253552, guid: f250f045230ff5942a7e0c6b8f153fb4,
+        type: 2}
+      propertyPath: lockCursor
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f250f045230ff5942a7e0c6b8f153fb4, type: 2}
   m_IsPrefabAsset: 0
