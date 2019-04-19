@@ -52,7 +52,7 @@ public class OnFireScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if ((Input.GetButtonDown("Shoot") || Input.GetAxisRaw("Shoot") == 1f) && isFiring == true) 
+		if ((Input.GetButtonDown("Shoot") || Input.GetAxisRaw("Shoot") == 1f) && isFiring == true && Time.timeScale > 0f) 
         {
             isFiring = false;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -66,7 +66,7 @@ public class OnFireScript : MonoBehaviour {
                 mAudioSource.PlayOneShot(projectileClip);
             }   
         }
-        else if (Input.GetButtonDown("ShootAlt"))
+        else if (Input.GetButtonDown("ShootAlt") && Time.timeScale > 0f)
         {
             bool isAiming = (Input.GetButton("Aim") || Input.GetAxisRaw("Aim") == 1f);
 

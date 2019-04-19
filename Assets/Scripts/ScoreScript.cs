@@ -40,7 +40,7 @@ public class ScoreScript : MonoBehaviour {
 
     private List<PlayerData> scoreTable = new List<PlayerData>();
     private ScoreData storage = new ScoreData();
-    private int score = 0;
+    public int score { get; private set;}
     private string playerName = "";
 
     private void Awake()
@@ -56,6 +56,7 @@ public class ScoreScript : MonoBehaviour {
     // Use this for initialization
     void Start () {
         Load();
+        score = 0;
 	}
 	
 	// Update is called once per frame

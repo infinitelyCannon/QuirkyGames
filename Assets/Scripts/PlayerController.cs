@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
     private HealthBarScript mHealthBar;
 
     //Vertical Slice stuff
-    public GameObject deathScreen;
+    public DeathMenuController deathScreen;
     private EventSystem eventSystem;
     private bool isDead = false;
     public GameObject deathBtn;
@@ -109,8 +109,7 @@ public class PlayerController : MonoBehaviour
         {
             isDead = true;
             Time.timeScale = 0f;
-            deathScreen.SetActive(true);
-            eventSystem.SetSelectedGameObject(deathBtn);
+            deathScreen.Launch();
         }
     }
 
