@@ -1,0 +1,205 @@
+fileFormatVersion: 2
+guid: 96be6a8a6c8f3e6439732c6aae465b8f
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: bottom
+    100002: //RootNode
+    100004: group
+    100006: group1
+    100008: Head
+    100010: Head 1
+    100012: imagePlane1
+    100014: imagePlane2
+    100016: imagePlane3
+    100018: imagePlane4
+    100020: jaw
+    100022: joint3
+    100024: L_Clavicle
+    100026: L_Elbow
+    100028: L_Shoulder
+    100030: L_Wrist
+    100032: middle1
+    100034: middle2
+    100036: middle3
+    100038: neck
+    100040: pasted__Engine
+    100042: pasted__group1
+    100044: pasted__group10
+    100046: pasted__group11
+    100048: pasted__group12
+    100050: pasted__group13
+    100052: pasted__group14
+    100054: pasted__group15
+    100056: pasted__group17
+    100058: pasted__group18
+    100060: pasted__group2
+    100062: pasted__group3
+    100064: pasted__group4
+    100066: pasted__group5
+    100068: pasted__group6
+    100070: pasted__group7
+    100072: pasted__group8
+    100074: pasted__group9
+    100076: pasted__transform4
+    100078: pCube10
+    100080: pCylinder5
+    100082: Pelvis
+    100084: pinky1
+    100086: pinky2
+    100088: pinky3
+    100090: polySurface5
+    100092: R_Clavicle
+    100094: R_Elbow
+    100096: R_Shoulder
+    100098: R_Wrist
+    100100: Spine1
+    100102: Spine2
+    100104: thimb2
+    100106: thumb1
+    100108: thumb3
+    100110: Top
+    100112: VentSlats
+    400000: bottom
+    400002: //RootNode
+    400004: group
+    400006: group1
+    400008: Head
+    400010: Head 1
+    400012: imagePlane1
+    400014: imagePlane2
+    400016: imagePlane3
+    400018: imagePlane4
+    400020: jaw
+    400022: joint3
+    400024: L_Clavicle
+    400026: L_Elbow
+    400028: L_Shoulder
+    400030: L_Wrist
+    400032: middle1
+    400034: middle2
+    400036: middle3
+    400038: neck
+    400040: pasted__Engine
+    400042: pasted__group1
+    400044: pasted__group10
+    400046: pasted__group11
+    400048: pasted__group12
+    400050: pasted__group13
+    400052: pasted__group14
+    400054: pasted__group15
+    400056: pasted__group17
+    400058: pasted__group18
+    400060: pasted__group2
+    400062: pasted__group3
+    400064: pasted__group4
+    400066: pasted__group5
+    400068: pasted__group6
+    400070: pasted__group7
+    400072: pasted__group8
+    400074: pasted__group9
+    400076: pasted__transform4
+    400078: pCube10
+    400080: pCylinder5
+    400082: Pelvis
+    400084: pinky1
+    400086: pinky2
+    400088: pinky3
+    400090: polySurface5
+    400092: R_Clavicle
+    400094: R_Elbow
+    400096: R_Shoulder
+    400098: R_Wrist
+    400100: Spine1
+    400102: Spine2
+    400104: thimb2
+    400106: thumb1
+    400108: thumb3
+    400110: Top
+    400112: VentSlats
+    2000000: bottom
+    7400000: Take 001
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
