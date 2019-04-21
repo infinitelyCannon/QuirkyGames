@@ -153,13 +153,13 @@ public class CameraController : MonoBehaviour{
             Cursor.visible = !lockCursor;
         }
 
-        if (Input.GetButtonDown("Aim") || Input.GetAxisRaw("Aim") == 1f)
+        if ((Input.GetButtonDown("Aim") || Input.GetAxisRaw("Aim") == 1f) && Time.timeScale > 0f)
         {
             SetTarget(1);
             aimReference.SetActive(true);
         }
 
-        if (Input.GetButtonUp("Aim") || Input.GetAxisRaw("Aim") == 0f)
+        if ((Input.GetButtonUp("Aim") || Input.GetAxisRaw("Aim") == 0f) && Time.timeScale > 0f)
         {
             SetTarget(0);
             aimReference.SetActive(false);

@@ -21,6 +21,8 @@ public class OnFireScript : MonoBehaviour {
 
     private bool isFiring;
 
+    public bool isEquipped;
+
     //Recharge Ammo Variables
     public float ammoTimer = 0f;
     public float chargeTimer = 2f;
@@ -66,7 +68,7 @@ public class OnFireScript : MonoBehaviour {
                 mAudioSource.PlayOneShot(projectileClip);
             }   
         }
-        else if (Input.GetButtonDown("ShootAlt") && Time.timeScale > 0f)
+        else if (Input.GetButtonDown("ShootAlt") && Time.timeScale > 0f && isEquipped)
         {
             bool isAiming = (Input.GetButton("Aim") || Input.GetAxisRaw("Aim") == 1f);
 
@@ -75,7 +77,7 @@ public class OnFireScript : MonoBehaviour {
                 Instantiate(mindProjectile, player.GetSpawnPosition(isAiming), transform.rotation).transform.forward = player.GetShotDirection(isAiming);
                 mAudioSource.PlayOneShot(mindControlClip);
             }
-            FiredShot();
+            //FiredShot();
         }
         if (Input.GetButtonUp("Shoot")) {
             isFiring = true;

@@ -3,8 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-[CreateAssetMenu(menuName = "UIController/State")]
-public class UIState : ScriptableObject {
+public abstract class UIState : MonoBehaviour {
+
+    protected static EventSystem eventSystem;
+
+    protected virtual void Start()
+    {
+        eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
+    }
+
+    public abstract void UpdateState();
+    public abstract void EnterState(PauseMenuScript pauseMenu);
+    public abstract void ExitState();
+
+    /*
     public UIAction[] actions;
     public UITransition transition;
     public float startDelay;
@@ -34,4 +46,5 @@ public class UIState : ScriptableObject {
     {
 
     }
+    */
 }

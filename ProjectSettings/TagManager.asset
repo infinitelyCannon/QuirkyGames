@@ -11,6 +11,7 @@ TagManager:
   - Done
   - Collectable
   - Controlled
+  - UIState
   layers:
   - Default
   - TransparentFX
