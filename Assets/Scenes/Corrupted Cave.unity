@@ -18544,6 +18544,11 @@ Prefab:
       propertyPath: jumpSpeed
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 137782734303423182, guid: d0b38051833e3d342befe900f77b874b,
+        type: 2}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1463f5c2ffeb33841b66d0b81c5ff139, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0b38051833e3d342befe900f77b874b, type: 2}
   m_IsPrefabAsset: 0
