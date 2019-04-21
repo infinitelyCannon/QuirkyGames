@@ -17,9 +17,10 @@ public class OnFireScript : MonoBehaviour {
 
     //Addons from Dakarai
     private PlayerController player;
-    public Transform spawnPoint;
-
+    private Animator animator;
+    private bool mainBullet = false;
     private bool isFiring;
+    private bool isAiming;
 
     public bool isEquipped;
 
@@ -49,7 +50,8 @@ public class OnFireScript : MonoBehaviour {
         mAudioSource = GetComponent<AudioSource>();
 
         //Addons by Dakarai
-        player = gameObject.GetComponent<PlayerController>();
+        player = transform.parent.gameObject.GetComponent<PlayerController>();
+        animator = GetComponent<Animator>();
     }
 	
 	// Update is called once per frame
@@ -58,24 +60,32 @@ public class OnFireScript : MonoBehaviour {
         {
             isFiring = false;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            bool isAiming = (Input.GetButton("Aim") || Input.GetAxisRaw("Aim") == 1f);
+            isAiming = (Input.GetButton("Aim") || Input.GetAxisRaw("Aim") == 1f);
                 
-            FiredShot();
             if (ammoCount > 0 && isOut == false) {
-                Instantiate(projectile, player.GetSpawnPosition(isAiming), transform.rotation).transform.forward = player.GetShotDirection(isAiming);
-                //cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1f, 0f, 1f)).normalized;
-                //projectile.transform.forward = player.GetShotDirection();
-                mAudioSource.PlayOneShot(projectileClip);
-            }   
+                mainBullet = true;
+                if (!isAiming)
+                    animator.SetTrigger((Input.GetAxisRaw("Horizontal") != 0f || Input.GetAxisRaw("Vertical") != 0f) ? "MoveShoot" : "IdleShoot");
+                else
+                    Shoot();
+                //Instantiate(projectile, player.GetSpawnPosition(isAiming), transform.rotation).transform.forward = player.GetShotDirection(isAiming);
+                //mAudioSource.PlayOneShot(projectileClip);
+            }
+            FiredShot();
         }
         else if (Input.GetButtonDown("ShootAlt") && Time.timeScale > 0f && isEquipped)
         {
-            bool isAiming = (Input.GetButton("Aim") || Input.GetAxisRaw("Aim") == 1f);
+            isAiming = (Input.GetButton("Aim") || Input.GetAxisRaw("Aim") == 1f);
 
             if (ammoCount > 0)
             {
-                Instantiate(mindProjectile, player.GetSpawnPosition(isAiming), transform.rotation).transform.forward = player.GetShotDirection(isAiming);
-                mAudioSource.PlayOneShot(mindControlClip);
+                mainBullet = false;
+                if (!isAiming)
+                    animator.SetTrigger((Input.GetAxisRaw("Horizontal") != 0f || Input.GetAxisRaw("Vertical") != 0f) ? "MoveShoot" : "IdleShoot");
+                else
+                    Shoot();
+                //Instantiate(mindProjectile, player.GetSpawnPosition(isAiming), transform.rotation).transform.forward = player.GetShotDirection(isAiming);
+                //mAudioSource.PlayOneShot(mindControlClip);
             }
             //FiredShot();
         }
@@ -91,6 +101,20 @@ public class OnFireScript : MonoBehaviour {
             ammoTimer = 0;
         }
 	}
+
+    public void Shoot()
+    {
+        if (mainBullet)
+        {
+            Instantiate(projectile, player.GetSpawnPosition(isAiming), transform.rotation).transform.forward = player.GetShotDirection(isAiming);
+            mAudioSource.PlayOneShot(projectileClip);
+        }
+        else
+        {
+            Instantiate(mindProjectile, player.GetSpawnPosition(isAiming), transform.rotation).transform.forward = player.GetShotDirection(isAiming);
+            mAudioSource.PlayOneShot(mindControlClip);
+        }
+    }
 
     //full variable or == to max
     //canRecharge a bool set by a timer

@@ -690,6 +690,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 114053129973588564, guid: d0b38051833e3d342befe900f77b874b,
+        type: 2}
+      propertyPath: Hud
+      value: 
+      objectReference: {fileID: 1921688976}
     - target: {fileID: 114273933578622626, guid: d0b38051833e3d342befe900f77b874b,
         type: 2}
       propertyPath: Hud
@@ -705,11 +710,6 @@ Prefab:
       propertyPath: deathBtn
       value: 
       objectReference: {fileID: 1363281521}
-    - target: {fileID: 114725624649858238, guid: d0b38051833e3d342befe900f77b874b,
-        type: 2}
-      propertyPath: Hud
-      value: 
-      objectReference: {fileID: 1921688976}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0b38051833e3d342befe900f77b874b, type: 2}
   m_IsPrefabAsset: 0

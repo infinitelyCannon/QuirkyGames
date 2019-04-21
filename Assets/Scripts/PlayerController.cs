@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
@@ -34,6 +32,7 @@ public class PlayerController : MonoBehaviour
     private float shootWait;
     private bool canShoot = true;
     private float hoverTime = 0f;
+    private Animator animator;
 
     // Health Stuff Kyle Added This
     public GameObject Hud;
@@ -42,7 +41,6 @@ public class PlayerController : MonoBehaviour
 
     //Vertical Slice stuff
     public PauseMenuScript deathScreen;
-    private EventSystem eventSystem;
     private bool isDead = false;
     public GameObject deathBtn;
     public Text debug;
@@ -72,8 +70,7 @@ public class PlayerController : MonoBehaviour
         mHealthBar.Maxhealth = Health;
         mHealthBar.SetHealth(Health);
 
-        //Vertical slice stuff
-        eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
+        animator = transform.GetChild(0).GetComponent<Animator>();
     }
 
     private void Update()
@@ -91,18 +88,6 @@ public class PlayerController : MonoBehaviour
             moveVector.y = 0f;
 
         previouslyGrounded = characterController.isGrounded;
-
-        if (Input.GetButton("Aim") || Input.GetAxisRaw("Aim") == 1f)
-        {
-            if (Input.GetButtonDown("Shoot") || Input.GetAxisRaw("Shoot") == 1f)
-            {
-                Shoot(false);
-            }
-            else if (Input.GetButtonDown("ShootAlt"))
-            {
-                Shoot(true);
-            }
-        }
 
         //Vertical Slice stuff
         if(Health <= 0 && !isDead)
@@ -123,12 +108,11 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButton("Aim") || Input.GetAxisRaw("Aim") == 1f)
         {
-            meshObject.gameObject.SetActive(false);//.GetComponent<MeshRenderer>().enabled = false;
-            Debug.DrawRay(bulletPoint.position, mainCamera.forward * 3f, Color.clear, 0.08f);
+            meshObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;//.GetComponent<MeshRenderer>().enabled = false;
         }
-            
+
         else if (Input.GetButtonUp("Aim") || Input.GetAxisRaw("Aim") == 0f)
-            meshObject.gameObject.SetActive(true);//.GetComponent<MeshRenderer>().enabled = true;
+            meshObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true; ;//.GetComponent<MeshRenderer>().enabled = true;
 
         if (horizontal != 0f || vertical != 0f)
         {
@@ -167,6 +151,7 @@ public class PlayerController : MonoBehaviour
             if (jump)
             {
                 meshObject.localPosition = new Vector3(0f, -1f, 0f);
+                animator.SetTrigger("Jump");
                 hoverTime = 0f;
                 if (jetPack)
                 {
@@ -196,11 +181,14 @@ public class PlayerController : MonoBehaviour
         }
 
         characterController.Move(moveVector * Time.fixedDeltaTime);
+
+        // Handle Animations
+        animator.SetBool("Moving", (horizontal != 0f || vertical != 0f));
     }
 
-    private void Shoot(bool alt)
+    private void OnGUI()
     {
-        
+        //GUI.Label(new Rect(Screen.width - 100, Screen.height - 20, 100, 20), Mathf.Atan2(moveVector.x, moveVector.z).ToString());
     }
 
     public Vector3 GetShotDirection(bool aiming)

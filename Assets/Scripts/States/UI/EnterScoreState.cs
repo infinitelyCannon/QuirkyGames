@@ -80,13 +80,6 @@ public class EnterScoreState : UIState {
         }
     }
 
-    private void OnGUI()
-    {
-        GUI.Label(new Rect(Screen.width - 150, Screen.height - 20, 150, 20), "Current Index: " + currentIndex.ToString());
-        GUI.Label(new Rect(Screen.width - 150, Screen.height - 45, 150, 20), "Alpha Index: " + alphabetIndex.ToString());
-        GUI.Label(new Rect(Screen.width - 150, Screen.height - 70, 150, 20), "Alpha Entry: " + ((alphabetIndex >= 0) ? PLAYER_NAME_CHARS[alphabetIndex].ToString() : "null"));
-    }
-
     public override void EnterState(PauseMenuScript pauseMenu)
     {
         menuScript = pauseMenu;
