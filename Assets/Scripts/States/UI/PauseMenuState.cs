@@ -1,12 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class DeathMenuState : UIState {
-
-    public Text finalScore;
+public class PauseMenuState : UIState {
 
     private PauseMenuScript menuScript;
 
@@ -14,33 +11,32 @@ public class DeathMenuState : UIState {
     {
         if (gameObject.activeSelf && eventSystem.currentSelectedGameObject == null)
             eventSystem.SetSelectedGameObject(transform.GetChild(1).gameObject);
+
+        if (Input.GetButtonDown("Start"))
+            Resume();
     }
 
     public override void EnterState(PauseMenuScript pauseMenu)
     {
-        Time.timeScale = 0f;
         menuScript = pauseMenu;
+        Time.timeScale = 0f;
+        eventSystem.SetSelectedGameObject(transform.GetChild(1).gameObject);
         //Cursor.lockState = CursorLockMode.None;
         //Cursor.visible = true;
-        finalScore.text = "Your Score: " + ScoreScript.instance.score;
-        eventSystem.SetSelectedGameObject(transform.GetChild(1).gameObject);
     }
 
     public override void ExitState()
     {
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+        Time.timeScale = 1f;
         menuScript = null;
         eventSystem.SetSelectedGameObject(null);
     }
 
-    public void Restart()
+    public void Resume()
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    public void EnterScore()
-    {
-        menuScript.GoToState(2);
+        menuScript.Resume();
     }
 
     public void MainMenu()

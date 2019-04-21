@@ -108,7 +108,6 @@ public class PlayerController : MonoBehaviour
         if(Health <= 0 && !isDead)
         {
             isDead = true;
-            Time.timeScale = 0f;
             deathScreen.Launch();
         }
     }

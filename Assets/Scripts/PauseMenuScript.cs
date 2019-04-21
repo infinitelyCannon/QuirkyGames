@@ -9,7 +9,7 @@ public class PauseMenuScript : MonoBehaviour {
 
     private EventSystem eventSystem;
     private bool isPaused = false;
-    public UIState currentState = null;
+    private UIState currentState = null;
     private List<Toggle> statePanels;
     private List<GameObject> pages;
 
@@ -29,8 +29,10 @@ public class PauseMenuScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetButtonDown("Start"))
+        if (Input.GetButtonDown("Start") && currentState == null)
         {
+            GoToState(0);
+            /*
             isPaused = !isPaused;
 
             if (isPaused)
@@ -44,9 +46,9 @@ public class PauseMenuScript : MonoBehaviour {
             {
                 Resume();
             }
+            */
         }
-
-        if (isPaused && currentState != null)
+        else if (currentState != null)
             currentState.UpdateState();
 	}
 
@@ -60,38 +62,31 @@ public class PauseMenuScript : MonoBehaviour {
         statePanels[state].isOn = true;
         if (currentState != null)
             currentState.ExitState();
-        if(pages[state].GetComponent<UIState>() != null)
-            pages[state].GetComponent<UIState>().EnterState(this);
-        currentState = pages[state].GetComponent<UIState>();
+        if (pages[state].GetComponent(typeof(UIState)) != null)
+        {
+            currentState = pages[state].GetComponent(typeof(UIState)) as UIState;
+            currentState.EnterState(this);
+        }
+        else
+            currentState = null;
     }
 
     public void Resume()
     {
+        statePanels[0].isOn = false;
+        currentState.ExitState();
+        currentState = null;
+        /*
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         //GoToState(0);
         statePanels[0].isOn = false;
+        */
     }
 
     public void Launch()
     {
         GoToState(1);
-    }
-
-    public void Restart()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    public void Quit()
-    {
-        Application.Quit();
-    }
-
-    public void MainMenu()
-    {
-        SceneManager.LoadScene(0);
     }
 }

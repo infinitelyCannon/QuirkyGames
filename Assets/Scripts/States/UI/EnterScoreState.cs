@@ -11,6 +11,7 @@ public class EnterScoreState : UIState {
     public int maxNameLength;
     public int maxTabLength = 8;
     public Text nameField;
+    public Text nameUnderline;
     public float blinkTime;
 
     private const string PLAYER_NAME_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890_- ";
@@ -32,39 +33,58 @@ public class EnterScoreState : UIState {
         {
             string input = Input.inputString;
             char[] temp = nameField.text.ToCharArray();
-            StopBlink();
+            char[] underline = nameUnderline.text.ToCharArray();
 
             for (int i = 0; i < input.Length; i++)
             {
                 if (isValid(input[i]))
                 {
                     temp[currentIndex] = input[i];
+                    underline[currentIndex] = ' ';
                     currentIndex = WrapInt(currentIndex + 1, 0, maxNameLength - 1);
                     alphabetIndex = PLAYER_NAME_CHARS.IndexOf(temp[currentIndex]);
+                    underline[currentIndex] = BOX;
                 }
                 else if (input[i] == '\b')
                 {
                     temp[currentIndex] = ' ';
                     if (currentIndex > 0)
+                    {
+                        underline[currentIndex] = ' ';
                         currentIndex = WrapInt(currentIndex - 1, 0, maxNameLength - 1);
+                        underline[currentIndex] = BOX;
+                    }
                     alphabetIndex = PLAYER_NAME_CHARS.IndexOf(temp[currentIndex]);
                 }
             }
 
             nameField.text = new string(temp);
-            StartCoroutine("Blink");
+            nameUnderline.text = new string(underline);
         }
 
         if (Input.GetKeyDown(KeyCode.Joystick1Button2) && gameObject.activeSelf)
         {
             char[] temp = nameField.text.ToCharArray();
-            StopBlink();
+            char[] underline = nameUnderline.text.ToCharArray();
 
             temp[currentIndex] = ' ';
             if (currentIndex > 0)
+            {
+                underline[currentIndex] = ' ';
                 currentIndex = WrapInt(currentIndex - 1, 0, maxNameLength - 1);
+                underline[currentIndex] = BOX;
+            }
             alphabetIndex = PLAYER_NAME_CHARS.IndexOf(temp[currentIndex]);
+            nameField.text = new string(temp);
+            nameUnderline.text = new string(underline);
         }
+    }
+
+    private void OnGUI()
+    {
+        GUI.Label(new Rect(Screen.width - 150, Screen.height - 20, 150, 20), "Current Index: " + currentIndex.ToString());
+        GUI.Label(new Rect(Screen.width - 150, Screen.height - 45, 150, 20), "Alpha Index: " + alphabetIndex.ToString());
+        GUI.Label(new Rect(Screen.width - 150, Screen.height - 70, 150, 20), "Alpha Entry: " + ((alphabetIndex >= 0) ? PLAYER_NAME_CHARS[alphabetIndex].ToString() : "null"));
     }
 
     public override void EnterState(PauseMenuScript pauseMenu)
@@ -75,23 +95,22 @@ public class EnterScoreState : UIState {
         eventSystem.SetSelectedGameObject(nameField.gameObject);
         for (int i = 1; i <= maxNameLength; i++)
             nameField.text += " ";
-        StartCoroutine("Blink");
     }
 
     public override void ExitState()
     {
-        StopBlink();
+        eventSystem.SetSelectedGameObject(null);
         menuScript = null;
     }
 
     public void MoveTrigger(BaseEventData data)
     {
         char[] temp = nameField.text.ToCharArray();
+        char[] underline = nameUnderline.text.ToCharArray();
         AxisEventData axisData = (AxisEventData) data;
 
         if (Input.inputString == "")
         {
-            StopBlink();
             switch (axisData.moveDir)
             {
                 case MoveDirection.Up:
@@ -103,18 +122,22 @@ public class EnterScoreState : UIState {
                     temp[currentIndex] = PLAYER_NAME_CHARS[alphabetIndex];
                     break;
                 case MoveDirection.Left:
+                    underline[currentIndex] = ' ';
                     currentIndex = WrapInt(currentIndex - 1, 0, maxNameLength - 1);
                     alphabetIndex = PLAYER_NAME_CHARS.IndexOf(temp[currentIndex]);
+                    underline[currentIndex] = BOX;
                     break;
                 case MoveDirection.Right:
+                    underline[currentIndex] = ' ';
                     currentIndex = WrapInt(currentIndex + 1, 0, maxNameLength - 1);
                     alphabetIndex = PLAYER_NAME_CHARS.IndexOf(temp[currentIndex]);
+                    underline[currentIndex] = BOX;
                     break;
                 default:
                     break;
             }
             nameField.text = new string(temp);
-            StartCoroutine("Blink");
+            nameUnderline.text = new string(underline);
         }
     }
 
@@ -144,14 +167,7 @@ public class EnterScoreState : UIState {
         return (char.IsLetterOrDigit(c) || c == '_' || c == '-');
     }
 
-    private void StopBlink()
-    {
-        StopCoroutine("Blink");
-        char[] temp = nameField.text.ToCharArray();
-        temp[currentIndex] = PLAYER_NAME_CHARS[alphabetIndex];
-        nameField.text = new string(temp);
-    }
-
+    /*
     IEnumerator Blink()
     {
         char[] temp;
@@ -170,4 +186,5 @@ public class EnterScoreState : UIState {
             yield return new WaitForSecondsRealtime(blinkTime);
         }
     }
+    */
 }

@@ -31,9 +31,9 @@ public class ScoreComparer : IComparer<PlayerData>
         if (a.score == b.score)
             return 0;
         if (a.score < b.score)
-            return -1;
+            return 1;
 
-        return 1;
+        return -1;
     }
 }
 

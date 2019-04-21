@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
-    
+   
     public GameObject pauseMenuUI;
     public GameObject pauseScreen;
     public GameObject HowToPlay;
