@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DropObject : MonoBehaviour {
-    private Rigidbody rb;
+public class DropObject : MonoBehaviour
+    
+   {private Rigidbody rb;
     public OnFireScript mOnFire;
 
 
