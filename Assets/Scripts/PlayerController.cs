@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
     private HealthBarScript mHealthBar;
 
     //Vertical Slice stuff
-    public DeathMenuController deathScreen;
+    public PauseMenuScript deathScreen;
     private EventSystem eventSystem;
     private bool isDead = false;
     public GameObject deathBtn;
@@ -247,17 +247,5 @@ public class PlayerController : MonoBehaviour
         mHealthBar.SetHealth(Health);
         mHealthBar.timer = 0f;
         mHealthBar.isRegenerating = false;
-    }
-
-    //Vertical slice stuff
-    public void Restart()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    public void Quit()
-    {
-        Application.Quit();
     }
 }

@@ -5546,6 +5546,7 @@ MonoBehaviour:
   ammoCount: 100
   ammoAmnt: 10
   spawnPoint: {fileID: 4841647986017450}
+  isEquipped: 0
   ammoTimer: 0
   chargeTimer: 2
   projectileClip: {fileID: 0}
