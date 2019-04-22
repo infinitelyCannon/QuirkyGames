@@ -45,8 +45,6 @@ public class PlayerController : MonoBehaviour
     //Vertical Slice stuff
     public PauseMenuScript deathScreen;
     private bool isDead = false;
-    public GameObject deathBtn;
-    public Text debug;
     public Transform bulletPoint;
     private bool done = false;
 
