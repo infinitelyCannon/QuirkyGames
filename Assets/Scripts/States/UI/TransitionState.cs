@@ -45,7 +45,6 @@ public class TransitionState : UIState {
 
         if (lerpValue == 1.0f)
         {
-            Debug.Log("HERE.");
             Time.timeScale = 1.0f;
             SceneManager.LoadScene(menuScript.nextScene);
         }

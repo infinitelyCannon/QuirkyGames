@@ -10,6 +10,7 @@ public class OmniTrigger : MonoBehaviour
     public AudioClip dialogue;
     public float typeDelay;
     public float lifeTime;
+    public int nextSceneIndex;
     [TextArea] public string script;
 
     //Different functions of the TriggerBox
@@ -46,7 +47,7 @@ public class OmniTrigger : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Player") && advanceScene == true)
         {
-            other.gameObject.GetComponent<PlayerController>().deathScreen.FadeIn(1);
+            other.gameObject.GetComponent<PlayerController>().deathScreen.FadeIn(nextSceneIndex);
 
         }
     }
