@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4379479714031714}
+  - component: {fileID: 114975114935808174}
   - component: {fileID: 198019271791291914}
   - component: {fileID: 199652702417939746}
   m_Layer: 0
@@ -36,6 +37,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4731774894050668}
+  - component: {fileID: 114788299781728468}
   m_Layer: 0
   m_Name: Geyser
   m_TagString: Untagged
@@ -94,7 +96,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1695882361492686}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6, y: -7.156, z: 0}
+  m_LocalPosition: {x: -8.65, y: 0.147, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4091523341751270}
@@ -158,6 +160,33 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 7b04889687dd7ce45a01de19445fb3e8, type: 3}
+--- !u!114 &114788299781728468
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1695882361492686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e6ea58ac71470644a82b362f60797d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runTime: 5
+  waitTime: 3
+--- !u!114 &114975114935808174
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1425835375815056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 100acd30bc6265a4fae7871c979ea48e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RepeatRate: 0.15
+  DamageAmount: 1
+  Repeating: 0
 --- !u!198 &198019271791291914
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -169,7 +198,7 @@ ParticleSystem:
   simulationSpeed: 1
   stopAction: 0
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -3744,14 +3773,14 @@ ParticleSystem:
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
-    enabled: 0
+    enabled: 1
     collisionShape0: {fileID: 0}
     collisionShape1: {fileID: 0}
     collisionShape2: {fileID: 0}
     collisionShape3: {fileID: 0}
     collisionShape4: {fileID: 0}
     collisionShape5: {fileID: 0}
-    inside: 1
+    inside: 2
     outside: 0
     enter: 0
     exit: 0

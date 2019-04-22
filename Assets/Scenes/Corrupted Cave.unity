@@ -1816,38 +1816,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4129111655864528, guid: 970ffccdcb9d7dc41b2a861fe3062868,
     type: 2}
   m_PrefabInternal: {fileID: 78138722}
---- !u!1 &80392684 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1695882361492686, guid: 23d370a59ee96d94aa1d448177a041e8,
-    type: 2}
-  m_PrefabInternal: {fileID: 2111778863}
---- !u!114 &80392685
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 80392684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 100acd30bc6265a4fae7871c979ea48e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RepeatRate: 0.1
-  DamageAmount: 10
-  Repeating: 1
---- !u!136 &80392686
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 80392684}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.59
-  m_Height: 3.4
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.11, z: 0}
 --- !u!4 &80841152 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4129111655864528, guid: 970ffccdcb9d7dc41b2a861fe3062868,
@@ -2141,38 +2109,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 607793967}
   m_GameObject: {fileID: 91022458}
   m_Mesh: {fileID: 4300000, guid: e8338feaff50c634582fcf08ecacc654, type: 3}
---- !u!1 &93186881 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1695882361492686, guid: 23d370a59ee96d94aa1d448177a041e8,
-    type: 2}
-  m_PrefabInternal: {fileID: 281241932}
---- !u!114 &93186882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 93186881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 100acd30bc6265a4fae7871c979ea48e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RepeatRate: 0.1
-  DamageAmount: 10
-  Repeating: 1
---- !u!136 &93186883
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 93186881}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.59
-  m_Height: 3.4
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.11, z: 0}
 --- !u!1001 &102192355
 Prefab:
   m_ObjectHideFlags: 0
@@ -5773,38 +5709,6 @@ Transform:
   m_Father: {fileID: 2117417238}
   m_RootOrder: 152
   m_LocalEulerAnglesHint: {x: -7.09, y: 230.59799, z: -12.535001}
---- !u!1 &236081990 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1695882361492686, guid: 23d370a59ee96d94aa1d448177a041e8,
-    type: 2}
-  m_PrefabInternal: {fileID: 1954121125}
---- !u!114 &236081991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 236081990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 100acd30bc6265a4fae7871c979ea48e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RepeatRate: 0.1
-  DamageAmount: 10
-  Repeating: 1
---- !u!136 &236081992
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 236081990}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.59
-  m_Height: 3.4
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.11, z: 0}
 --- !u!1001 &238941367
 Prefab:
   m_ObjectHideFlags: 0
@@ -6727,7 +6631,7 @@ Prefab:
     - target: {fileID: 198019271791291914, guid: 23d370a59ee96d94aa1d448177a041e8,
         type: 2}
       propertyPath: prewarm
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198019271791291914, guid: 23d370a59ee96d94aa1d448177a041e8,
         type: 2}
@@ -6769,6 +6673,16 @@ Prefab:
       propertyPath: ColorModule.gradient.maxGradient.ctime1
       value: 24865
       objectReference: {fileID: 0}
+    - target: {fileID: 114975114935808174, guid: 23d370a59ee96d94aa1d448177a041e8,
+        type: 2}
+      propertyPath: RepeatRate
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 198019271791291914, guid: 23d370a59ee96d94aa1d448177a041e8,
+        type: 2}
+      propertyPath: TriggerModule.collisionShape0
+      value: 
+      objectReference: {fileID: 833465999}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23d370a59ee96d94aa1d448177a041e8, type: 2}
   m_IsPrefabAsset: 0
@@ -11560,38 +11474,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4129111655864528, guid: 970ffccdcb9d7dc41b2a861fe3062868,
     type: 2}
   m_PrefabInternal: {fileID: 489317189}
---- !u!1 &490662446 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1695882361492686, guid: 23d370a59ee96d94aa1d448177a041e8,
-    type: 2}
-  m_PrefabInternal: {fileID: 1852862714}
---- !u!114 &490662447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 490662446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 100acd30bc6265a4fae7871c979ea48e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RepeatRate: 0.1
-  DamageAmount: 10
-  Repeating: 1
---- !u!136 &490662448
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 490662446}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.59
-  m_Height: 3.4
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.11, z: 0}
 --- !u!4 &495130815 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4129111655864528, guid: 970ffccdcb9d7dc41b2a861fe3062868,
@@ -15456,38 +15338,6 @@ Transform:
   m_Father: {fileID: 769817584}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &696755304 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1695882361492686, guid: 23d370a59ee96d94aa1d448177a041e8,
-    type: 2}
-  m_PrefabInternal: {fileID: 1830656187}
---- !u!114 &696755305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 696755304}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 100acd30bc6265a4fae7871c979ea48e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RepeatRate: 0.1
-  DamageAmount: 10
-  Repeating: 1
---- !u!136 &696755306
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 696755304}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.59
-  m_Height: 3.4
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.11, z: 0}
 --- !u!1001 &697035221
 Prefab:
   m_ObjectHideFlags: 0
@@ -18549,6 +18399,11 @@ Prefab:
       propertyPath: m_Materials.Array.data[2]
       value: 
       objectReference: {fileID: 2100000, guid: 1463f5c2ffeb33841b66d0b81c5ff139, type: 2}
+    - target: {fileID: 114053129973588564, guid: d0b38051833e3d342befe900f77b874b,
+        type: 2}
+      propertyPath: Hud
+      value: 
+      objectReference: {fileID: 1345524708}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0b38051833e3d342befe900f77b874b, type: 2}
   m_IsPrefabAsset: 0
@@ -21916,38 +21771,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4129111655864528, guid: 970ffccdcb9d7dc41b2a861fe3062868,
     type: 2}
   m_PrefabInternal: {fileID: 112311341}
---- !u!1 &985313530 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1695882361492686, guid: 23d370a59ee96d94aa1d448177a041e8,
-    type: 2}
-  m_PrefabInternal: {fileID: 2147252031}
---- !u!114 &985313531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 985313530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 100acd30bc6265a4fae7871c979ea48e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RepeatRate: 0.1
-  DamageAmount: 10
-  Repeating: 1
---- !u!136 &985313532
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 985313530}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.59
-  m_Height: 3.4
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.11, z: 0}
 --- !u!4 &989867044
 Transform:
   m_ObjectHideFlags: 0
@@ -22499,7 +22322,7 @@ Prefab:
     - target: {fileID: 198019271791291914, guid: 23d370a59ee96d94aa1d448177a041e8,
         type: 2}
       propertyPath: prewarm
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198019271791291914, guid: 23d370a59ee96d94aa1d448177a041e8,
         type: 2}
@@ -22675,6 +22498,16 @@ Prefab:
       propertyPath: InitialModule.startSpeed.scalar
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114975114935808174, guid: 23d370a59ee96d94aa1d448177a041e8,
+        type: 2}
+      propertyPath: RepeatRate
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 198019271791291914, guid: 23d370a59ee96d94aa1d448177a041e8,
+        type: 2}
+      propertyPath: TriggerModule.collisionShape0
+      value: 
+      objectReference: {fileID: 833465999}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23d370a59ee96d94aa1d448177a041e8, type: 2}
   m_IsPrefabAsset: 0
@@ -25870,38 +25703,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1148982592 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1695882361492686, guid: 23d370a59ee96d94aa1d448177a041e8,
-    type: 2}
-  m_PrefabInternal: {fileID: 1039974489}
---- !u!114 &1148982593
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1148982592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 100acd30bc6265a4fae7871c979ea48e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RepeatRate: 0.1
-  DamageAmount: 10
-  Repeating: 1
---- !u!136 &1148982594
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1148982592}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.59
-  m_Height: 3.4
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.11, z: 0}
 --- !u!1 &1153565547
 GameObject:
   m_ObjectHideFlags: 0
@@ -26361,6 +26162,21 @@ Prefab:
         type: 2}
       propertyPath: ColorModule.gradient.maxGradient.ctime1
       value: 24865
+      objectReference: {fileID: 0}
+    - target: {fileID: 114975114935808174, guid: 23d370a59ee96d94aa1d448177a041e8,
+        type: 2}
+      propertyPath: RepeatRate
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 198019271791291914, guid: 23d370a59ee96d94aa1d448177a041e8,
+        type: 2}
+      propertyPath: TriggerModule.collisionShape0
+      value: 
+      objectReference: {fileID: 833465999}
+    - target: {fileID: 198019271791291914, guid: 23d370a59ee96d94aa1d448177a041e8,
+        type: 2}
+      propertyPath: prewarm
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23d370a59ee96d94aa1d448177a041e8, type: 2}
@@ -28205,38 +28021,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 5511fc192cdbcad4fb032f3296e291ab,
     type: 3}
   m_PrefabInternal: {fileID: 2005170768}
---- !u!1 &1240026777 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1695882361492686, guid: 23d370a59ee96d94aa1d448177a041e8,
-    type: 2}
-  m_PrefabInternal: {fileID: 1732766148}
---- !u!114 &1240026778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1240026777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 100acd30bc6265a4fae7871c979ea48e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RepeatRate: 0.1
-  DamageAmount: 10
-  Repeating: 1
---- !u!136 &1240026779
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1240026777}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.59
-  m_Height: 3.4
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.11, z: 0}
 --- !u!1 &1241049229
 GameObject:
   m_ObjectHideFlags: 0
@@ -32978,7 +32762,7 @@ Prefab:
     - target: {fileID: 114613498955253552, guid: f250f045230ff5942a7e0c6b8f153fb4,
         type: 2}
       propertyPath: lockCursor
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f250f045230ff5942a7e0c6b8f153fb4, type: 2}
@@ -39510,6 +39294,21 @@ Prefab:
       propertyPath: ColorModule.gradient.maxGradient.ctime1
       value: 24865
       objectReference: {fileID: 0}
+    - target: {fileID: 114975114935808174, guid: 23d370a59ee96d94aa1d448177a041e8,
+        type: 2}
+      propertyPath: RepeatRate
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 198019271791291914, guid: 23d370a59ee96d94aa1d448177a041e8,
+        type: 2}
+      propertyPath: TriggerModule.collisionShape0
+      value: 
+      objectReference: {fileID: 833465999}
+    - target: {fileID: 198019271791291914, guid: 23d370a59ee96d94aa1d448177a041e8,
+        type: 2}
+      propertyPath: prewarm
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23d370a59ee96d94aa1d448177a041e8, type: 2}
   m_IsPrefabAsset: 0
@@ -40711,38 +40510,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4daaa82c50b71e4586c282d99a44a72, type: 3}
   m_IsPrefabAsset: 0
---- !u!1 &1812766412 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1695882361492686, guid: 23d370a59ee96d94aa1d448177a041e8,
-    type: 2}
-  m_PrefabInternal: {fileID: 1167425113}
---- !u!114 &1812766413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1812766412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 100acd30bc6265a4fae7871c979ea48e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RepeatRate: 0.1
-  DamageAmount: 10
-  Repeating: 1
---- !u!136 &1812766414
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1812766412}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.59
-  m_Height: 3.4
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.11, z: 0}
 --- !u!1001 &1821537493
 Prefab:
   m_ObjectHideFlags: 0
@@ -41148,6 +40915,21 @@ Prefab:
         type: 2}
       propertyPath: ColorModule.gradient.maxGradient.ctime1
       value: 24865
+      objectReference: {fileID: 0}
+    - target: {fileID: 114975114935808174, guid: 23d370a59ee96d94aa1d448177a041e8,
+        type: 2}
+      propertyPath: RepeatRate
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 198019271791291914, guid: 23d370a59ee96d94aa1d448177a041e8,
+        type: 2}
+      propertyPath: TriggerModule.collisionShape0
+      value: 
+      objectReference: {fileID: 833465999}
+    - target: {fileID: 198019271791291914, guid: 23d370a59ee96d94aa1d448177a041e8,
+        type: 2}
+      propertyPath: prewarm
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23d370a59ee96d94aa1d448177a041e8, type: 2}
@@ -41826,6 +41608,21 @@ Prefab:
         type: 2}
       propertyPath: ColorModule.gradient.maxGradient.ctime1
       value: 24865
+      objectReference: {fileID: 0}
+    - target: {fileID: 114975114935808174, guid: 23d370a59ee96d94aa1d448177a041e8,
+        type: 2}
+      propertyPath: RepeatRate
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 198019271791291914, guid: 23d370a59ee96d94aa1d448177a041e8,
+        type: 2}
+      propertyPath: TriggerModule.collisionShape0
+      value: 
+      objectReference: {fileID: 833465999}
+    - target: {fileID: 198019271791291914, guid: 23d370a59ee96d94aa1d448177a041e8,
+        type: 2}
+      propertyPath: prewarm
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23d370a59ee96d94aa1d448177a041e8, type: 2}
@@ -44440,6 +44237,21 @@ Prefab:
         type: 2}
       propertyPath: ColorModule.gradient.maxGradient.ctime1
       value: 24865
+      objectReference: {fileID: 0}
+    - target: {fileID: 114975114935808174, guid: 23d370a59ee96d94aa1d448177a041e8,
+        type: 2}
+      propertyPath: RepeatRate
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 198019271791291914, guid: 23d370a59ee96d94aa1d448177a041e8,
+        type: 2}
+      propertyPath: TriggerModule.collisionShape0
+      value: 
+      objectReference: {fileID: 833465999}
+    - target: {fileID: 198019271791291914, guid: 23d370a59ee96d94aa1d448177a041e8,
+        type: 2}
+      propertyPath: prewarm
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23d370a59ee96d94aa1d448177a041e8, type: 2}
@@ -47442,6 +47254,21 @@ Prefab:
       propertyPath: ColorModule.gradient.maxGradient.ctime1
       value: 24865
       objectReference: {fileID: 0}
+    - target: {fileID: 114975114935808174, guid: 23d370a59ee96d94aa1d448177a041e8,
+        type: 2}
+      propertyPath: RepeatRate
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 198019271791291914, guid: 23d370a59ee96d94aa1d448177a041e8,
+        type: 2}
+      propertyPath: TriggerModule.collisionShape0
+      value: 
+      objectReference: {fileID: 833465999}
+    - target: {fileID: 198019271791291914, guid: 23d370a59ee96d94aa1d448177a041e8,
+        type: 2}
+      propertyPath: prewarm
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23d370a59ee96d94aa1d448177a041e8, type: 2}
   m_IsPrefabAsset: 0
@@ -48835,6 +48662,21 @@ Prefab:
         type: 2}
       propertyPath: ColorModule.gradient.maxGradient.ctime1
       value: 24865
+      objectReference: {fileID: 0}
+    - target: {fileID: 114975114935808174, guid: 23d370a59ee96d94aa1d448177a041e8,
+        type: 2}
+      propertyPath: RepeatRate
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 198019271791291914, guid: 23d370a59ee96d94aa1d448177a041e8,
+        type: 2}
+      propertyPath: TriggerModule.collisionShape0
+      value: 
+      objectReference: {fileID: 833465999}
+    - target: {fileID: 198019271791291914, guid: 23d370a59ee96d94aa1d448177a041e8,
+        type: 2}
+      propertyPath: prewarm
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23d370a59ee96d94aa1d448177a041e8, type: 2}

@@ -17,7 +17,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float shootDelay;
     [SerializeField] private float hoverHeight;
     [SerializeField] private float hoverSpeed;
+    public ParticleSystem jetpack;
+    public GameObject hoverContainer;
 
+    private ParticleSystem[] hoverSet;
     private Transform mainCamera;
     private Vector3 cameraForward;
     private Vector3 moveVector;
@@ -47,11 +50,6 @@ public class PlayerController : MonoBehaviour
     public Transform bulletPoint;
     private bool done = false;
 
-    private Vector3 sOne = new Vector3(-44.907f, -9.05f, -27.597f);
-    private Vector3 sTwo = new Vector3(-47.136f, -9.05f, -27.597f);
-    private Vector3 sThree = new Vector3(-44.19f, -9.632f, -27.267f);
-    public GameObject Enemy;
-
     private void Start()
     {
         if (Camera.main != null)
@@ -63,6 +61,7 @@ public class PlayerController : MonoBehaviour
         jumping = false;
         meshObject = transform.GetChild(0);
         shootWait = shootDelay;
+        hoverSet = hoverContainer.GetComponentsInChildren<ParticleSystem>();
 
         //Get Health Information Kyle Added This
         mHealthBar = Hud.transform.Find("HealthBar").GetComponent<HealthBarScript>();
@@ -209,16 +208,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Done") && done)
-            debug.text = "Debug Text: You WIN! Please pause or die to restart.";
-
-        if (other.CompareTag("Win"))
-        {
-            done = true;
-            Instantiate(Enemy, sOne, Quaternion.identity);
-            Instantiate(Enemy, sTwo, Quaternion.identity);
-            Instantiate(Enemy, sThree, Quaternion.identity);
-        }
+        
     }
 
     // Damage Code Added By Kyle

@@ -39,7 +39,6 @@ public class Dialogue : MonoBehaviour
 
     IEnumerator Type(float startDelay, string message, float endDelay, AfterEffect action)
     {
-        char[] temp = dialogText.text.ToCharArray();
         int msgIdx = 0, lastIdx = 0;
 
         if (startDelay > 0f)
