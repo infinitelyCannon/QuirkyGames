@@ -34,3 +34,6 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+*.meta
+Assets/Models/InnerShipModels/Walls-Floor-Ceiling/Ceiling/CeilngTexture.spp.meta
+Assets/Prefabs/InnerShip.meta
