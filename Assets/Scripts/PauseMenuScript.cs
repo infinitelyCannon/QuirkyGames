@@ -89,4 +89,9 @@ public class PauseMenuScript : MonoBehaviour {
     {
         GoToState(1);
     }
+
+    public void FadeIn()
+    {
+        GoToState(4);
+    }
 }
