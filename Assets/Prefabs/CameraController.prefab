@@ -165,6 +165,8 @@ MonoBehaviour:
   turnSmoothing: 0
   maximumY: 75
   minimumY: 45
+  minimumX: -Infinity
+  maximumX: Infinity
   lockCursor: 1
   targets:
   - target: {fileID: 0}
