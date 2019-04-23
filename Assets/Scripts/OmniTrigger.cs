@@ -9,6 +9,7 @@ public class OmniTrigger : MonoBehaviour
     private AudioSource mAudioSource;
     public AudioClip dialogue;
     public float typeDelay;
+    public float typeWaitDelay;
     public float lifeTime;
     public int nextSceneIndex;
     [TextArea] public string script;
@@ -35,7 +36,7 @@ public class OmniTrigger : MonoBehaviour
         {
             mAudioSource.PlayOneShot(dialogue);
             playDialogue = false;
-            StartCoroutine(Type(0f, script, lifeTime, () => { Clear(); }));
+            StartCoroutine(Type(typeWaitDelay, script, lifeTime, () => { Clear(); }));
         }
         if (other.gameObject.CompareTag("Player") && activateJetPack == true)
         {

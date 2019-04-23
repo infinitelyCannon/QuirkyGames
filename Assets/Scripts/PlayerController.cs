@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     private float shootWait;
     private bool canShoot = true;
     private float hoverTime = 0f;
-    private Animator animator;
+    [SerializeField] private Animator animator;
 
     // Health Stuff Kyle Added This
     public GameObject Hud;
@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
         mHealthBar.Maxhealth = Health;
         mHealthBar.SetHealth(Health);
 
-        animator = transform.GetChild(0).GetComponent<Animator>();
+        //animator = transform.GetChild(0).GetComponent<Animator>();
     }
 
     private void Update()
@@ -119,10 +119,12 @@ public class PlayerController : MonoBehaviour
             foreach(ParticleSystem ps in coreSet)
             {
                 ps.Stop();
+                ps.Clear();
             }
             foreach(ParticleSystem hover in hoverSet)
             {
                 hover.Stop();
+                hover.Clear();
             }
         }
 
@@ -211,11 +213,6 @@ public class PlayerController : MonoBehaviour
 
         // Handle Animations
         animator.SetBool("Moving", (horizontal != 0f || vertical != 0f));
-    }
-
-    private void OnGUI()
-    {
-        //GUI.Label(new Rect(Screen.width - 100, Screen.height - 20, 100, 20), Mathf.Atan2(moveVector.x, moveVector.z).ToString());
     }
 
     public Vector3 GetShotDirection(bool aiming)

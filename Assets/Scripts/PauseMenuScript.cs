@@ -93,7 +93,7 @@ public class PauseMenuScript : MonoBehaviour {
 
     public void FadeIn(int Scene)
     {
-        GoToState(4);
         nextScene = Scene;
+        GoToState(4);
     }
 }
