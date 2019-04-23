@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 135630676873735772}
   - component: {fileID: 54975236813547176}
   - component: {fileID: 114671452424998382}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MindControlOrb
   m_TagString: MindBullet
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 4501102724704718}
   - component: {fileID: 198445697177620882}
   - component: {fileID: 199825242701920572}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: OrbCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 4275545003279196}
   - component: {fileID: 198673485367907170}
   - component: {fileID: 199205692960068566}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 4470824286180020}
   - component: {fileID: 198220971761476554}
   - component: {fileID: 199035317351981692}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SmokeOutisde
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 4327195415397748}
   - component: {fileID: 198470758631895792}
   - component: {fileID: 199641612813841596}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: OrbOutline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1091926669353062}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.4

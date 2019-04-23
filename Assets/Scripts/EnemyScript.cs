@@ -68,22 +68,23 @@ public class EnemyScript : MonoBehaviour {
         if (collision.gameObject.CompareTag("Bullet"))
         {
             Destroy(gameObject);
+            ScoreScript.instance.AddToScore(100);
+        }
+
+        // MindControlling only one enemy at a time
+        if (collision.gameObject.CompareTag("MindBullet") && traitor == null)
+        {
+            traitor = this;
+            mindControl = true;
+            gameObject.GetComponent<MeshRenderer>().material = mind;
+            transform.gameObject.tag = "Controlled";
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         
-        // MindControlling only one enemy at a time
-        if (other.CompareTag("MindBullet") && traitor == null)
-        {
-            traitor = this;
-            mindControl = true;
-            gameObject.GetComponent<MeshRenderer>().material = mind;
-            transform.gameObject.tag = "Controlled";
-            
-
-        }
+        
 
         /*else if (other.CompareTag("Bullet"))
         {

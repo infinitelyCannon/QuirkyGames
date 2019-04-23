@@ -2171,7 +2171,8 @@ MonoBehaviour:
   Hud: {fileID: 0}
   ammoCount: 100
   ammoAmnt: 10
-  isEquipped: 0
+  isEquipped: 1
+  cannonEquipped: 0
   ammoTimer: 0
   chargeTimer: 2
   projectileClip: {fileID: 8300000, guid: e811a9fe569e34744b9e8710da5864dd, type: 3}
@@ -2199,8 +2200,10 @@ MonoBehaviour:
   shootDelay: 0
   hoverHeight: 0.3
   hoverSpeed: 3
+  JetPack: {fileID: 0}
   jetpack: {fileID: 198092528973017226}
   hoverContainer: {fileID: 1739104478096140}
+  coreContainer: {fileID: 1878437219937700}
   Hud: {fileID: 0}
   Health: 100
   deathScreen: {fileID: 0}

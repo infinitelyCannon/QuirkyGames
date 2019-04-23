@@ -20,8 +20,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject JetPack;
     public ParticleSystem jetpack;
     public GameObject hoverContainer;
+    public GameObject coreContainer;
 
     private ParticleSystem[] hoverSet;
+    private ParticleSystem[] coreSet;
     private Transform mainCamera;
     private Vector3 cameraForward;
     private Vector3 moveVector;
@@ -61,6 +63,7 @@ public class PlayerController : MonoBehaviour
         meshObject = transform.GetChild(0);
         shootWait = shootDelay;
         hoverSet = hoverContainer.GetComponentsInChildren<ParticleSystem>();
+        coreSet = coreContainer.GetComponentsInChildren<ParticleSystem>();
 
         //Get Health Information Kyle Added This
         mHealthBar = Hud.transform.Find("HealthBar").GetComponent<HealthBarScript>();
@@ -87,6 +90,12 @@ public class PlayerController : MonoBehaviour
 
         previouslyGrounded = characterController.isGrounded;
 
+        if(characterController.isGrounded && !hoverSet[0].isPlaying && !(Input.GetButton("Aim") || Input.GetAxisRaw("Aim") == 1f))
+        {
+            for (int i = 0; i < hoverSet.Length; i++)
+                hoverSet[i].Play();
+        }
+
         //Vertical Slice stuff
         if(Health <= 0 && !isDead)
         {
@@ -107,10 +116,28 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButton("Aim") || Input.GetAxisRaw("Aim") == 1f)
         {
             meshObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;//.GetComponent<MeshRenderer>().enabled = false;
+            foreach(ParticleSystem ps in coreSet)
+            {
+                ps.Stop();
+            }
+            foreach(ParticleSystem hover in hoverSet)
+            {
+                hover.Stop();
+            }
         }
 
         else if (Input.GetButtonUp("Aim") || Input.GetAxisRaw("Aim") == 0f)
+        {
             meshObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true; ;//.GetComponent<MeshRenderer>().enabled = true;
+            foreach (ParticleSystem ps in coreSet)
+            {
+                ps.Play();
+            }
+            foreach (ParticleSystem hover in hoverSet)
+            {
+                hover.Play();
+            }
+        }
 
         if (horizontal != 0f || vertical != 0f)
         {
@@ -150,6 +177,8 @@ public class PlayerController : MonoBehaviour
             {
                 meshObject.localPosition = new Vector3(0f, -1f, 0f);
                 animator.SetTrigger("Jump");
+                for (int i = 0; i < hoverSet.Length; i++)
+                    hoverSet[i].Stop();
                 hoverTime = 0f;
                 if (jetPack)
                 {

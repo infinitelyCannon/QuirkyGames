@@ -6,6 +6,7 @@ public class BulletScript : MonoBehaviour {
 
     public float speed = 20f;
     public Rigidbody rb;
+    public float deathDistance = 250f;
 
 	// Use this for initialization
 	void Start () {
@@ -16,7 +17,10 @@ public class BulletScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (Vector3.Distance(Camera.main.transform.position, transform.position) >= deathDistance)
+        {
+            Destroy(gameObject);
+        }
 	}
 
     private void OnCollisionEnter(Collision collision)

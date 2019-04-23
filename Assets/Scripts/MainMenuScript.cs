@@ -20,7 +20,9 @@ public class MainMenuScript : MonoBehaviour {
     private List<Toggle> statePanels;
     private List<GameObject> pages;
 
-    public Text scoreTable;
+    public Text nameList;
+    public Text scoreList;
+    public ScrollRect scrollRect;
 
 	// Use this for initialization
 	void Start () {
@@ -43,7 +45,14 @@ public class MainMenuScript : MonoBehaviour {
         {
             eventSystem.SetSelectedGameObject(gameObject);
         }
-	}
+
+        if (Input.GetAxisRaw("JoyStickCameraY") != 0f && scrollRect.verticalScrollbar.gameObject.activeSelf)
+        {
+            float delta = scrollRect.verticalNormalizedPosition;
+            delta += 0.01f * scrollRect.scrollSensitivity * Input.GetAxisRaw("JoyStickCameraY");
+            scrollRect.verticalNormalizedPosition = Mathf.Clamp(delta, 0f, 1f);
+        }
+    }
 
     public void MoveTrigger(BaseEventData data)
     {
@@ -68,12 +77,16 @@ public class MainMenuScript : MonoBehaviour {
 
     public void HighScores()
     {
-        string scores = ScoreScript.instance.PrintScores();
+        string names = ScoreScript.instance.PrintNames();
+        string scores = ScoreScript.instance.PrintPoints();
 
-        if (scores == "")
-            scoreTable.text = "No Submitted Scores";
+        if (names == "" || scores == "")
+            nameList.text = "No Submitted Scores";
         else
-            scoreTable.text = scores;
+        {
+            nameList.text = names;
+            scoreList.text = scores;
+        }
         statePanels[2].isOn = true;
         eventSystem.SetSelectedGameObject(pages[2].transform.GetChild(1).gameObject);
     }

@@ -7,7 +7,8 @@ using UnityEngine.EventSystems;
 public class EnterScoreState : UIState {
 
     public Text finalScore;
-    public Text scoreTable;
+    public Text nameList;
+    public Text pointList;
     public int maxNameLength;
     public int maxTabLength = 8;
     public Text nameField;
@@ -21,6 +22,7 @@ public class EnterScoreState : UIState {
     private bool isOn = false;
     //private char currentLetter = ' ';
     private PauseMenuScript menuScript;
+    private ScrollRect scrollRect;
 
     public override void UpdateState()
     {
@@ -78,14 +80,29 @@ public class EnterScoreState : UIState {
             nameField.text = new string(temp);
             nameUnderline.text = new string(underline);
         }
+
+        if (Input.GetAxisRaw("JoyStickCameraY") != 0f && scrollRect.verticalScrollbar.gameObject.activeSelf)
+        {
+            float delta = scrollRect.verticalNormalizedPosition;
+            delta += 0.01f * scrollRect.scrollSensitivity * Input.GetAxisRaw("JoyStickCameraY");
+            scrollRect.verticalNormalizedPosition = Mathf.Clamp(delta, 0f, 1f);
+        }
+        else if (Input.GetAxisRaw("Mouse ScrollWheel") != 0f && scrollRect.verticalScrollbar.gameObject.activeSelf)
+        {
+            float delta = scrollRect.verticalNormalizedPosition;
+            delta += scrollRect.scrollSensitivity * Input.GetAxisRaw("Mouse ScrollWheel");
+            scrollRect.verticalNormalizedPosition = Mathf.Clamp(delta, 0f, 1f);
+        }
     }
 
     public override void EnterState(PauseMenuScript pauseMenu)
     {
         menuScript = pauseMenu;
         finalScore.text = ScoreScript.instance.score.ToString() + " Points";
-        scoreTable.text = ScoreScript.instance.PrintScores();
+        nameList.text = ScoreScript.instance.PrintNames();
+        pointList.text = ScoreScript.instance.PrintPoints();
         eventSystem.SetSelectedGameObject(nameField.gameObject);
+        scrollRect = GetComponentInChildren<ScrollRect>();
         for (int i = 1; i <= maxNameLength; i++)
             nameField.text += " ";
     }
@@ -94,6 +111,24 @@ public class EnterScoreState : UIState {
     {
         eventSystem.SetSelectedGameObject(null);
         menuScript = null;
+    }
+
+    public void ScrollTrigger(BaseEventData data)
+    {
+        /*
+        PointerEventData scrollData = (PointerEventData) data;
+        float delta = scrollRect.verticalNormalizedPosition;
+
+        if(scrollData.scrollDelta.y > 0f && scrollRect.verticalScrollbar.gameObject.activeSelf)
+        {
+            delta += 0.01f * scrollRect.scrollSensitivity;
+            scrollRect.verticalNormalizedPosition = Mathf.Clamp(delta, 0f, 1f);
+        }
+        else if(scrollData.scrollDelta.y < 0f && scrollRect.verticalScrollbar.gameObject.activeSelf)
+        {
+            delta -= 0.01f * scrollRect.scrollSensitivity;
+            scrollRect.verticalNormalizedPosition = Mathf.Clamp(delta, 0f, 1f);
+        }*/
     }
 
     public void MoveTrigger(BaseEventData data)

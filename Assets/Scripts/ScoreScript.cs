@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 //Format for storage (without brakets):
 // [Name]:[Score]:[Name]:[Score]: . . .
@@ -46,7 +47,7 @@ public class ScoreScript : MonoBehaviour {
     [HideInInspector] public int score { get; private set;}
     private string playerName = "";
     private ScoreComparer scoreComparer;
-    private const int MAX_NAME_LENGTH = 6;
+    private const int MAX_NAME_LENGTH = 10;
     private const int SCORE_TABLE_TABS = 8;
 
     private void Awake()
@@ -64,11 +65,17 @@ public class ScoreScript : MonoBehaviour {
         Load();
         score = 0;
         scoreComparer = new ScoreComparer();
+        SceneManager.activeSceneChanged += SceneLoadTrigger;
 	}
 	
 	// Update is called once per frame
 	void Update () {
         
+    }
+
+    private void SceneLoadTrigger(Scene current, Scene next)
+    {
+        score = 0;
     }
 
     public void AddPlayer(string name)
@@ -77,6 +84,7 @@ public class ScoreScript : MonoBehaviour {
         scoreTable.Sort(scoreComparer);
     }
 
+    /*
     public string PrintScores()
     {
         string result = "";
@@ -89,6 +97,35 @@ public class ScoreScript : MonoBehaviour {
             for (int k = 1; k <= SCORE_TABLE_TABS; k++)
                 result += "\t";
             result += scoreTable[i].score + "\n";
+        }
+
+        return result;
+    }
+    */
+
+    public string PrintNames()
+    {
+        string result = "";
+
+        for(int i = 0; i < scoreTable.Count; i++)
+        {
+            result += scoreTable[i].name.Trim();
+            if((i + 1) < scoreTable.Count)
+                result += "\n";
+        }
+
+        return result;
+    }
+
+    public string PrintPoints()
+    {
+        string result = "";
+
+        for (int i = 0; i < scoreTable.Count; i++)
+        {
+            result += scoreTable[i].score;
+            if ((i + 1) < scoreTable.Count)
+                result += "\n";
         }
 
         return result;

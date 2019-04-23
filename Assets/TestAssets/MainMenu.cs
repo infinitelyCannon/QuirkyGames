@@ -5,26 +5,18 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour {
 
-    private ParticleSystem particle;
-
 	// Use this for initialization
 	void Start () {
-        particle = GetComponent<ParticleSystem>();
+        
 	}
-	
-	// Update is called once per frame
-	void Update () {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            if (particle.isPlaying)
-                particle.Pause();
-            else
-                particle.Play();
-        }
 
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            particle.Stop();
-        }
+    private void OnGUI()
+    {
+        GUI.Label(new Rect(0, Screen.height - 20, 250, 20), Input.GetAxisRaw("Mouse ScrollWheel").ToString());
+    }
+
+    // Update is called once per frame
+    void Update () {
+        
     }
 }

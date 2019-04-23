@@ -157,12 +157,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1045879016898470}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20546b7ff02da5e4dad0b63c648f11e7, type: 3}
+  m_Script: {fileID: 11500000, guid: ca893eb5eb26fe54ca7663d73b060d88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue: {fileID: 0}
   typeDelay: 0
   lifeTime: 0
+  nextSceneIndex: 0
   script: 
   playDialogue: 0
   activateJetPack: 0
