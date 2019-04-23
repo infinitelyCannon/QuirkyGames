@@ -12,6 +12,7 @@ public class PauseMenuScript : MonoBehaviour {
     private UIState currentState = null;
     private List<Toggle> statePanels;
     private List<GameObject> pages;
+    public int nextScene;
 
 	// Use this for initialization
 	void Start () {
@@ -90,8 +91,9 @@ public class PauseMenuScript : MonoBehaviour {
         GoToState(1);
     }
 
-    public void FadeIn()
+    public void FadeIn(int Scene)
     {
         GoToState(4);
+        nextScene = Scene;
     }
 }

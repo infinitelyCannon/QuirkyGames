@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4332463648283628}
   - component: {fileID: 198368615366617906}
   - component: {fileID: 199379793299894954}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SmokeOutisde
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4537130555532792}
   - component: {fileID: 198529880827027270}
   - component: {fileID: 199034504875720670}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4868345397980002}
   - component: {fileID: 198569924576789808}
   - component: {fileID: 199399016526217102}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: OrbCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 135639210985882732}
   - component: {fileID: 54530336683272748}
   - component: {fileID: 114160245770448198}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BulletOrb
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 4728838027475492}
   - component: {fileID: 198591543786467142}
   - component: {fileID: 199801142112584296}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: OrbOutline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1844456106845368}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.4

@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float shootDelay;
     [SerializeField] private float hoverHeight;
     [SerializeField] private float hoverSpeed;
+    [SerializeField] private GameObject JetPack;
     public ParticleSystem jetpack;
     public GameObject hoverContainer;
 
@@ -222,5 +223,11 @@ public class PlayerController : MonoBehaviour
         mHealthBar.SetHealth(Health);
         mHealthBar.timer = 0f;
         mHealthBar.isRegenerating = false;
+    }
+
+    public void ActivateJetPack()
+    {
+        jetPack = true;
+        JetPack.SetActive(true);
     }
 }

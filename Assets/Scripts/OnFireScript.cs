@@ -23,6 +23,7 @@ public class OnFireScript : MonoBehaviour {
     private bool isAiming;
 
     public bool isEquipped;
+    public bool cannonEquipped;
 
     //Recharge Ammo Variables
     public float ammoTimer = 0f;
@@ -56,7 +57,7 @@ public class OnFireScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if ((Input.GetButtonDown("Shoot") || Input.GetAxisRaw("Shoot") == 1f) && isFiring == true && Time.timeScale > 0f) 
+		if ((Input.GetButtonDown("Shoot") || Input.GetAxisRaw("Shoot") == 1f) && isFiring == true && Time.timeScale > 0f && cannonEquipped == true) 
         {
             isFiring = false;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
