@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -51,6 +52,9 @@ public class PlayerController : MonoBehaviour
     public Transform bulletPoint;
     private bool done = false;
 
+    //Alpha Stuff
+    private OnFireScript fireScript;
+
     private void Start()
     {
         if (Camera.main != null)
@@ -71,6 +75,7 @@ public class PlayerController : MonoBehaviour
         mHealthBar.Maxhealth = Health;
         mHealthBar.SetHealth(Health);
 
+        fireScript = GetComponentInChildren<OnFireScript>();
         //animator = transform.GetChild(0).GetComponent<Animator>();
     }
 
@@ -102,6 +107,17 @@ public class PlayerController : MonoBehaviour
             isDead = true;
             deathScreen.Launch();
         }
+
+        if (fireScript.isEquipped)
+            coreContainer.SetActive(true);
+        else
+            coreContainer.SetActive(false);
+
+        if(fireScript.isEquipped && !done && SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            done = true;
+            deathScreen.FadeIn(3);
+        }
     }
 
     private void FixedUpdate()
@@ -116,10 +132,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButton("Aim") || Input.GetAxisRaw("Aim") == 1f)
         {
             meshObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;//.GetComponent<MeshRenderer>().enabled = false;
-            foreach(ParticleSystem ps in coreSet)
+            if (fireScript.isEquipped)
             {
-                ps.Stop();
-                ps.Clear();
+                foreach (ParticleSystem ps in coreSet)
+                {
+                    ps.Stop();
+                    ps.Clear();
+                }
             }
             foreach(ParticleSystem hover in hoverSet)
             {
@@ -131,9 +150,12 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetButtonUp("Aim") || Input.GetAxisRaw("Aim") == 0f)
         {
             meshObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true; ;//.GetComponent<MeshRenderer>().enabled = true;
-            foreach (ParticleSystem ps in coreSet)
+            if (fireScript.isEquipped)
             {
-                ps.Play();
+                foreach (ParticleSystem ps in coreSet)
+                {
+                    ps.Play();
+                }
             }
             foreach (ParticleSystem hover in hoverSet)
             {

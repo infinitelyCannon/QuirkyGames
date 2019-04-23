@@ -90,7 +90,7 @@ public class OnFireScript : MonoBehaviour {
             }
             //FiredShot();
         }
-        if (Input.GetButtonUp("Shoot")) {
+        if (Input.GetButtonUp("Shoot") || Input.GetAxisRaw("Shoot") == 0f) {
             isFiring = true;
         }
 

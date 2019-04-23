@@ -21,9 +21,8 @@ public class projectileMovement : MonoBehaviour {
 
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
-        if (transform.position.x == target.x && transform.position.y == target.y && transform.position.z == target.z)
-        {
-            DestroyProjectile();
+        if (transform.position == target) {
+            Destroy(gameObject, 1.5f);
         }
 	}
 

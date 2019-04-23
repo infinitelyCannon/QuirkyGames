@@ -18970,6 +18970,11 @@ Prefab:
       propertyPath: playerObject
       value: 
       objectReference: {fileID: 1881949844}
+    - target: {fileID: 114761829340787228, guid: f6fc4d3da0b6e0c4dbd03bfd86831f0a,
+        type: 2}
+      propertyPath: fadeTime
+      value: 0.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6fc4d3da0b6e0c4dbd03bfd86831f0a, type: 2}
   m_IsPrefabAsset: 0

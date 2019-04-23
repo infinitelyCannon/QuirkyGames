@@ -5,18 +5,25 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour {
 
+    public float distance;
+    public float speed;
+
+    private float azimuth = 180f;
+    public float colatitude = 45f;
+
 	// Use this for initialization
 	void Start () {
         
 	}
 
-    private void OnGUI()
-    {
-        GUI.Label(new Rect(0, Screen.height - 20, 250, 20), Input.GetAxisRaw("Mouse ScrollWheel").ToString());
-    }
-
     // Update is called once per frame
     void Update () {
-        
+        azimuth = (azimuth + Time.deltaTime * speed) % 360f;
+
+        transform.localPosition = new Vector3(
+            distance * Mathf.Sin(Mathf.Deg2Rad * azimuth) * Mathf.Sin(Mathf.Deg2Rad * colatitude),
+            distance * Mathf.Cos(Mathf.Deg2Rad * colatitude),
+            distance * Mathf.Cos(Mathf.Deg2Rad * azimuth) * Mathf.Sin(Mathf.Deg2Rad * colatitude)
+            );
     }
 }

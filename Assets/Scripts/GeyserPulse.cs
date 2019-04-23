@@ -15,6 +15,8 @@ public class GeyserPulse : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         particle = GetComponentInChildren<ParticleSystem>();
+        runTime = Random.Range(runTime, runTime * 1.8f);
+        waitTime = Random.Range(waitTime, waitTime * 1.8f);
 	}
 	
 	// Update is called once per frame

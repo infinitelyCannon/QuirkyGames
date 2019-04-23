@@ -36,7 +36,7 @@ public class TargetManager : MonoBehaviour {
     IEnumerator NextPart()
     {
         yield return new WaitForSeconds(5f);
-        player.deathScreen.FadeIn(0);
+        player.deathScreen.FadeIn(2);
     }
 
     private void OnCollisionEnter(Collision collision)

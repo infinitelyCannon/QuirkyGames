@@ -67,6 +67,7 @@ public class ViewScoreState : UIState {
     public void Restart()
     {
         Time.timeScale = 1f;
+        ScoreScript.instance.Clear();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

@@ -111,7 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RepeatRate: 0.1
   DamageAmount: 25
-  Repeating: 1
+  Repeating: 0
 --- !u!135 &135388234486983420
 SphereCollider:
   m_ObjectHideFlags: 1

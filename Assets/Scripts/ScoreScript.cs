@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
-using UnityEngine.SceneManagement;
 
 //Format for storage (without brakets):
 // [Name]:[Score]:[Name]:[Score]: . . .
@@ -65,7 +64,6 @@ public class ScoreScript : MonoBehaviour {
         Load();
         score = 0;
         scoreComparer = new ScoreComparer();
-        SceneManager.activeSceneChanged += SceneLoadTrigger;
 	}
 	
 	// Update is called once per frame
@@ -73,15 +71,15 @@ public class ScoreScript : MonoBehaviour {
         
     }
 
-    private void SceneLoadTrigger(Scene current, Scene next)
-    {
-        score = 0;
-    }
-
     public void AddPlayer(string name)
     {
         scoreTable.Add(new PlayerData(name, score));
         scoreTable.Sort(scoreComparer);
+    }
+
+    public void Clear()
+    {
+        score = 0;
     }
 
     /*

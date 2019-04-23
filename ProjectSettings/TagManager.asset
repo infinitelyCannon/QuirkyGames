@@ -12,6 +12,9 @@ TagManager:
   - Collectable
   - Controlled
   - UIState
+  - Calm
+  - FriendlyFire
+  - MacGuffin
   layers:
   - Default
   - TransparentFX

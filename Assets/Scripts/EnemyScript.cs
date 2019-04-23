@@ -1,8 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyScript : MonoBehaviour {
+
+    private enum AiState
+    {
+        Patroling,
+        Fighting,
+        Hacked
+    }
 
     public float speed;
     public float stopDistance;
@@ -26,9 +34,27 @@ public class EnemyScript : MonoBehaviour {
     public Material mind;
 
     //Mind Control one enemy
-    private static EnemyScript traitor = null;
+    public static EnemyScript traitor = null;
     private float timeControlled;
     public float starttimeControlled;
+
+    //Alpha Stuff
+    private NavMeshAgent navAgent;
+    public int patrolStart;
+    public Transform[] patrolSpots;
+    private int patrolIndex;
+    private Transform meshObject;
+    private float hoverTime = 0f;
+    public float hoverHeight;
+    public float hoverSpeed;
+    private AiState state = AiState.Patroling;
+    private float turnAmount;
+    private bool isMoving = false;
+    public GameObject explosion;
+    [HideInInspector] public Transform target;
+    public Animator animator;
+    public GameObject hackContainer;
+    private ParticleSystem[] hacks;
 
 	// Use this for initialization
 	void Start ()
@@ -38,15 +64,22 @@ public class EnemyScript : MonoBehaviour {
         timeBtwShots = startTimeBtwShots;
         timeControlled = starttimeControlled;
         mindControl = false;
-        gameObject.GetComponent<MeshRenderer>().material = normal;
-        
-        
-	}
+        navAgent = GetComponent<NavMeshAgent>();
+        patrolIndex = patrolStart;
+        meshObject = transform.GetChild(0);
+        navAgent.SetDestination(patrolSpots[patrolIndex].position);
+        navAgent.updateRotation = false;
+        hacks = hackContainer.GetComponentsInChildren<ParticleSystem>();
+        foreach (ParticleSystem h in hacks)
+        {
+            h.Stop();
+        }
+    }
 
     void Update()
     {
         // Sets the mind control back to normal
-        if (traitor == this)
+        /*if (traitor == this)
         {
             
             timeControlled -= Time.deltaTime;
@@ -55,20 +88,139 @@ public class EnemyScript : MonoBehaviour {
                 traitor = null;
                 mindControl = false;
                 timeControlled = starttimeControlled;
-                gameObject.GetComponent<MeshRenderer>().material = normal;
                 transform.gameObject.tag = "Enemy";
             }
             
+        }*/
+
+        if(state == AiState.Patroling)
+        {
+            target = null;
+            if (Vector3.Distance(transform.position, patrolSpots[patrolIndex].position) <= 1.5f)
+            {
+                patrolIndex = (patrolIndex + 1) % patrolSpots.Length;
+                navAgent.SetDestination(patrolSpots[patrolIndex].position);
+            }
+            foreach (ParticleSystem h in hacks)
+            {
+                h.Stop();
+            }
+            turnAmount = Mathf.Atan2(navAgent.velocity.x, navAgent.velocity.z);
+            if(navAgent.velocity.x != 0f || navAgent.velocity.z != 0f)
+                meshObject.localRotation = Quaternion.RotateTowards(meshObject.localRotation, Quaternion.Euler(0f, turnAmount * Mathf.Rad2Deg, 0f), 360f * Time.fixedDeltaTime);
+        }
+        else if(state == AiState.Fighting)
+        {
+            Vector3 rand = player.position + Random.insideUnitSphere * stopDistance;
+            NavMeshHit hit;
+            if(NavMesh.SamplePosition(rand, out hit, 1.5f, NavMesh.AllAreas))
+            {
+                if (!isMoving)
+                {
+                    navAgent.SetDestination(hit.position);
+                    isMoving = true;
+                }
+                else
+                {
+                    if(Vector3.Distance(transform.position, navAgent.destination) <= 1.5f)
+                    {
+                        isMoving = false;
+                    }
+                }
+            }
+
+            meshObject.LookAt(player.position, Vector3.up);
+
+            if (timeBtwShots <= 0)
+            {
+                //Instantiate(projectile, transform.position + meshObject.forward, Quaternion.identity);
+                animator.SetTrigger("Shoot");
+                timeBtwShots = startTimeBtwShots;
+            }
+            else
+            {
+                timeBtwShots -= Time.deltaTime;
+            }
+        }
+        else if(state == AiState.Hacked)
+        {
+            NavMeshHit hit;
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+            foreach(ParticleSystem h in hacks)
+            {
+                h.Play();
+            }
+
+            if (enemies.Length == 0)
+                state = AiState.Patroling;
+            else
+            {
+                    target = enemies[Random.Range(0, enemies.Length)].transform;
+            }
+            Vector3 rand = target.position + Random.insideUnitSphere * stopDistance;
+
+            timeControlled -= Time.deltaTime;
+
+            if(target == null || timeControlled <= 0f)
+            {
+                timeControlled = starttimeControlled;
+                target = null;
+                traitor = null;
+                state = AiState.Patroling;
+                gameObject.tag = "Enemy";
+                return;
+            }
+
+            /*if (NavMesh.SamplePosition(rand, out hit, 1.5f, NavMesh.AllAreas))
+            {
+                if (!isMoving)
+                {
+                    navAgent.SetDestination(hit.position);
+                    isMoving = true;
+                }
+                else
+                {
+                    if (Vector3.Distance(transform.position, navAgent.destination) <= 1.5f)
+                    {
+                        isMoving = false;
+                    }
+                }
+            }*/
+
+            meshObject.LookAt(target.position, Vector3.up);
+
+            if (timeBtwShots <= 0)
+            {
+                //Instantiate(enemyProjectile, transform.position + meshObject.forward, Quaternion.identity);
+                animator.SetTrigger("Shoot");
+                timeBtwShots = startTimeBtwShots;
+            }
+            else
+            {
+                timeBtwShots -= Time.deltaTime;
+            }
         }
 
+        hoverTime += Time.deltaTime;
+        meshObject.localPosition += new Vector3(0f, (Mathf.Sin(hoverTime * hoverSpeed) * hoverHeight) * Time.deltaTime, 0f);
+    }
+
+    public void Fire()
+    {
+        if(target == null)
+            Instantiate(projectile, transform.position + meshObject.forward, Quaternion.identity);
+        else
+            Instantiate(enemyProjectile, transform.position + meshObject.forward, Quaternion.identity);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            Destroy(gameObject);
+            Instantiate(explosion, transform.position, Quaternion.identity);
             ScoreScript.instance.AddToScore(100);
+            Destroy(gameObject);
         }
 
         // MindControlling only one enemy at a time
@@ -76,15 +228,23 @@ public class EnemyScript : MonoBehaviour {
         {
             traitor = this;
             mindControl = true;
-            gameObject.GetComponent<MeshRenderer>().material = mind;
             transform.gameObject.tag = "Controlled";
+            state = AiState.Hacked;
+        }
+
+        if (collision.gameObject.CompareTag("FriendlyFire") && gameObject.CompareTag("Enemy"))
+        {
+            Instantiate(explosion, transform.position, Quaternion.identity);
+            ScoreScript.instance.AddToScore(150);
+            Destroy(gameObject);
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        
-        
+
+        if (other.CompareTag("Player") && traitor != this)
+            state = AiState.Fighting;
 
         /*else if (other.CompareTag("Bullet"))
         {
@@ -95,7 +255,7 @@ public class EnemyScript : MonoBehaviour {
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player") && mindControl == false)
+        /*if (other.CompareTag("Player") && mindControl == false)
         {
              PlayerinZone();
         }
@@ -103,9 +263,9 @@ public class EnemyScript : MonoBehaviour {
         else if (other.CompareTag("Enemy") && mindControl == true)
         {
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-            float i = Random.Range(0f, (float) enemies.Length);
+            int i = Random.Range(0, enemies.Length);
 
-            enemyMind = enemies[(int) i].transform; //GameObject.FindGameObjectWithTag("Enemy").transform;
+            enemyMind = enemies[i].transform; //GameObject.FindGameObjectWithTag("Enemy").transform;
 
             if (Vector3.Distance(transform.position, enemyMind.position) > stopDistance)
              {
@@ -136,13 +296,13 @@ public class EnemyScript : MonoBehaviour {
 
           
 
-        }
+        }*/
     }
 
     
     void PlayerinZone ()
     {
-        //Enemy Movement
+        /*//Enemy Movement
 		if (Vector3.Distance(transform.position, player.position) > stopDistance)
         {
             transform.position = Vector3.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
@@ -168,7 +328,7 @@ public class EnemyScript : MonoBehaviour {
         else
         {
             timeBtwShots -= Time.deltaTime;
-        }
+        }*/
     }
 
 
