@@ -1,14 +1,16 @@
 fileFormatVersion: 2
-guid: d2c7d7e243604f542a67d2bfd5bdb9fc
+guid: 42e35be2a59a6a94eab48a31977e9c99
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Zone3Platform
     400000: //RootNode
-    2100000: Level1
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: pCylinder1
+    400002: Zone3Platform
+    2100000: Zone3
+    2300000: Zone3Platform
+    3300000: Zone3Platform
+    4300000: Zone3Platform
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -40,7 +42,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 200
+    globalScale: 0.5
     meshCompression: 0
     addColliders: 0
     importVisibility: 1

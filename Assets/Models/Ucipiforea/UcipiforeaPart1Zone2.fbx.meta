@@ -1,14 +1,27 @@
 fileFormatVersion: 2
-guid: d2c7d7e243604f542a67d2bfd5bdb9fc
+guid: d6fd88bbfd2c5014ba435fa9229f6379
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2100000: Level1
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: pCylinder1
+    100000: polySurface2
+    100002: polySurface3
+    100004: transform11
+    100006: transform12
+    100008: //RootNode
+    100010: Zone1_Start1
+    100012: Zone2Platform
+    400000: polySurface2
+    400002: polySurface3
+    400004: transform11
+    400006: transform12
+    400008: //RootNode
+    400010: Zone1_Start1
+    400012: Zone2Platform
+    2100000: Zone2
+    2100002: Zone2Platforming
+    2300000: Zone2Platform
+    3300000: Zone2Platform
+    4300000: Zone2Platform
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -40,7 +53,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 200
+    globalScale: 0.5
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
