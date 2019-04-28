@@ -23417,6 +23417,11 @@ Prefab:
       propertyPath: TriggerModule.collisionShape0
       value: 
       objectReference: {fileID: 833465999}
+    - target: {fileID: 199652702417939746, guid: 23d370a59ee96d94aa1d448177a041e8,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 04ae29fbe11bbe049ab14b5051dbdc57, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23d370a59ee96d94aa1d448177a041e8, type: 2}
   m_IsPrefabAsset: 0
