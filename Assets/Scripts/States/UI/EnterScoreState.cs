@@ -31,7 +31,7 @@ public class EnterScoreState : UIState {
             eventSystem.SetSelectedGameObject(nameField.gameObject);
         }
 
-        if(Input.inputString != "" && gameObject.activeSelf)
+        if (Input.inputString != "" && gameObject.activeSelf)
         {
             string input = Input.inputString;
             char[] temp = nameField.text.ToCharArray();
@@ -97,10 +97,18 @@ public class EnterScoreState : UIState {
 
     public override void EnterState(PauseMenuScript pauseMenu)
     {
+        string names = ScoreScript.instance.PrintNames();
+        string scores = ScoreScript.instance.PrintPoints();
+
         menuScript = pauseMenu;
         finalScore.text = ScoreScript.instance.score.ToString() + " Points";
-        nameList.text = ScoreScript.instance.PrintNames();
-        pointList.text = ScoreScript.instance.PrintPoints();
+        if (names == "" || scores == "")
+            nameList.text = "No Submitted Scores";
+        else
+        {
+            nameList.text = ScoreScript.instance.PrintNames();
+            pointList.text = ScoreScript.instance.PrintPoints();
+        }
         eventSystem.SetSelectedGameObject(nameField.gameObject);
         scrollRect = GetComponentInChildren<ScrollRect>();
         for (int i = 1; i <= maxNameLength; i++)

@@ -1380,7 +1380,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1069048434457326}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1402,7 +1402,7 @@ Transform:
   - {fileID: 4508767417744008}
   m_Father: {fileID: 4896144262998220}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!4 &4461040311971248
 Transform:
   m_ObjectHideFlags: 1
@@ -1886,7 +1886,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1725409112247272}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 4.0540743, y: 1.5227123, z: -0.43244466}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4457219468414702}
@@ -2171,7 +2171,7 @@ MonoBehaviour:
   Hud: {fileID: 0}
   ammoCount: 100
   ammoAmnt: 10
-  isEquipped: 1
+  isEquipped: 0
   cannonEquipped: 0
   ammoTimer: 0
   chargeTimer: 2
@@ -2204,6 +2204,7 @@ MonoBehaviour:
   jetpack: {fileID: 198092528973017226}
   hoverContainer: {fileID: 1739104478096140}
   coreContainer: {fileID: 1878437219937700}
+  animator: {fileID: 95752933192864798}
   Hud: {fileID: 0}
   Health: 100
   deathScreen: {fileID: 0}
@@ -2223,12 +2224,12 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100004, guid: e23480099bb1e91408970d9445c5b20c, type: 3}
-  - {fileID: 2100006, guid: e23480099bb1e91408970d9445c5b20c, type: 3}
-  - {fileID: 2100008, guid: e23480099bb1e91408970d9445c5b20c, type: 3}
-  - {fileID: 2100010, guid: e23480099bb1e91408970d9445c5b20c, type: 3}
+  - {fileID: 2100000, guid: aa9ea80a1f585884896fc842b7be8cbe, type: 2}
+  - {fileID: 2100000, guid: 901a7683cd81a8047999119363348250, type: 2}
+  - {fileID: 2100000, guid: 1463f5c2ffeb33841b66d0b81c5ff139, type: 2}
+  - {fileID: 2100000, guid: fa3d557bb31d713439cde5d41f9d547b, type: 2}
   - {fileID: 2100012, guid: e23480099bb1e91408970d9445c5b20c, type: 3}
-  - {fileID: 2100014, guid: e23480099bb1e91408970d9445c5b20c, type: 3}
+  - {fileID: 2100000, guid: 0ea863347ef21c14bb5d7d4653386856, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -29543,8 +29544,8 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 96bc4105ce4c2734188d6ac68b508c3c, type: 2}
-  - {fileID: 2100000, guid: 96bc4105ce4c2734188d6ac68b508c3c, type: 2}
+  - {fileID: 2100000, guid: 1463f5c2ffeb33841b66d0b81c5ff139, type: 2}
+  - {fileID: 2100000, guid: 1463f5c2ffeb33841b66d0b81c5ff139, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
