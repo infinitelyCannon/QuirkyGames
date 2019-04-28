@@ -161,7 +161,7 @@ Transform:
   m_GameObject: {fileID: 1749482461131790}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children: []
   m_Father: {fileID: 4260390782477660}
   m_RootOrder: 0
@@ -194,6 +194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   rb: {fileID: 54530336683272748}
+  deathDistance: 250
 --- !u!135 &135639210985882732
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -4925,7 +4926,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0, g: 0.9226117, b: 1, a: 1}
+      maxColor: {r: 0, g: 0.52156866, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -9458,7 +9459,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 0, g: 0.28235295, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -18354,7 +18355,7 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 31c6333959d5daf4ea91732245a18fc4, type: 2}
+  - {fileID: 2100000, guid: 1563bb315645fa0499ca547ef03773c5, type: 2}
   - {fileID: 2100000, guid: e0c4b1981f3ec1c40bc3663331e825fe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -18468,8 +18469,8 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 31c6333959d5daf4ea91732245a18fc4, type: 2}
-  - {fileID: 2100000, guid: 31c6333959d5daf4ea91732245a18fc4, type: 2}
+  - {fileID: 2100000, guid: 1563bb315645fa0499ca547ef03773c5, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
