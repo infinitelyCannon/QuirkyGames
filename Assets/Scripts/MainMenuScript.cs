@@ -7,16 +7,7 @@ using UnityEngine.UI;
 
 public class MainMenuScript : MonoBehaviour {
 
-    private enum MainMenuState
-    {
-        Main,
-        HowTo,
-        Score,
-        Credits
-    }
-
     private EventSystem eventSystem;
-    private MainMenuState menuState = MainMenuState.Main;
     private List<Toggle> statePanels;
     private List<GameObject> pages;
 

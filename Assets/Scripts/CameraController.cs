@@ -78,7 +78,6 @@ public class CameraController : MonoBehaviour{
 
     //Private variables for camera movement and rotation
     private CameraTarget currentTarget = null;
-    private int targetIndex;
     private Transform cameraTransform;
     private Transform pivotTransform;
     private Vector3 lastTargetPosition;
@@ -87,7 +86,6 @@ public class CameraController : MonoBehaviour{
     private Vector3 pivotEulers;
     private Quaternion pivotTargetRotation;
     private Quaternion transformTargetRotation;
-    private SphereCollider sphereCollider;
 
     private void Awake()
     {
@@ -111,15 +109,12 @@ public class CameraController : MonoBehaviour{
         if(targets.Length > 0)
         {
             currentTarget = targets[0];
-            targetIndex = 0;
 
             initialDistance = currentTarget.distance;
             currentDistance = initialDistance;
             pivotTransform.localPosition = new Vector3(currentTarget.offset.x, currentTarget.offset.y, 0f);
 
             hitComparer = new RayHitComparer();
-
-            sphereCollider = GetComponent<SphereCollider>();
         }
         else
         {
@@ -317,7 +312,6 @@ public class CameraController : MonoBehaviour{
             if (targets[i].target.gameObject.activeSelf)
             {
                 currentTarget = targets[i];
-                targetIndex = i;
                 return false;
             }
         }

@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114861715340753186}
   m_Layer: 0
   m_Name: RoughWater
-  m_TagString: Untagged
+  m_TagString: Calm
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,10 +111,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rend: {fileID: 23985087516707692}
-  speedX: 0.1
-  speedY: 0.1
-  curX: 0
-  curY: 0
   material1: {fileID: 2100000, guid: b8ecc7ab4893ea8408577f1df22aa22d, type: 2}
   material2: {fileID: 2100000, guid: 2efaee048b098294c9972562973af09e, type: 2}
   duration: 20

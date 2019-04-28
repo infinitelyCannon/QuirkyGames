@@ -65,11 +65,6 @@ public class ScoreScript : MonoBehaviour {
         score = 0;
         scoreComparer = new ScoreComparer();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-        
-    }
 
     public void AddPlayer(string name)
     {
@@ -81,25 +76,6 @@ public class ScoreScript : MonoBehaviour {
     {
         score = 0;
     }
-
-    /*
-    public string PrintScores()
-    {
-        string result = "";
-
-        for(int i = 0; i < scoreTable.Count; i++)
-        {
-            result += scoreTable[i].name;
-            for (int j = 0; j < (MAX_NAME_LENGTH - scoreTable[i].name.Length); j++)
-                result += " ";
-            for (int k = 1; k <= SCORE_TABLE_TABS; k++)
-                result += "\t";
-            result += scoreTable[i].score + "\n";
-        }
-
-        return result;
-    }
-    */
 
     public string PrintNames()
     {
@@ -127,11 +103,6 @@ public class ScoreScript : MonoBehaviour {
         }
 
         return result;
-    }
-
-    public void AddCollectable()
-    {
-
     }
 
     public void AddToScore(int value)

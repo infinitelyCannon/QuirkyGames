@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem jetpack;
     public GameObject hoverContainer;
     public GameObject coreContainer;
+    public GameObject explosion;
 
     private ParticleSystem[] hoverSet;
     private ParticleSystem[] coreSet;
@@ -37,7 +38,6 @@ public class PlayerController : MonoBehaviour
     private float turnAmount;
     private Transform meshObject;
     private float shootWait;
-    private bool canShoot = true;
     private float hoverTime = 0f;
     [SerializeField] private Animator animator;
 
@@ -256,6 +256,17 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.gameObject.CompareTag("Calm") && !isDead)
+        {
+            isDead = true;
+            Instantiate(explosion, transform.position, Quaternion.identity);
+            gameObject.SetActive(false);
+            deathScreen.Launch();
+        }
     }
 
     // Damage Code Added By Kyle

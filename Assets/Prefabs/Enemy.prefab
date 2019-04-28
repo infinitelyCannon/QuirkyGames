@@ -266,7 +266,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4039701042776540}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Hover
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -362,11 +362,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4578098315070306}
-  - component: {fileID: 114177170998285858}
+  - component: {fileID: 114609158513707586}
   - component: {fileID: 54702115357675300}
   - component: {fileID: 135197146080513154}
-  - component: {fileID: 136716172228273254}
-  - component: {fileID: 195498192081339056}
+  - component: {fileID: 136083505204110820}
+  - component: {fileID: 114668941944108630}
+  - component: {fileID: 114914142868103306}
+  - component: {fileID: 114705869973093064}
+  - component: {fileID: 195379517396086186}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -667,7 +670,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1703391198036150}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.79, y: 1, z: 1.9}
+  m_LocalPosition: {x: -4.09, y: 1, z: 8.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4676465523778624}
@@ -902,41 +905,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114177170998285858
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1703391198036150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 433f2153bb2a4ac479da389527ca9d53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  stopDistance: 5
-  retreatDistance: 2
-  inRadius: 0
-  mindControl: 0
-  startTimeBtwShots: 2
-  projectile: {fileID: 1358917095227168, guid: 73dcd9e386a636740a6bfda360b94784, type: 2}
-  enemyProjectile: {fileID: 1941832562694746, guid: b21e381506b0ba245acc4f9b76ab3c18,
-    type: 2}
-  normal: {fileID: 2100000, guid: c2e8f473847f78843885d84821ac10c6, type: 2}
-  mind: {fileID: 2100000, guid: 131db65c4c72dbe4284307a65d428d78, type: 2}
-  starttimeControlled: 4
-  patrolStart: 0
-  patrolSpots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  hoverHeight: 0.3
-  hoverSpeed: 3
-  explosion: {fileID: 1779807456270886, guid: da51dc8277be4634bbbf697c54ffa737, type: 2}
-  target: {fileID: 0}
-  animator: {fileID: 95784479755250156}
-  hackContainer: {fileID: 1765179250941774}
 --- !u!114 &114273571688532750
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -946,6 +914,71 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb4f681d90a5cde4fb209fbb66bbbf79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114609158513707586
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1703391198036150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6c67fc46277dd146ba353f0a8ed651e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  stopDistance: 5
+  shootDelay: 1.7
+  projectile: {fileID: 1358917095227168, guid: 73dcd9e386a636740a6bfda360b94784, type: 2}
+  enemyProjectile: {fileID: 1941832562694746, guid: b21e381506b0ba245acc4f9b76ab3c18,
+    type: 2}
+  mindControlTime: 4
+  retreatDistance: 15
+  patrolStart: 1
+  patrolSpots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  hoverHeight: 0.3
+  hoverSpeed: 3
+  explosion: {fileID: 1779807456270886, guid: da51dc8277be4634bbbf697c54ffa737, type: 2}
+  hackContainer: {fileID: 1765179250941774}
+  playerInRange: 0
+  navAgent: {fileID: 0}
+  target: {fileID: 0}
+--- !u!114 &114668941944108630
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1703391198036150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae5307e426f0e1141aa493b63fc94236, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114705869973093064
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1703391198036150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d49d34d1231817a4e8c2601e60b23198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114914142868103306
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1703391198036150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13c32d217d4d1e045a9d66e2c144ae21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!135 &135197146080513154
@@ -960,7 +993,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!136 &136716172228273254
+--- !u!136 &136083505204110820
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1043,7 +1076,7 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0933392, y: 0.010959297, z: 0.021043673}
     m_Extent: {x: 0.12609841, y: 0.086041704, z: 0.12967974}
   m_DirtyAABB: 0
---- !u!195 &195498192081339056
+--- !u!195 &195379517396086186
 NavMeshAgent:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1052,11 +1085,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.5
   m_AutoTraverseOffMeshLink: 0
   m_AutoBraking: 0
   m_AutoRepath: 1

@@ -2630,7 +2630,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Points
+  m_Text: 
 --- !u!114 &114163585441367234
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5677,7 +5677,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!114 &114811078915317020
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5782,7 +5782,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PointList
+  m_Text: 
 --- !u!114 &114841037715938700
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6177,7 +6177,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: NameList
+  m_Text: 
 --- !u!114 &114960930290003818
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7687,8 +7687,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 580.44366, y: -11.843356}
-  m_SizeDelta: {x: 395.1127, y: 23.686724}
+  m_AnchoredPosition: {x: 583.5, y: -11.843356}
+  m_SizeDelta: {x: 389, y: 23.686724}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224273105800058692
 RectTransform:
@@ -8537,8 +8537,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 191.44365, y: -11.843356}
-  m_SizeDelta: {x: 382.8873, y: 23.686724}
+  m_AnchoredPosition: {x: 194.5, y: -11.843356}
+  m_SizeDelta: {x: 389, y: 23.686724}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224695543981165188
 RectTransform:

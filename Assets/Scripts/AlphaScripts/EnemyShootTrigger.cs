@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class EnemyShootTrigger : MonoBehaviour {
 
-    private EnemyScript enemyScript;
+    private EnemyStateController enemyScript;
 
 	// Use this for initialization
 	void Start () {
-        enemyScript = GetComponentInParent<EnemyScript>();
+        enemyScript = GetComponentInParent<EnemyStateController>();
 	}
 	
 	// Update is called once per frame

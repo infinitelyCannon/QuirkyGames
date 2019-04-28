@@ -89,8 +89,8 @@ GameObject:
   - component: {fileID: 4787026026110426}
   - component: {fileID: 135934399495067690}
   - component: {fileID: 114671432896411446}
-  - component: {fileID: 114686065030807010}
   - component: {fileID: 54180186868938688}
+  - component: {fileID: 114002465852292284}
   m_Layer: 0
   m_Name: EnemyMindBulletOrb
   m_TagString: FriendlyFire
@@ -182,6 +182,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &114002465852292284
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1941832562694746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e50afe69561273a4e890de751af5be5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  deathDistance: 250
 --- !u!114 &114671432896411446
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -196,18 +209,6 @@ MonoBehaviour:
   RepeatRate: 0.1
   DamageAmount: 20
   Repeating: 0
---- !u!114 &114686065030807010
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1941832562694746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce17fda1066623442a0b68ef4ec946d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
 --- !u!135 &135934399495067690
 SphereCollider:
   m_ObjectHideFlags: 1

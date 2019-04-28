@@ -60,7 +60,6 @@ public class OnFireScript : MonoBehaviour {
 		if ((Input.GetButtonDown("Shoot") || Input.GetAxisRaw("Shoot") == 1f) && isFiring == true && Time.timeScale > 0f && cannonEquipped == true) 
         {
             isFiring = false;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             isAiming = (Input.GetButton("Aim") || Input.GetAxisRaw("Aim") == 1f);
                 
             if (ammoCount > 0 && isOut == false) {
@@ -69,8 +68,6 @@ public class OnFireScript : MonoBehaviour {
                     animator.SetTrigger((Input.GetAxisRaw("Horizontal") != 0f || Input.GetAxisRaw("Vertical") != 0f) ? "MoveShoot" : "IdleShoot");
                 else
                     Shoot();
-                //Instantiate(projectile, player.GetSpawnPosition(isAiming), transform.rotation).transform.forward = player.GetShotDirection(isAiming);
-                //mAudioSource.PlayOneShot(projectileClip);
             }
             FiredShot();
         }
@@ -85,8 +82,6 @@ public class OnFireScript : MonoBehaviour {
                     animator.SetTrigger((Input.GetAxisRaw("Horizontal") != 0f || Input.GetAxisRaw("Vertical") != 0f) ? "MoveShoot" : "IdleShoot");
                 else
                     Shoot();
-                //Instantiate(mindProjectile, player.GetSpawnPosition(isAiming), transform.rotation).transform.forward = player.GetShotDirection(isAiming);
-                //mAudioSource.PlayOneShot(mindControlClip);
             }
             //FiredShot();
         }

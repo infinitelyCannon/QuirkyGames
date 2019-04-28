@@ -756,6 +756,7 @@ GameObject:
   - component: {fileID: 4896144262998220}
   - component: {fileID: 114273933578622626}
   - component: {fileID: 143661482804218552}
+  - component: {fileID: 208647620658686362}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -1886,7 +1887,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1725409112247272}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.0540743, y: 1.5227123, z: -0.43244466}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4457219468414702}
@@ -2171,7 +2172,7 @@ MonoBehaviour:
   Hud: {fileID: 0}
   ammoCount: 100
   ammoAmnt: 10
-  isEquipped: 0
+  isEquipped: 1
   cannonEquipped: 0
   ammoTimer: 0
   chargeTimer: 2
@@ -2204,6 +2205,7 @@ MonoBehaviour:
   jetpack: {fileID: 198092528973017226}
   hoverContainer: {fileID: 1739104478096140}
   coreContainer: {fileID: 1878437219937700}
+  explosion: {fileID: 1807722220476970, guid: c863965f2c7851f4aa6214043215307b, type: 2}
   animator: {fileID: 95752933192864798}
   Hud: {fileID: 0}
   Health: 100
@@ -29870,3 +29872,18 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!208 &208647620658686362
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1725409112247272}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.55, y: 0.915, z: 0.55}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
