@@ -224,7 +224,7 @@ public class CameraController : MonoBehaviour{
 
             if (hitSomething)
             {
-                Debug.DrawRay(checkRay.origin, -pivotTransform.forward * (targetDistance + sphereCastRadius), Color.red);
+                //Debug.DrawRay(checkRay.origin, -pivotTransform.forward * (targetDistance + sphereCastRadius), Color.red);
             }
 
             dodging = hitSomething;

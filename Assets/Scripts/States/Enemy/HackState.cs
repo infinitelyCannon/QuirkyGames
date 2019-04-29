@@ -14,13 +14,28 @@ public class HackState : EnemyState {
 
     public override void EnterState()
     {
+        float dist;
+        int j = 0;
         hackTimer = 0f;
         meshObject = transform.GetChild(0);
         animator = GetComponentInChildren<Animator>();
         gameObject.tag = "Controlled";
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
         if (enemies.Length > 0)
-            controller.target = enemies[Random.Range(0, enemies.Length - 1)].transform;
+        {
+            dist = Vector3.Distance(transform.position, enemies[0].transform.position);
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                if(Vector3.Distance(transform.position, enemies[i].transform.position) < dist)
+                {
+                    j = i;
+                    dist = Vector3.Distance(transform.position, enemies[i].transform.position);
+                }
+
+            }
+
+            controller.target = enemies[j].transform;
+        }
         else
         {
             controller.GoToState("PatrolState");

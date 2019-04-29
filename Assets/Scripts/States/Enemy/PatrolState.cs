@@ -16,15 +16,18 @@ public class PatrolState : EnemyState {
 
     public override void UpdateState()
     {
-        controller.navAgent.isStopped = true;
-        controller.navAgent.destination = controller.patrolSpots[patrolIndex].position;
-        controller.navAgent.isStopped = false;
+        if(controller.patrolSpots.Length > 0)
+        {
+            controller.navAgent.isStopped = true;
+            controller.navAgent.destination = controller.patrolSpots[patrolIndex].position;
+            controller.navAgent.isStopped = false;
 
-        if (controller.navAgent.remainingDistance <= controller.navAgent.stoppingDistance && !controller.navAgent.pathPending)
-            patrolIndex = ++patrolIndex % controller.patrolSpots.Length;
+            if (controller.navAgent.remainingDistance <= controller.navAgent.stoppingDistance && !controller.navAgent.pathPending)
+                patrolIndex = ++patrolIndex % controller.patrolSpots.Length;
 
-        turnAmount = Mathf.Atan2(controller.navAgent.velocity.x, controller.navAgent.velocity.z);
-        meshObject.localRotation = Quaternion.RotateTowards(meshObject.localRotation, Quaternion.Euler(0f, turnAmount * Mathf.Rad2Deg, 0f), 360f * Time.deltaTime);
+            turnAmount = Mathf.Atan2(controller.navAgent.velocity.x, controller.navAgent.velocity.z);
+            meshObject.localRotation = Quaternion.RotateTowards(meshObject.localRotation, Quaternion.Euler(0f, turnAmount * Mathf.Rad2Deg, 0f), 360f * Time.deltaTime);
+        }
 
         if (controller.playerInRange)
             controller.GoToState("AttackState");
