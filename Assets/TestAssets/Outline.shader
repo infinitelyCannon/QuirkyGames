@@ -8,6 +8,9 @@
 		_OutlineTex("Outline Texture", 2D) = "white"{}
 		_OutlineColor("Outline Color", Color) = (1,1,1,0)
 		_OutlineWidth("Outline Width", Range(1.0, 10.0)) = 1.1
+
+		_XTex("Xray Texture (RBG)", 2D) = "white" {}//allows for a texture property
+		_XColor("Xray Color", Color) = (1,1,1,1)
 	}
 	SubShader
 	{
@@ -126,7 +129,40 @@
 				return textColor * _Color;
 			}
 
-			ENDCG
+				ENDCG
 		}
+		
+			//Xray
+			ZTEST GREATER
+
+			CGPROGRAM
+			#pragma surface surf Unlit
+
+			sampler2D _XTex;
+			struct Input
+			{
+				float2 uv_OutlineTex;
+			};
+
+			fixed4 _XColor;
+
+			half4 LightingUnlit(SurfaceOutput s, half3 lightDir, half atten)
+			{
+				half4 col;
+				col.rgb = s.Albedo;
+				col.a = s.Alpha;
+
+				return col;
+
+			}
+
+			void surf(Input IN, inout SurfaceOutput o)
+			{
+				fixed4 c = tex2D(_XTex, IN.uv_OutlineTex) * _XColor;
+				o.Albedo = c.rgb;
+				o.Alpha = c.a;
+			}
+
+			ENDCG
 	}
 }
