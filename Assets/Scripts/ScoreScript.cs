@@ -66,6 +66,12 @@ public class ScoreScript : MonoBehaviour {
         scoreComparer = new ScoreComparer();
 	}
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+            Debug.Log("Score: " + score);
+    }
+
     public void AddPlayer(string name)
     {
         scoreTable.Add(new PlayerData(name, score));

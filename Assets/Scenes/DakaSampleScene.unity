@@ -638,7 +638,7 @@ Prefab:
     - target: {fileID: 114372055101909626, guid: b3de2b4ef1527f54d846cbcec46bef4b,
         type: 2}
       propertyPath: activateJetPack
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3de2b4ef1527f54d846cbcec46bef4b, type: 2}

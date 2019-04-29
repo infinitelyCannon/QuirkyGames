@@ -91,6 +91,10 @@ public class PlayerController : MonoBehaviour
         {
             moveVector.y = 0f;
             jumping = false;
+            foreach (ParticleSystem p in hoverSet)
+            {
+                p.Play();
+            }
         }
 
         if (!characterController.isGrounded && !jumping && previouslyGrounded)
@@ -102,6 +106,26 @@ public class PlayerController : MonoBehaviour
         {
             for (int i = 0; i < hoverSet.Length; i++)
                 hoverSet[i].Play();
+        }
+
+        if(jumping && jetPack && Input.GetButton("Jump"))
+        {
+            foreach(ParticleSystem p in hoverSet)
+            {
+                p.Stop();
+                p.Clear();
+            }
+
+            jetpack.Play();
+        }
+        else
+        {
+            jetpack.Stop();
+        }
+
+        if(jetpack && Input.GetButtonUp("Jump") && jumping)
+        {
+            jetpack.Stop();
         }
 
         if (Vector3.Distance(transform.position, new Vector3(47.889f, 14.44f, 14.927f)) <= 0.82f && SceneManager.GetActiveScene().buildIndex == 2)
@@ -119,10 +143,10 @@ public class PlayerController : MonoBehaviour
         else
             coreContainer.SetActive(false);
 
-        if(fireScript.isEquipped && !done && SceneManager.GetActiveScene().buildIndex == 2)
+        if(fireScript.isEquipped && !done && SceneManager.GetActiveScene().buildIndex == 3)
         {
             done = true;
-            deathScreen.FadeIn(3);
+            deathScreen.FadeIn(4);
         }
     }
 
@@ -298,6 +322,6 @@ public class PlayerController : MonoBehaviour
     public void ActivateJetPack()
     {
         jetPack = true;
-        JetPack.SetActive(true);
+        //JetPack.SetActive(true);
     }
 }

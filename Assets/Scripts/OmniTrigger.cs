@@ -23,12 +23,19 @@ public class OmniTrigger : MonoBehaviour
 
     private Text dialogText;
     private delegate void AfterEffect();
+    private float waitTime = 0f;
+    private bool ready = false;
 
     private void Start()
     {
         mAudioSource = GetComponent<AudioSource>();
         dialogText = GameObject.Find("DialogText").GetComponent<Text>();
     }
+    private void Update()
+    {
+
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player") && playDialogue == true)

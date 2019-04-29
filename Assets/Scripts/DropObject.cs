@@ -7,6 +7,8 @@ public class DropObject : MonoBehaviour
    {private Rigidbody rb;
     public OnFireScript mOnFire;
 
+    private bool ready = false;
+
 
 	// Use this for initialization
 	void Start () {
@@ -21,10 +23,12 @@ public class DropObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         //Enable Gravity
-        if(other.CompareTag("Bullet") == true)
+        if(other.CompareTag("Bullet") == true) {
             rb.isKinematic = false;
+            ready = true;
+        }
         //Enable Mind Control
-        if(other.CompareTag("Player") == true && gameObject.CompareTag("MacGuffin") == true) {
+        if(other.CompareTag("Player") == true && gameObject.CompareTag("MacGuffin") == true && ready) {
             mOnFire.isEquipped = true;
             Destroy(gameObject);
             //Add to Player Model
