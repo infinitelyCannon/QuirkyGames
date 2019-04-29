@@ -20,10 +20,10 @@ public class ElectricalSense : MonoBehaviour {
 	}
 
     void ToggleOutline() {
-        if (Input.GetButtonDown("Sense") && outlineOn == false) {
+        if (Input.GetButton("Sense") && outlineOn == false) {
             GetComponent<Renderer>().material = border;
             outlineOn = true;
-        } else if(Input.GetButtonDown("Sense") && outlineOn == true) {
+        } else if(Input.GetButtonUp("Sense") && outlineOn == true) {
             GetComponent<Renderer>().material = nonBorder;
             outlineOn = false;
         }
