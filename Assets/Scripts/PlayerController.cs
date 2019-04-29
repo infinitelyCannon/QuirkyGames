@@ -104,6 +104,9 @@ public class PlayerController : MonoBehaviour
                 hoverSet[i].Play();
         }
 
+        if (Vector3.Distance(transform.position, new Vector3(47.889f, 14.44f, 14.927f)) <= 0.82f && SceneManager.GetActiveScene().buildIndex == 2)
+            deathScreen.FadeIn(3);
+
         //Vertical Slice stuff
         if(Health <= 0 && !isDead)
         {

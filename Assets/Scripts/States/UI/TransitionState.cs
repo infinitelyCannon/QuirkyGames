@@ -19,10 +19,8 @@ public class TransitionState : UIState {
     {
         image = GetComponent<Image>();
         currentColor = image.color;
-        if (currentColor.a == 0f)
-            toAlpha = false;
-        else
-            toAlpha = true;
+
+        toAlpha = false;
 
         menuScript = pauseMenu;
     }

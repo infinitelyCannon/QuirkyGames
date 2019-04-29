@@ -48,7 +48,6 @@ public class OmniTrigger : MonoBehaviour
         if (other.gameObject.CompareTag("Player") && advanceScene == true)
         {
             other.gameObject.GetComponent<PlayerController>().deathScreen.FadeIn(nextSceneIndex);
-
         }
     }
 
