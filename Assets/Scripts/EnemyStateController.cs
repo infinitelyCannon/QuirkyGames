@@ -18,6 +18,7 @@ public class EnemyStateController : MonoBehaviour {
     public float hoverSpeed;
     public GameObject explosion;
     public GameObject hackContainer;
+    public AudioClip takeShot;
 
     public static EnemyStateController traitor = null;
     [HideInInspector] public bool playerInRange = false;
@@ -30,6 +31,7 @@ public class EnemyStateController : MonoBehaviour {
     private float hoverTime = 0f;
     private ParticleSystem[] hacks;
     private Transform player;
+    private AudioSource source;
 
 	// Use this for initialization
 	void Start () {
@@ -38,6 +40,7 @@ public class EnemyStateController : MonoBehaviour {
         hacks = hackContainer.GetComponentsInChildren<ParticleSystem>();
         navAgent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        source = GetComponent<AudioSource>();
         StopHack();
         GoToState("PatrolState");
 	}
@@ -113,11 +116,13 @@ public class EnemyStateController : MonoBehaviour {
 
         if (traitor == null)
         {
+            source.PlayOneShot(takeShot);
             bullet = Instantiate(projectile, transform.position + meshObject.forward, Quaternion.identity);
             bullet.transform.LookAt(player);
         }
         else
         {
+            source.PlayOneShot(takeShot);
             bullet = Instantiate(enemyProjectile, transform.position + meshObject.forward, Quaternion.identity);
             bullet.transform.LookAt(target);
         }

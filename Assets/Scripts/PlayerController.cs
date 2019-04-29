@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public GameObject hoverContainer;
     public GameObject coreContainer;
     public GameObject explosion;
+    public AudioClip takeHit;
 
     private ParticleSystem[] hoverSet;
     private ParticleSystem[] coreSet;
@@ -45,6 +46,7 @@ public class PlayerController : MonoBehaviour
     public GameObject Hud;
     public int Health = 100;
     private HealthBarScript mHealthBar;
+    private AudioSource audioSource;
 
     //Vertical Slice stuff
     public PauseMenuScript deathScreen;
@@ -76,6 +78,7 @@ public class PlayerController : MonoBehaviour
         mHealthBar.SetHealth(Health);
 
         fireScript = GetComponentInChildren<OnFireScript>();
+        audioSource = GetComponentInChildren<AudioSource>();
         //animator = transform.GetChild(0).GetComponent<Animator>();
     }
 
@@ -282,6 +285,11 @@ public class PlayerController : MonoBehaviour
         mHealthBar.SetHealth(Health);
         mHealthBar.timer = 0f;
         mHealthBar.isRegenerating = false;
+    }
+
+    public void GetShot()
+    {
+        audioSource.PlayOneShot(takeHit);
     }
 
     public void ActivateJetPack()

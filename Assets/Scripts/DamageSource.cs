@@ -35,6 +35,8 @@ public class DamageSource : MonoBehaviour {
             {
                 //One Instance of Damage
                 player.TakeDamage(DamageAmount);
+                if (name.Contains("Bullet"))
+                    player.GetShot();
             }
         }
     }

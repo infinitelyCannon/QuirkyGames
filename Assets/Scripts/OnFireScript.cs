@@ -34,6 +34,7 @@ public class OnFireScript : MonoBehaviour {
     //Sounds
     public AudioClip projectileClip;
     public AudioClip mindControlClip;
+    public AudioClip noAmmo;
     private AudioSource mAudioSource;
 
 
@@ -61,6 +62,9 @@ public class OnFireScript : MonoBehaviour {
         {
             isFiring = false;
             isAiming = (Input.GetButton("Aim") || Input.GetAxisRaw("Aim") == 1f);
+
+            if (isOut)
+                mAudioSource.PlayOneShot(noAmmo);
                 
             if (ammoCount > 0 && isOut == false) {
                 mainBullet = true;
