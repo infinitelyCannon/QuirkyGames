@@ -27,6 +27,7 @@ public class HackState : EnemyState {
             return;
         }
         controller.StartHack();
+        controller.navAgent.isStopped = true;
     }
 
     public override void UpdateState()
@@ -58,12 +59,12 @@ public class HackState : EnemyState {
             } 
         }
 
-        Vector2 rand = Random.insideUnitCircle.normalized * controller.stopDistance;
-        destination = new Vector3(rand.x, transform.position.y, rand.y) + controller.target.position;
+        //Vector2 rand = Random.insideUnitCircle.normalized * controller.stopDistance;
+        //destination = new Vector3(rand.x, transform.position.y, rand.y) + controller.target.position;
 
         meshObject.LookAt(controller.target.transform);
 
-        if (controller.navAgent.remainingDistance <= controller.navAgent.stoppingDistance && !controller.navAgent.pathPending)
+        /*if (controller.navAgent.remainingDistance <= controller.navAgent.stoppingDistance && !controller.navAgent.pathPending)
         {
             while (!controller.navAgent.SetDestination(destination))
             {
@@ -71,7 +72,7 @@ public class HackState : EnemyState {
                 destination = new Vector3(rand.x, transform.position.y, rand.y) + controller.target.position;
             }
 
-        }
+        }*/
 
         hackTimer += Time.deltaTime;
         if (hackTimer >= controller.mindControlTime)
@@ -94,5 +95,6 @@ public class HackState : EnemyState {
         controller.target = null;
         controller.StopHack();
         gameObject.tag = "Enemy";
+        controller.navAgent.isStopped = false;
     }
 }

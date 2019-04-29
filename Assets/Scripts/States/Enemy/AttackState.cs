@@ -16,16 +16,18 @@ public class AttackState : EnemyState {
         meshObject = transform.GetChild(0);
         shootTimer = 0f;
         animator = GetComponentInChildren<Animator>();
+        controller.navAgent.isStopped = true;
     }
 
     public override void UpdateState()
     {
-        Vector2 rand = Random.insideUnitCircle.normalized * controller.stopDistance;
-        dest = new Vector3(rand.x, transform.position.y, rand.y) + player.position;
+        //Vector2 rand = Random.insideUnitCircle.normalized * controller.stopDistance;
+        //dest = new Vector3(rand.x, transform.position.y, rand.y) + player.position;
 
         meshObject.LookAt(player);
 
-        if(controller.navAgent.remainingDistance <= controller.navAgent.stoppingDistance && !controller.navAgent.pathPending)
+        /*
+        if (controller.navAgent.remainingDistance <= controller.navAgent.stoppingDistance && !controller.navAgent.pathPending)
         {
             while (!controller.navAgent.SetDestination(dest))
             {
@@ -34,6 +36,7 @@ public class AttackState : EnemyState {
             }
 
         }
+        */
 
         shootTimer += Time.deltaTime;
         if(shootTimer >= controller.shootDelay)
@@ -48,6 +51,6 @@ public class AttackState : EnemyState {
 
     public override void ExitState()
     {
-        return;
+        controller.navAgent.isStopped = false;
     }
 }

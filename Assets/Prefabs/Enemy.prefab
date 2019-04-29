@@ -1035,13 +1035,11 @@ MonoBehaviour:
   patrolSpots:
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   hoverHeight: 0.3
   hoverSpeed: 3
   explosion: {fileID: 1779807456270886, guid: da51dc8277be4634bbbf697c54ffa737, type: 2}
   hackContainer: {fileID: 1765179250941774}
-  bulletHit: {fileID: 8300000, guid: 5608d76eab7260a4aa7cf75e8ac76012, type: 3}
+  takeShot: {fileID: 8300000, guid: 495e00a30f58d6f4c902d60170b6e4ec, type: 3}
   playerInRange: 0
   navAgent: {fileID: 0}
   target: {fileID: 0}

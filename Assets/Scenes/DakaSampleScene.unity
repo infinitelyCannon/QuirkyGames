@@ -445,11 +445,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114609158513707586, guid: 660eaec697e79fd47a6f625a1a900cb7,
-        type: 2}
-      propertyPath: patrolSpots.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4578098315070306, guid: 660eaec697e79fd47a6f625a1a900cb7, type: 2}
       propertyPath: m_LocalPosition.x
       value: -9.79
@@ -496,21 +491,6 @@ Prefab:
       propertyPath: patrolSpots.Array.data[1]
       value: 
       objectReference: {fileID: 740178556}
-    - target: {fileID: 114609158513707586, guid: 660eaec697e79fd47a6f625a1a900cb7,
-        type: 2}
-      propertyPath: patrolSpots.Array.data[2]
-      value: 
-      objectReference: {fileID: 726796009}
-    - target: {fileID: 114609158513707586, guid: 660eaec697e79fd47a6f625a1a900cb7,
-        type: 2}
-      propertyPath: patrolSpots.Array.data[3]
-      value: 
-      objectReference: {fileID: 1886034069}
-    - target: {fileID: 114609158513707586, guid: 660eaec697e79fd47a6f625a1a900cb7,
-        type: 2}
-      propertyPath: takeShot
-      value: 
-      objectReference: {fileID: 8300000, guid: 495e00a30f58d6f4c902d60170b6e4ec, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 660eaec697e79fd47a6f625a1a900cb7, type: 2}
   m_IsPrefabAsset: 0
