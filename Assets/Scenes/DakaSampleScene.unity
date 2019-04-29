@@ -176,6 +176,16 @@ Prefab:
       propertyPath: patrolSpots.Array.data[3]
       value: 
       objectReference: {fileID: 1886034069}
+    - target: {fileID: 114609158513707586, guid: 660eaec697e79fd47a6f625a1a900cb7,
+        type: 2}
+      propertyPath: bulletHit
+      value: 
+      objectReference: {fileID: 8300000, guid: 5608d76eab7260a4aa7cf75e8ac76012, type: 3}
+    - target: {fileID: 114609158513707586, guid: 660eaec697e79fd47a6f625a1a900cb7,
+        type: 2}
+      propertyPath: takeShot
+      value: 
+      objectReference: {fileID: 8300000, guid: 495e00a30f58d6f4c902d60170b6e4ec, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 660eaec697e79fd47a6f625a1a900cb7, type: 2}
   m_IsPrefabAsset: 0
@@ -435,6 +445,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114609158513707586, guid: 660eaec697e79fd47a6f625a1a900cb7,
+        type: 2}
+      propertyPath: patrolSpots.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4578098315070306, guid: 660eaec697e79fd47a6f625a1a900cb7, type: 2}
       propertyPath: m_LocalPosition.x
       value: -9.79
@@ -473,11 +488,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114609158513707586, guid: 660eaec697e79fd47a6f625a1a900cb7,
         type: 2}
-      propertyPath: patrolStart
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114609158513707586, guid: 660eaec697e79fd47a6f625a1a900cb7,
-        type: 2}
       propertyPath: patrolSpots.Array.data[0]
       value: 
       objectReference: {fileID: 743362568}
@@ -496,6 +506,11 @@ Prefab:
       propertyPath: patrolSpots.Array.data[3]
       value: 
       objectReference: {fileID: 1886034069}
+    - target: {fileID: 114609158513707586, guid: 660eaec697e79fd47a6f625a1a900cb7,
+        type: 2}
+      propertyPath: takeShot
+      value: 
+      objectReference: {fileID: 8300000, guid: 495e00a30f58d6f4c902d60170b6e4ec, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 660eaec697e79fd47a6f625a1a900cb7, type: 2}
   m_IsPrefabAsset: 0
@@ -639,6 +654,11 @@ Prefab:
         type: 2}
       propertyPath: activateCannon
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114372055101909626, guid: b3de2b4ef1527f54d846cbcec46bef4b,
+        type: 2}
+      propertyPath: activateJetPack
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3de2b4ef1527f54d846cbcec46bef4b, type: 2}
@@ -1177,7 +1197,7 @@ Prefab:
     - target: {fileID: 114613498955253552, guid: f250f045230ff5942a7e0c6b8f153fb4,
         type: 2}
       propertyPath: lockCursor
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f250f045230ff5942a7e0c6b8f153fb4, type: 2}
@@ -1672,6 +1692,11 @@ Prefab:
       propertyPath: Hud
       value: 
       objectReference: {fileID: 1921688976}
+    - target: {fileID: 114008895316294826, guid: d0b38051833e3d342befe900f77b874b,
+        type: 2}
+      propertyPath: isEquipped
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0b38051833e3d342befe900f77b874b, type: 2}
   m_IsPrefabAsset: 0

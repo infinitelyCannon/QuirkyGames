@@ -2172,12 +2172,13 @@ MonoBehaviour:
   Hud: {fileID: 0}
   ammoCount: 100
   ammoAmnt: 10
-  isEquipped: 1
+  isEquipped: 0
   cannonEquipped: 0
   ammoTimer: 0
   chargeTimer: 2
   projectileClip: {fileID: 8300000, guid: e811a9fe569e34744b9e8710da5864dd, type: 3}
   mindControlClip: {fileID: 8300000, guid: 7ce502701a3093444beaa142bb2918f4, type: 3}
+  noAmmo: {fileID: 8300000, guid: 36f5b713596576347b743e6544147338, type: 3}
 --- !u!114 &114273933578622626
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2206,6 +2207,7 @@ MonoBehaviour:
   hoverContainer: {fileID: 1739104478096140}
   coreContainer: {fileID: 1878437219937700}
   explosion: {fileID: 1807722220476970, guid: c863965f2c7851f4aa6214043215307b, type: 2}
+  takeHit: {fileID: 8300000, guid: 452f15aaa17effd4a82f18ed694e3983, type: 3}
   animator: {fileID: 95752933192864798}
   Hud: {fileID: 0}
   Health: 100
@@ -7024,7 +7026,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.0023498535, g: 0, b: 1, a: 1}
+      maxColor: {r: 0, g: 0.990005, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -11566,7 +11568,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.0023498535, g: 0, b: 1, a: 1}
+      maxColor: {r: 0, g: 0.990005, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -16108,7 +16110,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.0023498535, g: 0, b: 1, a: 1}
+      maxColor: {r: 0, g: 0.990005, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

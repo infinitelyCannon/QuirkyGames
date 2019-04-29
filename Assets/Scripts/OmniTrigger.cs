@@ -22,7 +22,6 @@ public class OmniTrigger : MonoBehaviour
 
 
     private Text dialogText;
-    private string textBuffer = "";
     private delegate void AfterEffect();
 
     private void Start()
