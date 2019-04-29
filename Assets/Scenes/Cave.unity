@@ -29611,7 +29611,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 5
   runSpeed: 10
-  jumpSpeed: 15
+  jumpSpeed: 7
   stickToGroundForce: 9.8
   gravityMultiplier: 2
   jetPackGravityScale: 0.3
